@@ -10,6 +10,16 @@ data/raw/*.nc
 # src/phase2/geography.py's error message rather than committing it
 data/raw/india_states.geojson
 
+# Phase 2 row-level tables (up to ~40MB each) - regenerate locally via
+# run_phase2.py. The trained LightGBM models (.txt, <2MB) and every CSV/
+# JSON/MD/PNG analysis output ARE committed - only these bulky per-row
+# tables are excluded, matching the Phase 1 error_db/bust_labels policy.
+outputs/phase2/features_train.parquet
+outputs/phase2/features_test.parquet
+outputs/phase2/predictions_*.parquet
+outputs/phase2/val_predictions_*.parquet
+outputs/phase2/confidence_scores_*.parquet
+
 # Full row-level processed output can exceed GitHub's 100MB/file limit once
 # the date range is widened - regenerate locally via `python run_phase0.py`.
 # Only the small aggregated summary (data/processed/summary_*.csv) is committed.

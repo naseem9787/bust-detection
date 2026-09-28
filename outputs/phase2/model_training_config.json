@@ -1,0 +1,60 @@
+{
+  "random_seed": 42,
+  "base_params": {
+    "objective": "binary",
+    "learning_rate": 0.05,
+    "num_leaves": 31,
+    "min_child_samples": 200,
+    "subsample": 0.8,
+    "subsample_freq": 1,
+    "colsample_bytree": 0.8,
+    "n_jobs": -1,
+    "verbosity": -1
+  },
+  "max_estimators": 1000,
+  "early_stopping_rounds": 50,
+  "fit_years": [
+    2018,
+    2019
+  ],
+  "val_year": 2020,
+  "test_year": 2021,
+  "features": [
+    "fcst_precip_mm",
+    "fcst_temp_c",
+    "fcst_mslp_hpa",
+    "latitude",
+    "longitude",
+    "fcst_precip_anomaly_vs_domain_mean",
+    "fcst_temp_anomaly_vs_domain_mean",
+    "lead_day",
+    "month",
+    "precip_forecast_jump",
+    "temp_forecast_jump",
+    "hist_bust_precip_categorical_rate",
+    "hist_bust_temp_hard_rate",
+    "hist_mean_abs_error_precip_mm",
+    "hist_mean_abs_error_temp_c",
+    "region_v2"
+  ],
+  "targets": {
+    "bust_precip_categorical": {
+      "best_iteration": 86,
+      "n_fit": 893040,
+      "n_val": 446520,
+      "n_train_final": 1339560,
+      "n_test": 446520,
+      "train_prevalence": 0.028346621278628803,
+      "test_prevalence": 0.022608169846815372
+    },
+    "bust_temp_hard": {
+      "best_iteration": 408,
+      "n_fit": 893040,
+      "n_val": 446520,
+      "n_train_final": 1339560,
+      "n_test": 446520,
+      "train_prevalence": 0.0943309743497865,
+      "test_prevalence": 0.07173026964077757
+    }
+  }
+}
