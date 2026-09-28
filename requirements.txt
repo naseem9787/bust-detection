@@ -16,3 +16,7 @@ tqdm
 scikit-learn
 matplotlib
 pytest
+
+# Phase 2 - geographic assignment, LightGBM model
+shapely
+lightgbm

@@ -1,0 +1,133 @@
+component,dimension,value,rate
+bust_precip_categorical,lead_day,1,0.003129232637429359
+bust_precip_categorical,lead_day,2,0.004547895941338564
+bust_precip_categorical,lead_day,3,0.006550371304469665
+bust_precip_categorical,lead_day,4,0.007951520246602214
+bust_precip_categorical,lead_day,5,0.009819718836112278
+bust_precip_categorical,lead_day,6,0.010911447386857223
+bust_precip_categorical,lead_day,7,0.012779645976367288
+bust_precip_categorical,lead_day,8,0.01455443463640185
+bust_precip_categorical,lead_day,9,0.01684297790855168
+bust_precip_categorical,lead_day,10,0.01862360468917846
+bust_precip_categorical,region,Central India (MP/Chhattisgarh/Vidarbha),0.03464578454332553
+bust_precip_categorical,region,East Coast (Andhra/Odisha/TN coast),0.01225944404846757
+bust_precip_categorical,region,Indo-Gangetic Plain (UP/Bihar),0.024747793190416142
+bust_precip_categorical,region,Northeast India,0.020023419203747072
+bust_precip_categorical,region,Northwest India (Punjab/Haryana/Rajasthan),0.016721311475409836
+bust_precip_categorical,region,West Coast (Konkan/Goa/Kerala),0.017944964871194378
+bust_precip_categorical,region,Western Himalaya (J&K/HP/Uttarakhand),0.010302823315118398
+bust_precip_categorical,month,6,0.011259375545089831
+bust_precip_categorical,month,7,0.012154213767116994
+bust_precip_categorical,month,8,0.007777318261189229
+bust_precip_categorical,month,9,0.01102326685660019
+bust_precip_categorical,month,10,0.011862211862211862
+bust_temp_hard,lead_day,1,0.028787772640231656
+bust_temp_hard,lead_day,2,0.03704287515762925
+bust_temp_hard,lead_day,3,0.043412264723740136
+bust_temp_hard,lead_day,4,0.05101349773480921
+bust_temp_hard,lead_day,5,0.06047125309420391
+bust_temp_hard,lead_day,6,0.07076969781887815
+bust_temp_hard,lead_day,7,0.08272616879174256
+bust_temp_hard,lead_day,8,0.09836065573770492
+bust_temp_hard,lead_day,9,0.11395427583952174
+bust_temp_hard,lead_day,10,0.1285437391994769
+bust_temp_hard,region,Central India (MP/Chhattisgarh/Vidarbha),0.08916861826697892
+bust_temp_hard,region,East Coast (Andhra/Odisha/TN coast),0.017810049893086245
+bust_temp_hard,region,Indo-Gangetic Plain (UP/Bihar),0.08311790668348046
+bust_temp_hard,region,Northeast India,0.08772833723653396
+bust_temp_hard,region,Northwest India (Punjab/Haryana/Rajasthan),0.0925
+bust_temp_hard,region,West Coast (Konkan/Goa/Kerala),0.017652224824355973
+bust_temp_hard,region,Western Himalaya (J&K/HP/Uttarakhand),0.12437386156648451
+bust_temp_hard,month,6,0.06799813942671086
+bust_temp_hard,month,7,0.0701750758202371
+bust_temp_hard,month,8,0.05762108262108262
+bust_temp_hard,month,9,0.07882478632478633
+bust_temp_hard,month,10,0.13302253302253303
+bust_precip_percentile,lead_day,1,0.09349750128438652
+bust_precip_percentile,lead_day,2,0.09248166830134043
+bust_precip_percentile,lead_day,3,0.09061346971183037
+bust_precip_percentile,lead_day,4,0.08917729204614451
+bust_precip_percentile,lead_day,5,0.08924734949325114
+bust_precip_percentile,lead_day,6,0.0889262528606791
+bust_precip_percentile,lead_day,7,0.08828405959553501
+bust_precip_percentile,lead_day,8,0.08808556349539956
+bust_precip_percentile,lead_day,9,0.09124982485638224
+bust_precip_percentile,lead_day,10,0.09061346971183037
+bust_precip_percentile,region,Central India (MP/Chhattisgarh/Vidarbha),0.07532201405152225
+bust_precip_percentile,region,East Coast (Andhra/Odisha/TN coast),0.08559337134711333
+bust_precip_percentile,region,Indo-Gangetic Plain (UP/Bihar),0.10305800756620428
+bust_precip_percentile,region,Northeast India,0.09045667447306792
+bust_precip_percentile,region,Northwest India (Punjab/Haryana/Rajasthan),0.07975409836065574
+bust_precip_percentile,region,West Coast (Konkan/Goa/Kerala),0.0712675644028103
+bust_precip_percentile,region,Western Himalaya (J&K/HP/Uttarakhand),0.09266848816029144
+bust_precip_percentile,month,6,0.08004244432815862
+bust_precip_percentile,month,7,0.1064148515761419
+bust_precip_percentile,month,8,0.08432588916459884
+bust_precip_percentile,month,9,0.0924667616334283
+bust_precip_percentile,month,10,0.0651903651903652
+bust_temp_percentile,lead_day,1,0.0841273177338751
+bust_temp_percentile,lead_day,2,0.08774111438045865
+bust_temp_percentile,lead_day,3,0.08768273317453645
+bust_temp_percentile,lead_day,4,0.08807972537480734
+bust_temp_percentile,lead_day,5,0.08788706739526411
+bust_temp_percentile,lead_day,6,0.08658516650319929
+bust_temp_percentile,lead_day,7,0.08688291065340245
+bust_temp_percentile,lead_day,8,0.09036826864695717
+bust_temp_percentile,lead_day,9,0.09268016440147588
+bust_temp_percentile,lead_day,10,0.09269767876325254
+bust_temp_percentile,region,Central India (MP/Chhattisgarh/Vidarbha),0.06872072599531616
+bust_temp_percentile,region,East Coast (Andhra/Odisha/TN coast),0.09330898075552388
+bust_temp_percentile,region,Indo-Gangetic Plain (UP/Bihar),0.07604035308953341
+bust_temp_percentile,region,Northeast India,0.08125292740046838
+bust_temp_percentile,region,Northwest India (Punjab/Haryana/Rajasthan),0.07558743169398907
+bust_temp_percentile,region,West Coast (Konkan/Goa/Kerala),0.08198185011709602
+bust_temp_percentile,region,Western Himalaya (J&K/HP/Uttarakhand),0.08518897996357012
+bust_temp_percentile,month,6,0.08860689574975289
+bust_temp_percentile,month,7,0.08642587997426707
+bust_temp_percentile,month,8,0.07443479459608492
+bust_temp_percentile,month,9,0.09751899335232668
+bust_temp_percentile,month,10,0.1292022792022792
+bust_mslp_percentile,lead_day,1,0.09731563215169772
+bust_mslp_percentile,lead_day,2,0.09687777310728131
+bust_mslp_percentile,lead_day,3,0.09747326140768764
+bust_mslp_percentile,lead_day,4,0.09624141796272943
+bust_mslp_percentile,lead_day,5,0.09389449348465742
+bust_mslp_percentile,lead_day,6,0.08859931810751483
+bust_mslp_percentile,lead_day,7,0.08844752697211714
+bust_mslp_percentile,lead_day,8,0.09172855074494418
+bust_mslp_percentile,lead_day,9,0.0927151931250292
+bust_mslp_percentile,lead_day,10,0.09322310961655224
+bust_mslp_percentile,region,Central India (MP/Chhattisgarh/Vidarbha),0.07742974238875878
+bust_mslp_percentile,region,East Coast (Andhra/Odisha/TN coast),0.09409301496792587
+bust_mslp_percentile,region,Indo-Gangetic Plain (UP/Bihar),0.09670554854981084
+bust_mslp_percentile,region,Northeast India,0.09617096018735363
+bust_mslp_percentile,region,Northwest India (Punjab/Haryana/Rajasthan),0.08806010928961748
+bust_mslp_percentile,region,West Coast (Konkan/Goa/Kerala),0.06390515222482436
+bust_mslp_percentile,region,Western Himalaya (J&K/HP/Uttarakhand),0.08777322404371585
+bust_mslp_percentile,month,6,0.1337257980115123
+bust_mslp_percentile,month,7,0.0946443341604632
+bust_mslp_percentile,month,8,0.06996140060656189
+bust_mslp_percentile,month,9,0.07966999050332384
+bust_mslp_percentile,month,10,0.11933436933436933
+bust_any,lead_day,1,0.245440427817477
+bust_any,lead_day,2,0.24430783242258652
+bust_any,lead_day,3,0.24210102283872775
+bust_any,lead_day,4,0.23970739339591798
+bust_any,lead_day,5,0.2371619728177105
+bust_any,lead_day,6,0.2330869646443417
+bust_any,lead_day,7,0.23399771145672785
+bust_any,lead_day,8,0.2438115921722479
+bust_any,lead_day,9,0.2580332539348933
+bust_any,lead_day,10,0.26776540096212226
+bust_any,region,Central India (MP/Chhattisgarh/Vidarbha),0.22388758782201404
+bust_any,region,East Coast (Andhra/Odisha/TN coast),0.24363863150392018
+bust_any,region,Indo-Gangetic Plain (UP/Bihar),0.25726670870113494
+bust_any,region,Northeast India,0.2568384074941452
+bust_any,region,Northwest India (Punjab/Haryana/Rajasthan),0.23099726775956284
+bust_any,region,West Coast (Konkan/Goa/Kerala),0.20177107728337237
+bust_any,region,Western Himalaya (J&K/HP/Uttarakhand),0.26426457194899816
+bust_any,month,6,0.26160823303680447
+bust_any,month,7,0.2554544619060748
+bust_any,month,8,0.2080507306313758
+bust_any,month,9,0.24813627730294396
+bust_any,month,10,0.29307174307174305

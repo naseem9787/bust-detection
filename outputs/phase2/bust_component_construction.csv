@@ -1,0 +1,7 @@
+component,variable,threshold,threshold_type,percentile_based,grouping_dims,fitting_period,train_only_fit,expected_prevalence
+bust_precip_categorical,total_precipitation_24hr,"IMD category gap >= 2, or heavy-or-above missed/false-alarmed","fixed (IMD operational bins, mm/day)",False,"none (bins are universal, not fit per group)",not applicable - fixed physical bins,not applicable (nothing is fit),low (~1%) - category misses by >=2 steps are rare
+bust_temp_hard,2m_temperature,3.0 degC absolute error,fixed constant,False,none,not applicable - fixed constant,not applicable (nothing is fit),moderate (~7-8%)
+bust_precip_percentile,total_precipitation_24hr,"90% percentile of |error| per (region, lead_day)",data-derived percentile,True,"region, lead_day",train split (2018-2020) only,True,"~10% in every (region, lead_day) bucket, BY CONSTRUCTION"
+bust_temp_percentile,2m_temperature,"90% percentile of |error| per (region, lead_day)",data-derived percentile,True,"region, lead_day",train split (2018-2020) only,True,"~10% in every (region, lead_day) bucket, BY CONSTRUCTION"
+bust_mslp_percentile,mean_sea_level_pressure,"90% percentile of |error| per (region, lead_day)",data-derived percentile,True,"region, lead_day",train split (2018-2020) only,True,"~10% in every (region, lead_day) bucket, BY CONSTRUCTION"
+bust_any,all three (OR of all 5 flags above),n/a - logical OR,composite,partially (3 of 5 inputs),n/a,inherits from its components,True,~25-27% (dominated by the 3 near-flat percentile flags)

@@ -1,0 +1,703 @@
+latitude,longitude,region_v2,assignment_method,distance_to_nearest_state_deg,in_india_domain
+4.5,63.0,Outside India domain (ocean/neighboring country),outside_domain,10.699325674946685,False
+4.5,64.5,Outside India domain (ocean/neighboring country),outside_domain,9.311023117927306,False
+4.5,65.99999999999999,Outside India domain (ocean/neighboring country),outside_domain,7.963307221789209,False
+4.5,67.5,Outside India domain (ocean/neighboring country),outside_domain,6.680796541294902,False
+4.5,69.0,Outside India domain (ocean/neighboring country),outside_domain,5.509248854767398,False
+4.5,70.49999999999999,Outside India domain (ocean/neighboring country),outside_domain,4.535250039830446,False
+4.5,72.0,Outside India domain (ocean/neighboring country),outside_domain,3.905105358078613,False
+4.5,73.5,Outside India domain (ocean/neighboring country),outside_domain,3.7934190590501036,False
+4.5,74.99999999999999,Outside India domain (ocean/neighboring country),outside_domain,4.241935155009003,False
+4.5,76.5,Outside India domain (ocean/neighboring country),outside_domain,3.7117711660503767,False
+4.5,78.0,Outside India domain (ocean/neighboring country),outside_domain,3.6040863644738836,False
+4.5,79.49999999999999,Outside India domain (ocean/neighboring country),outside_domain,4.0709692250597955,False
+4.5,81.0,Outside India domain (ocean/neighboring country),outside_domain,4.856311600522071,False
+4.5,82.5,Outside India domain (ocean/neighboring country),outside_domain,5.573441361975363,False
+4.5,83.99999999999999,Outside India domain (ocean/neighboring country),outside_domain,6.518717371281488,False
+4.5,85.5,Outside India domain (ocean/neighboring country),outside_domain,7.643566164946603,False
+4.5,87.0,Outside India domain (ocean/neighboring country),outside_domain,7.118937945505327,False
+4.5,88.49999999999999,Outside India domain (ocean/neighboring country),outside_domain,5.739353611404342,False
+4.5,90.0,Outside India domain (ocean/neighboring country),outside_domain,4.427782481552857,False
+4.5,91.5,Outside India domain (ocean/neighboring country),outside_domain,3.231034547755713,False
+4.5,92.99999999999999,Outside India domain (ocean/neighboring country),outside_domain,2.4002958027831744,False
+4.5,94.5,Outside India domain (ocean/neighboring country),outside_domain,2.3514190193610007,False
+4.5,96.0,Outside India domain (ocean/neighboring country),outside_domain,3.1206152251091646,False
+4.5,97.49999999999999,Outside India domain (ocean/neighboring country),outside_domain,4.27719864529002,False
+4.5,99.0,Outside India domain (ocean/neighboring country),outside_domain,5.598036707831393,False
+4.5,100.5,Outside India domain (ocean/neighboring country),outside_domain,6.990315100686256,False
+4.5,101.99999999999999,Outside India domain (ocean/neighboring country),outside_domain,8.419341909862244,False
+5.999999999999996,63.0,Outside India domain (ocean/neighboring country),outside_domain,10.121800416429794,False
+5.999999999999996,64.5,Outside India domain (ocean/neighboring country),outside_domain,8.766817761881333,False
+5.999999999999996,65.99999999999999,Outside India domain (ocean/neighboring country),outside_domain,7.370954741328856,False
+5.999999999999996,67.5,Outside India domain (ocean/neighboring country),outside_domain,5.962428649696492,False
+5.999999999999996,69.0,Outside India domain (ocean/neighboring country),outside_domain,4.611912546256671,False
+5.999999999999996,70.49999999999999,Outside India domain (ocean/neighboring country),outside_domain,3.3894716183938938,False
+5.999999999999996,72.0,Outside India domain (ocean/neighboring country),outside_domain,2.488693316675693,False
+5.999999999999996,73.5,Outside India domain (ocean/neighboring country),outside_domain,2.311022836102472,False
+5.999999999999996,74.99999999999999,Outside India domain (ocean/neighboring country),outside_domain,2.9905851892085034,False
+5.999999999999996,76.5,Outside India domain (ocean/neighboring country),outside_domain,2.2725162595809913,False
+5.999999999999996,78.0,Outside India domain (ocean/neighboring country),outside_domain,2.123643439486079,False
+5.999999999999996,79.49999999999999,Outside India domain (ocean/neighboring country),outside_domain,2.7700043744059872,False
+5.999999999999996,81.0,Outside India domain (ocean/neighboring country),outside_domain,3.5225328157896563,False
+5.999999999999996,82.5,Outside India domain (ocean/neighboring country),outside_domain,4.3975748986895455,False
+5.999999999999996,83.99999999999999,Outside India domain (ocean/neighboring country),outside_domain,5.546989502500757,False
+5.999999999999996,85.5,Outside India domain (ocean/neighboring country),outside_domain,6.833704712096001,False
+5.999999999999996,87.0,Outside India domain (ocean/neighboring country),outside_domain,6.4962461737983235,False
+5.999999999999996,88.49999999999999,Outside India domain (ocean/neighboring country),outside_domain,5.117905677391118,False
+5.999999999999996,90.0,Outside India domain (ocean/neighboring country),outside_domain,3.7988181720524197,False
+5.999999999999996,91.5,Outside India domain (ocean/neighboring country),outside_domain,2.385800959295484,False
+5.999999999999996,92.99999999999999,Outside India domain (ocean/neighboring country),outside_domain,1.1099884027698876,False
+5.999999999999996,94.5,Outside India domain (ocean/neighboring country),outside_domain,1.0048008037644343,False
+5.999999999999996,96.0,Outside India domain (ocean/neighboring country),outside_domain,2.2493408958205996,False
+5.999999999999996,97.49999999999999,Outside India domain (ocean/neighboring country),outside_domain,3.680567433296087,False
+5.999999999999996,99.0,Outside India domain (ocean/neighboring country),outside_domain,5.143977235752356,False
+5.999999999999996,100.5,Outside India domain (ocean/neighboring country),outside_domain,6.623777394571549,False
+5.999999999999996,101.99999999999999,Outside India domain (ocean/neighboring country),outside_domain,8.11100191984538,False
+7.499999999999991,63.0,Outside India domain (ocean/neighboring country),outside_domain,9.622132448957949,False
+7.499999999999991,64.5,Outside India domain (ocean/neighboring country),outside_domain,8.184844706241478,False
+7.499999999999991,65.99999999999999,Outside India domain (ocean/neighboring country),outside_domain,6.774801315558189,False
+7.499999999999991,67.5,Outside India domain (ocean/neighboring country),outside_domain,5.413333803238856,False
+7.499999999999991,69.0,Outside India domain (ocean/neighboring country),outside_domain,4.084884210704574,False
+7.499999999999991,70.49999999999999,Outside India domain (ocean/neighboring country),outside_domain,2.6279191964111797,False
+7.499999999999991,72.0,Outside India domain (ocean/neighboring country),outside_domain,1.2748383270200943,False
+7.499999999999991,73.5,Outside India domain (ocean/neighboring country),outside_domain,0.8894447813618744,False
+7.499999999999991,74.99999999999999,Outside India domain (ocean/neighboring country),outside_domain,2.086498172133085,False
+7.499999999999991,76.5,Outside India domain (ocean/neighboring country),outside_domain,0.9918185314454119,False
+7.499999999999991,78.0,Tamil Nadu,near_border_fallback,0.7227877631333093,True
+7.499999999999991,79.49999999999999,Outside India domain (ocean/neighboring country),outside_domain,1.659284864407612,False
+7.499999999999991,81.0,Outside India domain (ocean/neighboring country),outside_domain,2.2767638903763276,False
+7.499999999999991,82.5,Outside India domain (ocean/neighboring country),outside_domain,3.4805288913886216,False
+7.499999999999991,83.99999999999999,Outside India domain (ocean/neighboring country),outside_domain,4.851190594732998,False
+7.499999999999991,85.5,Outside India domain (ocean/neighboring country),outside_domain,6.26041492222658,False
+7.499999999999991,87.0,Outside India domain (ocean/neighboring country),outside_domain,5.951875860206069,False
+7.499999999999991,88.49999999999999,Outside India domain (ocean/neighboring country),outside_domain,4.5294201138560055,False
+7.499999999999991,90.0,Outside India domain (ocean/neighboring country),outside_domain,3.143340967541296,False
+7.499999999999991,91.5,Outside India domain (ocean/neighboring country),outside_domain,1.7638905000228697,False
+7.499999999999991,92.99999999999999,Andaman and Nicobar,near_border_fallback,0.5267284951731169,True
+7.499999999999991,94.5,Andaman and Nicobar,near_border_fallback,0.6843137057294024,True
+7.499999999999991,96.0,Outside India domain (ocean/neighboring country),outside_domain,2.11166433850892,False
+7.499999999999991,97.49999999999999,Outside India domain (ocean/neighboring country),outside_domain,3.5868922335678124,False
+7.499999999999991,99.0,Outside India domain (ocean/neighboring country),outside_domain,5.07665889261117,False
+7.499999999999991,100.5,Outside India domain (ocean/neighboring country),outside_domain,6.5710832538194905,False
+7.499999999999991,101.99999999999999,Outside India domain (ocean/neighboring country),outside_domain,8.06757737770922,False
+9.0,63.0,Outside India domain (ocean/neighboring country),outside_domain,9.33916602596509,False
+9.0,64.5,Outside India domain (ocean/neighboring country),outside_domain,7.850240254956546,False
+9.0,65.99999999999999,Outside India domain (ocean/neighboring country),outside_domain,6.366515692318684,False
+9.0,67.5,Outside India domain (ocean/neighboring country),outside_domain,4.892726444482619,False
+9.0,69.0,Outside India domain (ocean/neighboring country),outside_domain,3.4416597827994555,False
+9.0,70.49999999999999,Outside India domain (ocean/neighboring country),outside_domain,2.061861309724518,False
+9.0,72.0,Outside India domain (ocean/neighboring country),outside_domain,1.0754929839911238,False
+9.0,73.5,Outside India domain (ocean/neighboring country),outside_domain,0.792156026326701,False
+9.0,74.99999999999999,Outside India domain (ocean/neighboring country),outside_domain,1.4010871031217322,False
+9.0,76.5,Kerala,near_border_fallback,0.020984662162066042,True
+9.0,78.0,Tamil Nadu,contains,0.0,True
+9.0,79.49999999999999,Tamil Nadu,near_border_fallback,0.1692413526851541,True
+9.0,81.0,Outside India domain (ocean/neighboring country),outside_domain,1.5194224209787153,False
+9.0,82.5,Outside India domain (ocean/neighboring country),outside_domain,2.9232262670212124,False
+9.0,83.99999999999999,Outside India domain (ocean/neighboring country),outside_domain,4.318158620712345,False
+9.0,85.5,Outside India domain (ocean/neighboring country),outside_domain,5.765816612230841,False
+9.0,87.0,Outside India domain (ocean/neighboring country),outside_domain,5.577080286669031,False
+9.0,88.49999999999999,Outside India domain (ocean/neighboring country),outside_domain,4.1747097007592,False
+9.0,90.0,Outside India domain (ocean/neighboring country),outside_domain,2.7226202617667137,False
+9.0,91.5,Outside India domain (ocean/neighboring country),outside_domain,1.22787211869944,False
+9.0,92.99999999999999,Andaman and Nicobar,near_border_fallback,0.21501106548024765,True
+9.0,94.5,Outside India domain (ocean/neighboring country),outside_domain,0.9807923927743569,False
+9.0,96.0,Outside India domain (ocean/neighboring country),outside_domain,2.411689767593665,False
+9.0,97.49999999999999,Outside India domain (ocean/neighboring country),outside_domain,3.8907648197476266,False
+9.0,99.0,Outside India domain (ocean/neighboring country),outside_domain,5.377396589732757,False
+9.0,100.5,Outside India domain (ocean/neighboring country),outside_domain,6.849883256848509,False
+9.0,101.99999999999999,Outside India domain (ocean/neighboring country),outside_domain,8.296282575567439,False
+10.499999999999996,63.0,Outside India domain (ocean/neighboring country),outside_domain,9.128127482466951,False
+10.499999999999996,64.5,Outside India domain (ocean/neighboring country),outside_domain,7.633629800199899,False
+10.499999999999996,65.99999999999999,Outside India domain (ocean/neighboring country),outside_domain,6.141815408886175,False
+10.499999999999996,67.5,Outside India domain (ocean/neighboring country),outside_domain,4.655264665640719,False
+10.499999999999996,69.0,Outside India domain (ocean/neighboring country),outside_domain,3.1804864837404225,False
+10.499999999999996,70.49999999999999,Outside India domain (ocean/neighboring country),outside_domain,1.694130909749301,False
+10.499999999999996,72.0,Lakshadweep,near_border_fallback,0.3530790357418224,True
+10.499999999999996,73.5,Lakshadweep,near_border_fallback,0.34791901942208525,True
+10.499999999999996,74.99999999999999,Outside India domain (ocean/neighboring country),outside_domain,0.9559451722154119,False
+10.499999999999996,76.5,Kerala,contains,0.0,True
+10.499999999999996,78.0,Tamil Nadu,contains,0.0,True
+10.499999999999996,79.49999999999999,Tamil Nadu,contains,0.0,True
+10.499999999999996,81.0,Outside India domain (ocean/neighboring country),outside_domain,1.1313560411642953,False
+10.499999999999996,82.5,Outside India domain (ocean/neighboring country),outside_domain,2.6225687564873175,False
+10.499999999999996,83.99999999999999,Outside India domain (ocean/neighboring country),outside_domain,4.120165927863562,False
+10.499999999999996,85.5,Outside India domain (ocean/neighboring country),outside_domain,5.619045084687648,False
+10.499999999999996,87.0,Outside India domain (ocean/neighboring country),outside_domain,5.236537739710785,False
+10.499999999999996,88.49999999999999,Outside India domain (ocean/neighboring country),outside_domain,3.745285364341785,False
+10.499999999999996,90.0,Outside India domain (ocean/neighboring country),outside_domain,2.265611930867685,False
+10.499999999999996,91.5,Outside India domain (ocean/neighboring country),outside_domain,0.8594057386118672,False
+10.499999999999996,92.99999999999999,Andaman and Nicobar,near_border_fallback,0.4377249756374164,True
+10.499999999999996,94.5,Outside India domain (ocean/neighboring country),outside_domain,1.8437620687057206,False
+10.499999999999996,96.0,Outside India domain (ocean/neighboring country),outside_domain,2.7399564034585726,False
+10.499999999999996,97.49999999999999,Outside India domain (ocean/neighboring country),outside_domain,4.014382096874832,False
+10.499999999999996,99.0,Outside India domain (ocean/neighboring country),outside_domain,5.405845553339914,False
+10.499999999999996,100.5,Outside India domain (ocean/neighboring country),outside_domain,6.843322926285194,False
+10.499999999999996,101.99999999999999,Outside India domain (ocean/neighboring country),outside_domain,8.265712897144402,False
+11.999999999999991,63.0,Outside India domain (ocean/neighboring country),outside_domain,9.133943097898124,False
+11.999999999999991,64.5,Outside India domain (ocean/neighboring country),outside_domain,7.640583034426908,False
+11.999999999999991,65.99999999999999,Outside India domain (ocean/neighboring country),outside_domain,6.1504554056024165,False
+11.999999999999991,67.5,Outside India domain (ocean/neighboring country),outside_domain,4.666657721178546,False
+11.999999999999991,69.0,Outside India domain (ocean/neighboring country),outside_domain,3.198012957598336,False
+11.999999999999991,70.49999999999999,Outside India domain (ocean/neighboring country),outside_domain,1.7311167245275139,False
+11.999999999999991,72.0,Lakshadweep,near_border_fallback,0.43950738824415664,True
+11.999999999999991,73.5,Lakshadweep,near_border_fallback,0.7073217190146922,True
+11.999999999999991,74.99999999999999,Kerala,near_border_fallback,0.1859273313351425,True
+11.999999999999991,76.5,Karnataka,contains,0.0,True
+11.999999999999991,78.0,Tamil Nadu,contains,0.0,True
+11.999999999999991,79.49999999999999,Tamil Nadu,contains,0.0,True
+11.999999999999991,81.0,Outside India domain (ocean/neighboring country),outside_domain,0.9641168537287647,False
+11.999999999999991,82.5,Outside India domain (ocean/neighboring country),outside_domain,2.37676652466236,False
+11.999999999999991,83.99999999999999,Outside India domain (ocean/neighboring country),outside_domain,3.8261198115271613,False
+11.999999999999991,85.5,Outside India domain (ocean/neighboring country),outside_domain,5.303257432548619,False
+11.999999999999991,87.0,Outside India domain (ocean/neighboring country),outside_domain,5.223751040613246,False
+11.999999999999991,88.49999999999999,Outside India domain (ocean/neighboring country),outside_domain,3.730387987703169,False
+11.999999999999991,90.0,Outside India domain (ocean/neighboring country),outside_domain,2.2458882748908082,False
+11.999999999999991,91.5,Outside India domain (ocean/neighboring country),outside_domain,0.8198986204306158,False
+11.999999999999991,92.99999999999999,Andaman and Nicobar,contains,0.0,True
+11.999999999999991,94.5,Andaman and Nicobar,near_border_fallback,0.6629727856008537,True
+11.999999999999991,96.0,Outside India domain (ocean/neighboring country),outside_domain,2.1324716742088263,False
+11.999999999999991,97.49999999999999,Outside India domain (ocean/neighboring country),outside_domain,3.532112436377758,False
+11.999999999999991,99.0,Outside India domain (ocean/neighboring country),outside_domain,4.9395890117748795,False
+11.999999999999991,100.5,Outside India domain (ocean/neighboring country),outside_domain,6.389277282307253,False
+11.999999999999991,101.99999999999999,Outside India domain (ocean/neighboring country),outside_domain,7.857787953937053,False
+13.5,63.0,Outside India domain (ocean/neighboring country),outside_domain,9.378746859497172,False
+13.5,64.5,Outside India domain (ocean/neighboring country),outside_domain,7.915679554116227,False
+13.5,65.99999999999999,Outside India domain (ocean/neighboring country),outside_domain,6.469549671528881,False
+13.5,67.5,Outside India domain (ocean/neighboring country),outside_domain,5.054914747184654,False
+13.5,69.0,Outside India domain (ocean/neighboring country),outside_domain,3.7079033921541904,False
+13.5,70.49999999999999,Outside India domain (ocean/neighboring country),outside_domain,2.53849697204311,False
+13.5,72.0,Outside India domain (ocean/neighboring country),outside_domain,1.9077175337547818,False
+13.5,73.5,Outside India domain (ocean/neighboring country),outside_domain,0.9714478374994966,False
+13.5,74.99999999999999,Karnataka,contains,0.0,True
+13.5,76.5,Karnataka,contains,0.0,True
+13.5,78.0,Karnataka,contains,0.0,True
+13.5,79.49999999999999,Andhra Pradesh,contains,0.0,True
+13.5,81.0,Tamil Nadu,near_border_fallback,0.6744916603641852,True
+13.5,82.5,Outside India domain (ocean/neighboring country),outside_domain,2.161048386588507,False
+13.5,83.99999999999999,Outside India domain (ocean/neighboring country),outside_domain,3.5024262279234724,False
+13.5,85.5,Outside India domain (ocean/neighboring country),outside_domain,4.4249978720365615,False
+13.5,87.0,Outside India domain (ocean/neighboring country),outside_domain,5.548136837788978,False
+13.5,88.49999999999999,Outside India domain (ocean/neighboring country),outside_domain,4.172534238963559,False
+13.5,90.0,Outside India domain (ocean/neighboring country),outside_domain,2.700004611262762,False
+13.5,91.5,Outside India domain (ocean/neighboring country),outside_domain,1.26273157700923,False
+13.5,92.99999999999999,Andaman and Nicobar,contains,0.0,True
+13.5,94.5,Andaman and Nicobar,near_border_fallback,0.22547986842538167,True
+13.5,96.0,Outside India domain (ocean/neighboring country),outside_domain,1.7226448544605564,False
+13.5,97.49999999999999,Outside India domain (ocean/neighboring country),outside_domain,3.22244773706784,False
+13.5,99.0,Outside India domain (ocean/neighboring country),outside_domain,4.722375836553889,False
+13.5,100.5,Outside India domain (ocean/neighboring country),outside_domain,6.222338600976512,False
+13.5,101.99999999999999,Outside India domain (ocean/neighboring country),outside_domain,7.722315830677765,False
+14.999999999999996,63.0,Outside India domain (ocean/neighboring country),outside_domain,9.328119687842685,False
+14.999999999999996,64.5,Outside India domain (ocean/neighboring country),outside_domain,8.283796724795799,False
+14.999999999999996,65.99999999999999,Outside India domain (ocean/neighboring country),outside_domain,7.057189836385022,False
+14.999999999999996,67.5,Outside India domain (ocean/neighboring country),outside_domain,5.787862100836484,False
+14.999999999999996,69.0,Outside India domain (ocean/neighboring country),outside_domain,4.542322046968067,False
+14.999999999999996,70.49999999999999,Outside India domain (ocean/neighboring country),outside_domain,3.0852784210352633,False
+14.999999999999996,72.0,Outside India domain (ocean/neighboring country),outside_domain,1.7044636376993667,False
+14.999999999999996,73.5,Goa,near_border_fallback,0.4202897147053497,True
+14.999999999999996,74.99999999999999,Karnataka,contains,0.0,True
+14.999999999999996,76.5,Karnataka,contains,0.0,True
+14.999999999999996,78.0,Andhra Pradesh,contains,0.0,True
+14.999999999999996,79.49999999999999,Andhra Pradesh,contains,0.0,True
+14.999999999999996,81.0,Andhra Pradesh,near_border_fallback,0.7207725969183731,True
+14.999999999999996,82.5,Outside India domain (ocean/neighboring country),outside_domain,1.501634461507546,False
+14.999999999999996,83.99999999999999,Outside India domain (ocean/neighboring country),outside_domain,2.3042942950960104,False
+14.999999999999996,85.5,Outside India domain (ocean/neighboring country),outside_domain,3.455008593673349,False
+14.999999999999996,87.0,Outside India domain (ocean/neighboring country),outside_domain,4.384009445649181,False
+14.999999999999996,88.49999999999999,Outside India domain (ocean/neighboring country),outside_domain,4.592327675441833,False
+14.999999999999996,90.0,Outside India domain (ocean/neighboring country),outside_domain,3.2110598114418627,False
+14.999999999999996,91.5,Outside India domain (ocean/neighboring country),outside_domain,1.9748153526630408,False
+14.999999999999996,92.99999999999999,Andaman and Nicobar,near_border_fallback,0.5824854516880899,True
+14.999999999999996,94.5,Outside India domain (ocean/neighboring country),outside_domain,0.8507191799968863,False
+14.999999999999996,96.0,Outside India domain (ocean/neighboring country),outside_domain,2.30900630761522,False
+14.999999999999996,97.49999999999999,Outside India domain (ocean/neighboring country),outside_domain,3.5705396493036834,False
+14.999999999999996,99.0,Outside India domain (ocean/neighboring country),outside_domain,4.966429050211436,False
+14.999999999999996,100.5,Outside India domain (ocean/neighboring country),outside_domain,6.409530531506841,False
+14.999999999999996,101.99999999999999,Outside India domain (ocean/neighboring country),outside_domain,7.873928229152997,False
+16.499999999999993,63.0,Outside India domain (ocean/neighboring country),outside_domain,8.267064794280317,False
+16.499999999999993,64.5,Outside India domain (ocean/neighboring country),outside_domain,7.209749106498873,False
+16.499999999999993,65.99999999999999,Outside India domain (ocean/neighboring country),outside_domain,6.165126374911612,False
+16.499999999999993,67.5,Outside India domain (ocean/neighboring country),outside_domain,5.249559868714891,False
+16.499999999999993,69.0,Outside India domain (ocean/neighboring country),outside_domain,4.2642539471372825,False
+16.499999999999993,70.49999999999999,Outside India domain (ocean/neighboring country),outside_domain,2.8042822234528675,False
+16.499999999999993,72.0,Outside India domain (ocean/neighboring country),outside_domain,1.3106911693254264,False
+16.499999999999993,73.5,Maharashtra,contains,0.0,True
+16.499999999999993,74.99999999999999,Karnataka,contains,0.0,True
+16.499999999999993,76.5,Karnataka,contains,0.0,True
+16.499999999999993,78.0,Andhra Pradesh,contains,0.0,True
+16.499999999999993,79.49999999999999,Andhra Pradesh,contains,0.0,True
+16.499999999999993,81.0,Andhra Pradesh,contains,0.0,True
+16.499999999999993,82.5,Andhra Pradesh,near_border_fallback,0.19728721966685772,True
+16.499999999999993,83.99999999999999,Outside India domain (ocean/neighboring country),outside_domain,1.3449351613654337,False
+16.499999999999993,85.5,Outside India domain (ocean/neighboring country),outside_domain,2.272743803494907,False
+16.499999999999993,87.0,Outside India domain (ocean/neighboring country),outside_domain,3.3496082749574296,False
+16.499999999999993,88.49999999999999,Outside India domain (ocean/neighboring country),outside_domain,4.055563545471695,False
+16.499999999999993,90.0,Outside India domain (ocean/neighboring country),outside_domain,3.9222743366524404,False
+16.499999999999993,91.5,Outside India domain (ocean/neighboring country),outside_domain,2.632507599702009,False
+16.499999999999993,92.99999999999999,Outside India domain (ocean/neighboring country),outside_domain,1.692570329942909,False
+16.499999999999993,94.5,Outside India domain (ocean/neighboring country),outside_domain,1.78152790341834,False
+16.499999999999993,96.0,Outside India domain (ocean/neighboring country),outside_domain,2.8230801595534807,False
+16.499999999999993,97.49999999999999,Outside India domain (ocean/neighboring country),outside_domain,4.154989834260841,False
+16.499999999999993,99.0,Outside India domain (ocean/neighboring country),outside_domain,5.57297940587955,False
+16.499999999999993,100.5,Outside India domain (ocean/neighboring country),outside_domain,6.924353081944505,False
+16.499999999999993,101.99999999999999,Outside India domain (ocean/neighboring country),outside_domain,8.29839320151609,False
+18.0,63.0,Outside India domain (ocean/neighboring country),outside_domain,7.310808018772127,False
+18.0,64.5,Outside India domain (ocean/neighboring country),outside_domain,6.147644996948644,False
+18.0,65.99999999999999,Outside India domain (ocean/neighboring country),outside_domain,5.093834257865512,False
+18.0,67.5,Outside India domain (ocean/neighboring country),outside_domain,4.0492318110381955,False
+18.0,69.0,Outside India domain (ocean/neighboring country),outside_domain,3.1946047165547165,False
+18.0,70.49999999999999,Outside India domain (ocean/neighboring country),outside_domain,2.4167304490750032,False
+18.0,72.0,Outside India domain (ocean/neighboring country),outside_domain,0.9567065310345654,False
+18.0,73.5,Maharashtra,contains,0.0,True
+18.0,74.99999999999999,Maharashtra,contains,0.0,True
+18.0,76.5,Maharashtra,contains,0.0,True
+18.0,78.0,Andhra Pradesh,contains,0.0,True
+18.0,79.49999999999999,Andhra Pradesh,contains,0.0,True
+18.0,81.0,Chhattisgarh,contains,0.0,True
+18.0,82.5,Andhra Pradesh,contains,0.0,True
+18.0,83.99999999999999,Andhra Pradesh,near_border_fallback,0.21952031384006038,True
+18.0,85.5,Outside India domain (ocean/neighboring country),outside_domain,1.2340529676659124,False
+18.0,87.0,Outside India domain (ocean/neighboring country),outside_domain,2.051650478270203,False
+18.0,88.49999999999999,Outside India domain (ocean/neighboring country),outside_domain,2.881058610476785,False
+18.0,90.0,Outside India domain (ocean/neighboring country),outside_domain,3.7181842345585485,False
+18.0,91.5,Outside India domain (ocean/neighboring country),outside_domain,3.7412958945132346,False
+18.0,92.99999999999999,Outside India domain (ocean/neighboring country),outside_domain,3.1316597083488373,False
+18.0,94.5,Outside India domain (ocean/neighboring country),outside_domain,3.1806194173070477,False
+18.0,96.0,Outside India domain (ocean/neighboring country),outside_domain,3.862782551357684,False
+18.0,97.49999999999999,Outside India domain (ocean/neighboring country),outside_domain,4.920959261293917,False
+18.0,99.0,Outside India domain (ocean/neighboring country),outside_domain,6.165224974553728,False
+18.0,100.5,Outside India domain (ocean/neighboring country),outside_domain,7.503609659517714,False
+18.0,101.99999999999999,Outside India domain (ocean/neighboring country),outside_domain,8.893723452972543,False
+19.499999999999996,63.0,Outside India domain (ocean/neighboring country),outside_domain,6.555811903879434,False
+19.499999999999996,64.5,Outside India domain (ocean/neighboring country),outside_domain,5.230951881102635,False
+19.499999999999996,65.99999999999999,Outside India domain (ocean/neighboring country),outside_domain,4.02944948393794,False
+19.499999999999996,67.5,Outside India domain (ocean/neighboring country),outside_domain,2.9760290260680593,False
+19.499999999999996,69.0,Outside India domain (ocean/neighboring country),outside_domain,1.936272016851279,False
+19.499999999999996,70.49999999999999,Outside India domain (ocean/neighboring country),outside_domain,1.2338243074894404,False
+19.499999999999996,72.0,Maharashtra,near_border_fallback,0.7181818553734894,True
+19.499999999999996,73.5,Maharashtra,contains,0.0,True
+19.499999999999996,74.99999999999999,Maharashtra,contains,0.0,True
+19.499999999999996,76.5,Maharashtra,contains,0.0,True
+19.499999999999996,78.0,Maharashtra,contains,0.0,True
+19.499999999999996,79.49999999999999,Andhra Pradesh,contains,0.0,True
+19.499999999999996,81.0,Chhattisgarh,contains,0.0,True
+19.499999999999996,82.5,Odisha,contains,0.0,True
+19.499999999999996,83.99999999999999,Odisha,contains,0.0,True
+19.499999999999996,85.5,Odisha,near_border_fallback,0.14474334636567737,True
+19.499999999999996,87.0,Outside India domain (ocean/neighboring country),outside_domain,0.7637828495681733,False
+19.499999999999996,88.49999999999999,Outside India domain (ocean/neighboring country),outside_domain,1.883638915151564,False
+19.499999999999996,90.0,Outside India domain (ocean/neighboring country),outside_domain,2.3161718440625,False
+19.499999999999996,91.5,Outside India domain (ocean/neighboring country),outside_domain,2.7140582898638335,False
+19.499999999999996,92.99999999999999,Outside India domain (ocean/neighboring country),outside_domain,2.447852471491088,False
+19.499999999999996,94.5,Outside India domain (ocean/neighboring country),outside_domain,2.894799001800642,False
+19.499999999999996,96.0,Outside India domain (ocean/neighboring country),outside_domain,3.8871546701003363,False
+19.499999999999996,97.49999999999999,Outside India domain (ocean/neighboring country),outside_domain,5.099499956608814,False
+19.499999999999996,99.0,Outside India domain (ocean/neighboring country),outside_domain,6.415921120098793,False
+19.499999999999996,100.5,Outside India domain (ocean/neighboring country),outside_domain,7.689198048230379,False
+19.499999999999996,101.99999999999999,Outside India domain (ocean/neighboring country),outside_domain,8.966012714440867,False
+20.999999999999993,63.0,Outside India domain (ocean/neighboring country),outside_domain,5.807400743564671,False
+20.999999999999993,64.5,Outside India domain (ocean/neighboring country),outside_domain,4.51810520043997,False
+20.999999999999993,65.99999999999999,Outside India domain (ocean/neighboring country),outside_domain,3.2051869642441915,False
+20.999999999999993,67.5,Outside India domain (ocean/neighboring country),outside_domain,1.9119886106882558,False
+20.999999999999993,69.0,Outside India domain (ocean/neighboring country),outside_domain,0.8549402798098921,False
+20.999999999999993,70.49999999999999,Gujarat,contains,0.0,True
+20.999999999999993,72.0,Gujarat,near_border_fallback,0.12317312100812865,True
+20.999999999999993,73.5,Gujarat,contains,0.0,True
+20.999999999999993,74.99999999999999,Maharashtra,contains,0.0,True
+20.999999999999993,76.5,Maharashtra,contains,0.0,True
+20.999999999999993,78.0,Maharashtra,contains,0.0,True
+20.999999999999993,79.49999999999999,Maharashtra,contains,0.0,True
+20.999999999999993,81.0,Chhattisgarh,contains,0.0,True
+20.999999999999993,82.5,Chhattisgarh,contains,0.0,True
+20.999999999999993,83.99999999999999,Odisha,contains,0.0,True
+20.999999999999993,85.5,Odisha,contains,0.0,True
+20.999999999999993,87.0,Odisha,near_border_fallback,0.09639004831003001,True
+20.999999999999993,88.49999999999999,West Bengal,near_border_fallback,0.5396701343098845,True
+20.999999999999993,90.0,Outside India domain (ocean/neighboring country),outside_domain,1.108416972946856,False
+20.999999999999993,91.5,Outside India domain (ocean/neighboring country),outside_domain,1.4783778022443645,False
+20.999999999999993,92.99999999999999,Outside India domain (ocean/neighboring country),outside_domain,0.9504167076120061,False
+20.999999999999993,94.5,Outside India domain (ocean/neighboring country),outside_domain,1.784829226667356,False
+20.999999999999993,96.0,Outside India domain (ocean/neighboring country),outside_domain,3.063057114962306,False
+20.999999999999993,97.49999999999999,Outside India domain (ocean/neighboring country),outside_domain,4.39137720065296,False
+20.999999999999993,99.0,Outside India domain (ocean/neighboring country),outside_domain,5.616921851781487,False
+20.999999999999993,100.5,Outside India domain (ocean/neighboring country),outside_domain,6.9509300427803185,False
+20.999999999999993,101.99999999999999,Outside India domain (ocean/neighboring country),outside_domain,7.7975504853830335,False
+22.5,63.0,Outside India domain (ocean/neighboring country),outside_domain,5.304952778757554,False
+22.5,64.5,Outside India domain (ocean/neighboring country),outside_domain,3.8510908884681587,False
+22.5,65.99999999999999,Outside India domain (ocean/neighboring country),outside_domain,2.4533269285903105,False
+22.5,67.5,Outside India domain (ocean/neighboring country),outside_domain,1.2835820539482983,False
+22.5,69.0,Gujarat,near_border_fallback,0.05537702304484384,True
+22.5,70.49999999999999,Gujarat,contains,0.0,True
+22.5,72.0,Gujarat,contains,0.0,True
+22.5,73.5,Gujarat,contains,0.0,True
+22.5,74.99999999999999,Madhya Pradesh,contains,0.0,True
+22.5,76.5,Madhya Pradesh,contains,0.0,True
+22.5,78.0,Madhya Pradesh,contains,0.0,True
+22.5,79.49999999999999,Madhya Pradesh,contains,0.0,True
+22.5,81.0,Madhya Pradesh,contains,0.0,True
+22.5,82.5,Chhattisgarh,contains,0.0,True
+22.5,83.99999999999999,Odisha,contains,0.0,True
+22.5,85.5,Jharkhand,contains,0.0,True
+22.5,87.0,West Bengal,contains,0.0,True
+22.5,88.49999999999999,West Bengal,contains,0.0,True
+22.5,90.0,Outside India domain (ocean/neighboring country),outside_domain,0.9673337015422693,False
+22.5,91.5,Tripura,near_border_fallback,0.45974222149791755,True
+22.5,92.99999999999999,Mizoram,contains,0.0,True
+22.5,94.5,Outside India domain (ocean/neighboring country),outside_domain,1.2774368409531256,False
+22.5,96.0,Outside India domain (ocean/neighboring country),outside_domain,2.282594616335796,False
+22.5,97.49999999999999,Outside India domain (ocean/neighboring country),outside_domain,3.602201487025775,False
+22.5,99.0,Outside India domain (ocean/neighboring country),outside_domain,4.919150827873623,False
+22.5,100.5,Outside India domain (ocean/neighboring country),outside_domain,5.6949596319079365,False
+22.5,101.99999999999999,Outside India domain (ocean/neighboring country),outside_domain,6.689041209421956,False
+24.0,63.0,Outside India domain (ocean/neighboring country),outside_domain,5.199167409013628,False
+24.0,64.5,Outside India domain (ocean/neighboring country),outside_domain,3.701926792090811,False
+24.0,65.99999999999999,Outside India domain (ocean/neighboring country),outside_domain,2.2084343325193294,False
+24.0,67.5,Gujarat,near_border_fallback,0.7268498113255697,True
+24.0,69.0,Gujarat,contains,0.0,True
+24.0,70.49999999999999,Gujarat,contains,0.0,True
+24.0,72.0,Gujarat,contains,0.0,True
+24.0,73.5,Rajasthan,contains,0.0,True
+24.0,74.99999999999999,Madhya Pradesh,contains,0.0,True
+24.0,76.5,Madhya Pradesh,contains,0.0,True
+24.0,78.0,Madhya Pradesh,contains,0.0,True
+24.0,79.49999999999999,Madhya Pradesh,contains,0.0,True
+24.0,81.0,Madhya Pradesh,contains,0.0,True
+24.0,82.5,Madhya Pradesh,contains,0.0,True
+24.0,83.99999999999999,Jharkhand,contains,0.0,True
+24.0,85.5,Jharkhand,contains,0.0,True
+24.0,87.0,Jharkhand,contains,0.0,True
+24.0,88.49999999999999,West Bengal,contains,0.0,True
+24.0,90.0,Outside India domain (ocean/neighboring country),outside_domain,1.1884789121441255,False
+24.0,91.5,Tripura,contains,0.0,True
+24.0,92.99999999999999,Mizoram,contains,0.0,True
+24.0,94.5,Manipur,near_border_fallback,0.2564497313681248,True
+24.0,96.0,Outside India domain (ocean/neighboring country),outside_domain,1.565628126441231,False
+24.0,97.49999999999999,Outside India domain (ocean/neighboring country),outside_domain,2.936293579754992,False
+24.0,99.0,Outside India domain (ocean/neighboring country),outside_domain,3.614323843545944,False
+24.0,100.5,Outside India domain (ocean/neighboring country),outside_domain,4.5688120926898526,False
+24.0,101.99999999999999,Outside India domain (ocean/neighboring country),outside_domain,5.757750949282349,False
+25.49999999999999,63.0,Outside India domain (ocean/neighboring country),outside_domain,5.4648114537360595,False
+25.49999999999999,64.5,Outside India domain (ocean/neighboring country),outside_domain,4.058682789420505,False
+25.49999999999999,65.99999999999999,Outside India domain (ocean/neighboring country),outside_domain,2.7527340391063495,False
+25.49999999999999,67.5,Outside India domain (ocean/neighboring country),outside_domain,1.7483242527477723,False
+25.49999999999999,69.0,Outside India domain (ocean/neighboring country),outside_domain,1.182709681019999,False
+25.49999999999999,70.49999999999999,Rajasthan,near_border_fallback,0.1760102410402218,True
+25.49999999999999,72.0,Rajasthan,contains,0.0,True
+25.49999999999999,73.5,Rajasthan,contains,0.0,True
+25.49999999999999,74.99999999999999,Rajasthan,contains,0.0,True
+25.49999999999999,76.5,Rajasthan,contains,0.0,True
+25.49999999999999,78.0,Madhya Pradesh,contains,0.0,True
+25.49999999999999,79.49999999999999,Uttar Pradesh,contains,0.0,True
+25.49999999999999,81.0,Uttar Pradesh,contains,0.0,True
+25.49999999999999,82.5,Uttar Pradesh,contains,0.0,True
+25.49999999999999,83.99999999999999,Bihar,contains,0.0,True
+25.49999999999999,85.5,Bihar,contains,0.0,True
+25.49999999999999,87.0,Bihar,contains,0.0,True
+25.49999999999999,88.49999999999999,West Bengal,contains,0.0,True
+25.49999999999999,90.0,Meghalaya,contains,0.0,True
+25.49999999999999,91.5,Meghalaya,contains,0.0,True
+25.49999999999999,92.99999999999999,Assam,contains,0.0,True
+25.49999999999999,94.5,Manipur,contains,0.0,True
+25.49999999999999,96.0,Outside India domain (ocean/neighboring country),outside_domain,0.9832050939225381,False
+25.49999999999999,97.49999999999999,Outside India domain (ocean/neighboring country),outside_domain,1.6412701652188788,False
+25.49999999999999,99.0,Outside India domain (ocean/neighboring country),outside_domain,2.4504725208156906,False
+25.49999999999999,100.5,Outside India domain (ocean/neighboring country),outside_domain,3.708972647304639,False
+25.49999999999999,101.99999999999999,Outside India domain (ocean/neighboring country),outside_domain,5.098162912830303,False
+26.999999999999996,63.0,Outside India domain (ocean/neighboring country),outside_domain,6.084582627347116,False
+26.999999999999996,64.5,Outside India domain (ocean/neighboring country),outside_domain,4.860560772426537,False
+26.999999999999996,65.99999999999999,Outside India domain (ocean/neighboring country),outside_domain,3.489118813710557,False
+26.999999999999996,67.5,Outside India domain (ocean/neighboring country),outside_domain,1.9931752817076998,False
+26.999999999999996,69.0,Rajasthan,near_border_fallback,0.5067763818407125,True
+26.999999999999996,70.49999999999999,Rajasthan,contains,0.0,True
+26.999999999999996,72.0,Rajasthan,contains,0.0,True
+26.999999999999996,73.5,Rajasthan,contains,0.0,True
+26.999999999999996,74.99999999999999,Rajasthan,contains,0.0,True
+26.999999999999996,76.5,Rajasthan,contains,0.0,True
+26.999999999999996,78.0,Uttar Pradesh,contains,0.0,True
+26.999999999999996,79.49999999999999,Uttar Pradesh,contains,0.0,True
+26.999999999999996,81.0,Uttar Pradesh,contains,0.0,True
+26.999999999999996,82.5,Uttar Pradesh,contains,0.0,True
+26.999999999999996,83.99999999999999,Uttar Pradesh,contains,0.0,True
+26.999999999999996,85.5,Bihar,near_border_fallback,0.15945422287761318,True
+26.999999999999996,87.0,Bihar,near_border_fallback,0.4157445733717392,True
+26.999999999999996,88.49999999999999,West Bengal,contains,0.0,True
+26.999999999999996,90.0,Assam,near_border_fallback,0.25645675018819897,True
+26.999999999999996,91.5,Assam,near_border_fallback,0.18825517549075368,True
+26.999999999999996,92.99999999999999,Arunachal Pradesh,contains,0.0,True
+26.999999999999996,94.5,Assam,contains,0.0,True
+26.999999999999996,96.0,Arunachal Pradesh,near_border_fallback,0.08024488291861719,True
+26.999999999999996,97.49999999999999,Arunachal Pradesh,near_border_fallback,0.3556307293266982,True
+26.999999999999996,99.0,Outside India domain (ocean/neighboring country),outside_domain,1.8333739942919354,False
+26.999999999999996,100.5,Outside India domain (ocean/neighboring country),outside_domain,3.2375415249414434,False
+26.999999999999996,101.99999999999999,Outside India domain (ocean/neighboring country),outside_domain,4.697297802383236,False
+28.499999999999982,63.0,Outside India domain (ocean/neighboring country),outside_domain,6.679935437693322,False
+28.499999999999982,64.5,Outside India domain (ocean/neighboring country),outside_domain,5.227993688399956,False
+28.499999999999982,65.99999999999999,Outside India domain (ocean/neighboring country),outside_domain,3.8134365813723177,False
+28.499999999999982,67.5,Outside India domain (ocean/neighboring country),outside_domain,2.469721158257128,False
+28.499999999999982,69.0,Outside India domain (ocean/neighboring country),outside_domain,1.3284281024800628,False
+28.499999999999982,70.49999999999999,Rajasthan,near_border_fallback,0.4645606609815102,True
+28.499999999999982,72.0,Rajasthan,near_border_fallback,0.22579532898009436,True
+28.499999999999982,73.5,Rajasthan,contains,0.0,True
+28.499999999999982,74.99999999999999,Rajasthan,contains,0.0,True
+28.499999999999982,76.5,Haryana,contains,0.0,True
+28.499999999999982,78.0,Uttar Pradesh,contains,0.0,True
+28.499999999999982,79.49999999999999,Uttar Pradesh,contains,0.0,True
+28.499999999999982,81.0,Uttar Pradesh,near_border_fallback,0.04610078237126637,True
+28.499999999999982,82.5,Uttar Pradesh,near_border_fallback,0.7180822284088598,True
+28.499999999999982,83.99999999999999,Outside India domain (ocean/neighboring country),outside_domain,0.9847291662183767,False
+28.499999999999982,85.5,Outside India domain (ocean/neighboring country),outside_domain,1.4562337442589195,False
+28.499999999999982,87.0,Bihar,near_border_fallback,0.7004964695755557,True
+28.499999999999982,88.49999999999999,Sikkim,near_border_fallback,0.3869000066435158,True
+28.499999999999982,90.0,Outside India domain (ocean/neighboring country),outside_domain,1.265193176322167,False
+28.499999999999982,91.5,Arunachal Pradesh,near_border_fallback,0.6426443780348612,True
+28.499999999999982,92.99999999999999,Arunachal Pradesh,near_border_fallback,0.19226762278686219,True
+28.499999999999982,94.5,Arunachal Pradesh,contains,0.0,True
+28.499999999999982,96.0,Arunachal Pradesh,contains,0.0,True
+28.499999999999982,97.49999999999999,Arunachal Pradesh,near_border_fallback,0.30045202518537506,True
+28.499999999999982,99.0,Outside India domain (ocean/neighboring country),outside_domain,1.6272334665167458,False
+28.499999999999982,100.5,Outside India domain (ocean/neighboring country),outside_domain,3.1138706542386982,False
+28.499999999999982,101.99999999999999,Outside India domain (ocean/neighboring country),outside_domain,4.609174779513752,False
+29.999999999999993,63.0,Outside India domain (ocean/neighboring country),outside_domain,7.161702604672184,False
+29.999999999999993,64.5,Outside India domain (ocean/neighboring country),outside_domain,5.815651726952956,False
+29.999999999999993,65.99999999999999,Outside India domain (ocean/neighboring country),outside_domain,4.5637615366204,False
+29.999999999999993,67.5,Outside India domain (ocean/neighboring country),outside_domain,3.4279346817150453,False
+29.999999999999993,69.0,Outside India domain (ocean/neighboring country),outside_domain,2.415259440890962,False
+29.999999999999993,70.49999999999999,Outside India domain (ocean/neighboring country),outside_domain,1.9644811738508348,False
+29.999999999999993,72.0,Outside India domain (ocean/neighboring country),outside_domain,1.2751411122538232,False
+29.999999999999993,73.5,Rajasthan,near_border_fallback,0.017525396634251875,True
+29.999999999999993,74.99999999999999,Punjab,contains,0.0,True
+29.999999999999993,76.5,Haryana,contains,0.0,True
+29.999999999999993,78.0,Uttarakhand,contains,0.0,True
+29.999999999999993,79.49999999999999,Uttarakhand,contains,0.0,True
+29.999999999999993,81.0,Uttarakhand,near_border_fallback,0.17636384111322148,True
+29.999999999999993,82.5,Outside India domain (ocean/neighboring country),outside_domain,1.4999409494855573,False
+29.999999999999993,83.99999999999999,Outside India domain (ocean/neighboring country),outside_domain,2.480956842241804,False
+29.999999999999993,85.5,Outside India domain (ocean/neighboring country),outside_domain,2.778313205124791,False
+29.999999999999993,87.0,Outside India domain (ocean/neighboring country),outside_domain,2.1653056117476495,False
+29.999999999999993,88.49999999999999,Outside India domain (ocean/neighboring country),outside_domain,1.8729599810357924,False
+29.999999999999993,90.0,Outside India domain (ocean/neighboring country),outside_domain,2.295841819229071,False
+29.999999999999993,91.5,Outside India domain (ocean/neighboring country),outside_domain,2.139390862246238,False
+29.999999999999993,92.99999999999999,Outside India domain (ocean/neighboring country),outside_domain,1.3969577928224826,False
+29.999999999999993,94.5,Arunachal Pradesh,near_border_fallback,0.6638964516522929,True
+29.999999999999993,96.0,Arunachal Pradesh,near_border_fallback,0.5421937517224049,True
+29.999999999999993,97.49999999999999,Outside India domain (ocean/neighboring country),outside_domain,1.3316730147084088,False
+29.999999999999993,99.0,Outside India domain (ocean/neighboring country),outside_domain,2.4059902891064606,False
+29.999999999999993,100.5,Outside India domain (ocean/neighboring country),outside_domain,3.5839487979720084,False
+29.999999999999993,101.99999999999999,Outside India domain (ocean/neighboring country),outside_domain,4.938926065782085,False
+31.499999999999993,63.0,Outside India domain (ocean/neighboring country),outside_domain,7.8777987038816155,False
+31.499999999999993,64.5,Outside India domain (ocean/neighboring country),outside_domain,6.674874794897995,False
+31.499999999999993,65.99999999999999,Outside India domain (ocean/neighboring country),outside_domain,5.542512446574674,False
+31.499999999999993,67.5,Outside India domain (ocean/neighboring country),outside_domain,4.516251413362538,False
+31.499999999999993,69.0,Outside India domain (ocean/neighboring country),outside_domain,3.7494973420849345,False
+31.499999999999993,70.49999999999999,Outside India domain (ocean/neighboring country),outside_domain,3.286378863628198,False
+31.499999999999993,72.0,Outside India domain (ocean/neighboring country),outside_domain,2.0919292515066186,False
+31.499999999999993,73.5,Outside India domain (ocean/neighboring country),outside_domain,1.036430743959174,False
+31.499999999999993,74.99999999999999,Punjab,contains,0.0,True
+31.499999999999993,76.5,Himachal Pradesh,contains,0.0,True
+31.499999999999993,78.0,Himachal Pradesh,contains,0.0,True
+31.499999999999993,79.49999999999999,Uttarakhand,near_border_fallback,0.3224194687379433,True
+31.499999999999993,81.0,Outside India domain (ocean/neighboring country),outside_domain,1.0695330446604407,False
+31.499999999999993,82.5,Outside India domain (ocean/neighboring country),outside_domain,1.9345737778035497,False
+31.499999999999993,83.99999999999999,Outside India domain (ocean/neighboring country),outside_domain,3.2307687120249744,False
+31.499999999999993,85.5,Outside India domain (ocean/neighboring country),outside_domain,4.052795476639423,False
+31.499999999999993,87.0,Outside India domain (ocean/neighboring country),outside_domain,3.6587431558725045,False
+31.499999999999993,88.49999999999999,Outside India domain (ocean/neighboring country),outside_domain,3.3712126614832565,False
+31.499999999999993,90.0,Outside India domain (ocean/neighboring country),outside_domain,3.6402415693819314,False
+31.499999999999993,91.5,Outside India domain (ocean/neighboring country),outside_domain,3.398957533979731,False
+31.499999999999993,92.99999999999999,Outside India domain (ocean/neighboring country),outside_domain,2.6813135890809296,False
+31.499999999999993,94.5,Outside India domain (ocean/neighboring country),outside_domain,2.155222945782194,False
+31.499999999999993,96.0,Outside India domain (ocean/neighboring country),outside_domain,2.038247127735696,False
+31.499999999999993,97.49999999999999,Outside India domain (ocean/neighboring country),outside_domain,2.4801343241386844,False
+31.499999999999993,99.0,Outside India domain (ocean/neighboring country),outside_domain,3.434814154902978,False
+31.499999999999993,100.5,Outside India domain (ocean/neighboring country),outside_domain,4.52577852527048,False
+31.499999999999993,101.99999999999999,Outside India domain (ocean/neighboring country),outside_domain,5.660520225069226,False
+32.999999999999986,63.0,Outside India domain (ocean/neighboring country),outside_domain,8.790903690292218,False
+32.999999999999986,64.5,Outside India domain (ocean/neighboring country),outside_domain,7.6608192942246855,False
+32.999999999999986,65.99999999999999,Outside India domain (ocean/neighboring country),outside_domain,6.622927108644196,False
+32.999999999999986,67.5,Outside India domain (ocean/neighboring country),outside_domain,5.756081823010331,False
+32.999999999999986,69.0,Outside India domain (ocean/neighboring country),outside_domain,4.953471174660371,False
+32.999999999999986,70.49999999999999,Outside India domain (ocean/neighboring country),outside_domain,3.5180607867232174,False
+32.999999999999986,72.0,Outside India domain (ocean/neighboring country),outside_domain,2.0231143389037234,False
+32.999999999999986,73.5,Jammu and Kashmir,near_border_fallback,0.5511636337705113,True
+32.999999999999986,74.99999999999999,Jammu and Kashmir,contains,0.0,True
+32.999999999999986,76.5,Himachal Pradesh,contains,0.0,True
+32.999999999999986,78.0,Jammu and Kashmir,contains,0.0,True
+32.999999999999986,79.49999999999999,Jammu and Kashmir,near_border_fallback,0.1167049085478502,True
+32.999999999999986,81.0,Outside India domain (ocean/neighboring country),outside_domain,1.472974236903029,False
+32.999999999999986,82.5,Outside India domain (ocean/neighboring country),outside_domain,2.9541114365295496,False
+32.999999999999986,83.99999999999999,Outside India domain (ocean/neighboring country),outside_domain,4.05188633105929,False
+32.999999999999986,85.5,Outside India domain (ocean/neighboring country),outside_domain,5.255232582600805,False
+32.999999999999986,87.0,Outside India domain (ocean/neighboring country),outside_domain,5.130170589666522,False
+32.999999999999986,88.49999999999999,Outside India domain (ocean/neighboring country),outside_domain,4.870541091842711,False
+32.999999999999986,90.0,Outside India domain (ocean/neighboring country),outside_domain,5.060479661241569,False
+32.999999999999986,91.5,Outside India domain (ocean/neighboring country),outside_domain,4.731007661904213,False
+32.999999999999986,92.99999999999999,Outside India domain (ocean/neighboring country),outside_domain,3.9979606178080735,False
+32.999999999999986,94.5,Outside India domain (ocean/neighboring country),outside_domain,3.6536575364332657,False
+32.999999999999986,96.0,Outside India domain (ocean/neighboring country),outside_domain,3.5375722793745026,False
+32.999999999999986,97.49999999999999,Outside India domain (ocean/neighboring country),outside_domain,3.8100175699816172,False
+32.999999999999986,99.0,Outside India domain (ocean/neighboring country),outside_domain,4.549880349753889,False
+32.999999999999986,100.5,Outside India domain (ocean/neighboring country),outside_domain,5.551805430609132,False
+32.999999999999986,101.99999999999999,Outside India domain (ocean/neighboring country),outside_domain,6.646544459215188,False
+34.49999999999999,63.0,Outside India domain (ocean/neighboring country),outside_domain,9.780432520962226,False
+34.49999999999999,64.5,Outside India domain (ocean/neighboring country),outside_domain,8.736692746350252,False
+34.49999999999999,65.99999999999999,Outside India domain (ocean/neighboring country),outside_domain,7.764490670248559,False
+34.49999999999999,67.5,Outside India domain (ocean/neighboring country),outside_domain,6.26479450151468,False
+34.49999999999999,69.0,Outside India domain (ocean/neighboring country),outside_domain,4.765289594981655,False
+34.49999999999999,70.49999999999999,Outside India domain (ocean/neighboring country),outside_domain,3.266239382205839,False
+34.49999999999999,72.0,Outside India domain (ocean/neighboring country),outside_domain,1.7688002939009675,False
+34.49999999999999,73.5,Jammu and Kashmir,near_border_fallback,0.28935477255264835,True
+34.49999999999999,74.99999999999999,Jammu and Kashmir,contains,0.0,True
+34.49999999999999,76.5,Jammu and Kashmir,contains,0.0,True
+34.49999999999999,78.0,Jammu and Kashmir,contains,0.0,True
+34.49999999999999,79.49999999999999,Jammu and Kashmir,near_border_fallback,0.54151078735803,True
+34.49999999999999,81.0,Outside India domain (ocean/neighboring country),outside_domain,2.0154810397655876,False
+34.49999999999999,82.5,Outside India domain (ocean/neighboring country),outside_domain,3.3591127477730356,False
+34.49999999999999,83.99999999999999,Outside India domain (ocean/neighboring country),outside_domain,4.7731690250405245,False
+34.49999999999999,85.5,Outside India domain (ocean/neighboring country),outside_domain,6.171951877476475,False
+34.49999999999999,87.0,Outside India domain (ocean/neighboring country),outside_domain,6.571135373292961,False
+34.49999999999999,88.49999999999999,Outside India domain (ocean/neighboring country),outside_domain,6.370185730864671,False
+34.49999999999999,90.0,Outside India domain (ocean/neighboring country),outside_domain,6.516559684390459,False
+34.49999999999999,91.5,Outside India domain (ocean/neighboring country),outside_domain,6.026806140657136,False
+34.49999999999999,92.99999999999999,Outside India domain (ocean/neighboring country),outside_domain,5.402584247288878,False
+34.49999999999999,94.5,Outside India domain (ocean/neighboring country),outside_domain,5.153003089562943,False
+34.49999999999999,96.0,Outside India domain (ocean/neighboring country),outside_domain,5.037299267452264,False
+34.49999999999999,97.49999999999999,Outside India domain (ocean/neighboring country),outside_domain,5.232724099488383,False
+34.49999999999999,99.0,Outside India domain (ocean/neighboring country),outside_domain,5.819779664150269,False
+34.49999999999999,100.5,Outside India domain (ocean/neighboring country),outside_domain,6.650209861497497,False
+34.49999999999999,101.99999999999999,Outside India domain (ocean/neighboring country),outside_domain,7.671188877870247,False
+36.0,63.0,Outside India domain (ocean/neighboring country),outside_domain,10.853406691073738,False
+36.0,64.5,Outside India domain (ocean/neighboring country),outside_domain,9.406436207232007,False
+36.0,65.99999999999999,Outside India domain (ocean/neighboring country),outside_domain,7.933352443962106,False
+36.0,67.5,Outside India domain (ocean/neighboring country),outside_domain,6.4726439635989035,False
+36.0,69.0,Outside India domain (ocean/neighboring country),outside_domain,5.032662070776031,False
+36.0,70.49999999999999,Outside India domain (ocean/neighboring country),outside_domain,3.6396060244560138,False
+36.0,72.0,Outside India domain (ocean/neighboring country),outside_domain,2.349350914896186,False
+36.0,73.5,Outside India domain (ocean/neighboring country),outside_domain,1.3821869010240309,False
+36.0,74.99999999999999,Outside India domain (ocean/neighboring country),outside_domain,1.299579158513061,False
+36.0,76.5,Outside India domain (ocean/neighboring country),outside_domain,1.0913516479090646,False
+36.0,78.0,Jammu and Kashmir,near_border_fallback,0.5101303994477991,True
+36.0,79.49999999999999,Outside India domain (ocean/neighboring country),outside_domain,1.4853740788752512,False
+36.0,81.0,Outside India domain (ocean/neighboring country),outside_domain,2.6179927132619603,False
+36.0,82.5,Outside India domain (ocean/neighboring country),outside_domain,3.892228014825916,False
+36.0,83.99999999999999,Outside India domain (ocean/neighboring country),outside_domain,5.28481646897991,False
+36.0,85.5,Outside India domain (ocean/neighboring country),outside_domain,6.71063142719916,False
+36.0,87.0,Outside India domain (ocean/neighboring country),outside_domain,8.033740717075995,False
+36.0,88.49999999999999,Outside India domain (ocean/neighboring country),outside_domain,7.869965817212639,False
+36.0,90.0,Outside India domain (ocean/neighboring country),outside_domain,7.988907674933202,False
+36.0,91.5,Outside India domain (ocean/neighboring country),outside_domain,7.350280246668982,False
+36.0,92.99999999999999,Outside India domain (ocean/neighboring country),outside_domain,6.8477838748432776,False
+36.0,94.5,Outside India domain (ocean/neighboring country),outside_domain,6.652643706719525,False
+36.0,96.0,Outside India domain (ocean/neighboring country),outside_domain,6.537151534724536,False
+36.0,97.49999999999999,Outside India domain (ocean/neighboring country),outside_domain,6.689001608755639,False
+36.0,99.0,Outside India domain (ocean/neighboring country),outside_domain,7.157863016086221,False
+36.0,100.5,Outside India domain (ocean/neighboring country),outside_domain,7.881884453751547,False
+36.0,101.99999999999999,Outside India domain (ocean/neighboring country),outside_domain,8.76066043211586,False
+37.499999999999986,63.0,Outside India domain (ocean/neighboring country),outside_domain,11.209487247783796,False
+37.499999999999986,64.5,Outside India domain (ocean/neighboring country),outside_domain,9.776075329745382,False
+37.499999999999986,65.99999999999999,Outside India domain (ocean/neighboring country),outside_domain,8.36604406798609,False
+37.499999999999986,67.5,Outside India domain (ocean/neighboring country),outside_domain,6.993549731153254,False
+37.499999999999986,69.0,Outside India domain (ocean/neighboring country),outside_domain,5.685840512777552,False
+37.499999999999986,70.49999999999999,Outside India domain (ocean/neighboring country),outside_domain,4.451126293742649,False
+37.499999999999986,72.0,Outside India domain (ocean/neighboring country),outside_domain,3.4206805918046634,False
+37.499999999999986,73.5,Outside India domain (ocean/neighboring country),outside_domain,2.8178155210396802,False
+37.499999999999986,74.99999999999999,Outside India domain (ocean/neighboring country),outside_domain,2.759958770234941,False
+37.499999999999986,76.5,Outside India domain (ocean/neighboring country),outside_domain,2.3973869128540617,False
+37.499999999999986,78.0,Outside India domain (ocean/neighboring country),outside_domain,2.005080864847684,False
+37.499999999999986,79.49999999999999,Outside India domain (ocean/neighboring country),outside_domain,2.451785783489486,False
+37.499999999999986,81.0,Outside India domain (ocean/neighboring country),outside_domain,3.5279643397037495,False
+37.499999999999986,82.5,Outside India domain (ocean/neighboring country),outside_domain,4.734020479791898,False
+37.499999999999986,83.99999999999999,Outside India domain (ocean/neighboring country),outside_domain,5.934354909273777,False
+37.499999999999986,85.5,Outside India domain (ocean/neighboring country),outside_domain,7.246077829140822,False
+37.499999999999986,87.0,Outside India domain (ocean/neighboring country),outside_domain,8.618903068103963,False
+37.499999999999986,88.49999999999999,Outside India domain (ocean/neighboring country),outside_domain,9.369816309964598,False
+37.499999999999986,90.0,Outside India domain (ocean/neighboring country),outside_domain,9.373650455403714,False
+37.499999999999986,91.5,Outside India domain (ocean/neighboring country),outside_domain,8.731027840528375,False
+37.499999999999986,92.99999999999999,Outside India domain (ocean/neighboring country),outside_domain,8.312422718081232,False
+37.499999999999986,94.5,Outside India domain (ocean/neighboring country),outside_domain,8.152416558055915,False
+37.499999999999986,96.0,Outside India domain (ocean/neighboring country),outside_domain,8.03705894379451,False
+37.499999999999986,97.49999999999999,Outside India domain (ocean/neighboring country),outside_domain,8.16104826600183,False
+37.499999999999986,99.0,Outside India domain (ocean/neighboring country),outside_domain,8.54986377522195,False
+37.499999999999986,100.5,Outside India domain (ocean/neighboring country),outside_domain,9.169983882905303,False
+37.499999999999986,101.99999999999999,Outside India domain (ocean/neighboring country),outside_domain,9.957307997002598,False
+38.99999999999999,63.0,Outside India domain (ocean/neighboring country),outside_domain,11.71126377366433,False
+38.99999999999999,64.5,Outside India domain (ocean/neighboring country),outside_domain,10.347596033425889,False
+38.99999999999999,65.99999999999999,Outside India domain (ocean/neighboring country),outside_domain,9.027280219733967,False
+38.99999999999999,67.5,Outside India domain (ocean/neighboring country),outside_domain,7.757594817857062,False
+38.99999999999999,69.0,Outside India domain (ocean/neighboring country),outside_domain,6.565485575673036,False
+38.99999999999999,70.49999999999999,Outside India domain (ocean/neighboring country),outside_domain,5.5219263661276745,False
+38.99999999999999,72.0,Outside India domain (ocean/neighboring country),outside_domain,4.728742938899693,False
+38.99999999999999,73.5,Outside India domain (ocean/neighboring country),outside_domain,4.27658404244401,False
+38.99999999999999,74.99999999999999,Outside India domain (ocean/neighboring country),outside_domain,4.2420517188409095,False
+38.99999999999999,76.5,Outside India domain (ocean/neighboring country),outside_domain,3.740784679968381,False
+38.99999999999999,78.0,Outside India domain (ocean/neighboring country),outside_domain,3.5025089388684094,False
+38.99999999999999,79.49999999999999,Outside India domain (ocean/neighboring country),outside_domain,3.7816676860213416,False
+38.99999999999999,81.0,Outside India domain (ocean/neighboring country),outside_domain,4.5547679211698595,False
+38.99999999999999,82.5,Outside India domain (ocean/neighboring country),outside_domain,5.628849338304856,False
+38.99999999999999,83.99999999999999,Outside India domain (ocean/neighboring country),outside_domain,6.853321381599252,False
+38.99999999999999,85.5,Outside India domain (ocean/neighboring country),outside_domain,8.017083774391935,False
+38.99999999999999,87.0,Outside India domain (ocean/neighboring country),outside_domain,9.277890413868406,False
+38.99999999999999,88.49999999999999,Outside India domain (ocean/neighboring country),outside_domain,10.600087211553332,False
+38.99999999999999,90.0,Outside India domain (ocean/neighboring country),outside_domain,10.70371665860041,False
+38.99999999999999,91.5,Outside India domain (ocean/neighboring country),outside_domain,10.145692415975919,False
+38.99999999999999,92.99999999999999,Outside India domain (ocean/neighboring country),outside_domain,9.787778036489316,False
+38.99999999999999,94.5,Outside India domain (ocean/neighboring country),outside_domain,9.652260003935552,False
+38.99999999999999,96.0,Outside India domain (ocean/neighboring country),outside_domain,9.536995477827572,False
+38.99999999999999,97.49999999999999,Outside India domain (ocean/neighboring country),outside_domain,9.64171535973178,False
+38.99999999999999,99.0,Outside India domain (ocean/neighboring country),outside_domain,9.973231080880984,False
+38.99999999999999,100.5,Outside India domain (ocean/neighboring country),outside_domain,10.509698950519036,False
+38.99999999999999,101.99999999999999,Outside India domain (ocean/neighboring country),outside_domain,11.222397509820762,False
+40.5,63.0,Outside India domain (ocean/neighboring country),outside_domain,12.375572471383188,False
+40.5,64.5,Outside India domain (ocean/neighboring country),outside_domain,11.092701629145106,False
+40.5,65.99999999999999,Outside India domain (ocean/neighboring country),outside_domain,9.847504908329148,False
+40.5,67.5,Outside India domain (ocean/neighboring country),outside_domain,8.683241123330296,False
+40.5,69.0,Outside India domain (ocean/neighboring country),outside_domain,7.6342835862130975,False
+40.5,70.49999999999999,Outside India domain (ocean/neighboring country),outside_domain,6.756598616462327,False
+40.5,72.0,Outside India domain (ocean/neighboring country),outside_domain,6.125435809249685,False
+40.5,73.5,Outside India domain (ocean/neighboring country),outside_domain,5.756583868368585,False
+40.5,74.99999999999999,Outside India domain (ocean/neighboring country),outside_domain,5.73068054301449,False
+40.5,76.5,Outside India domain (ocean/neighboring country),outside_domain,5.171022726100554,False
+40.5,78.0,Outside India domain (ocean/neighboring country),outside_domain,5.001423660932982,False
+40.5,79.49999999999999,Outside India domain (ocean/neighboring country),outside_domain,5.204143653377386,False
+40.5,81.0,Outside India domain (ocean/neighboring country),outside_domain,5.791591667728125,False
+40.5,82.5,Outside India domain (ocean/neighboring country),outside_domain,6.669375390792967,False
+40.5,83.99999999999999,Outside India domain (ocean/neighboring country),outside_domain,7.7407107012813565,False
+40.5,85.5,Outside India domain (ocean/neighboring country),outside_domain,8.935738724205118,False
+40.5,87.0,Outside India domain (ocean/neighboring country),outside_domain,10.115863596451614,False
+40.5,88.49999999999999,Outside India domain (ocean/neighboring country),outside_domain,11.341795033774305,False
+40.5,90.0,Outside India domain (ocean/neighboring country),outside_domain,12.073681201485721,False
+40.5,91.5,Outside India domain (ocean/neighboring country),outside_domain,11.581852271856217,False
+40.5,92.99999999999999,Outside India domain (ocean/neighboring country),outside_domain,11.26964180172078,False
+40.5,94.5,Outside India domain (ocean/neighboring country),outside_domain,11.148748794136326,False
+40.5,96.0,Outside India domain (ocean/neighboring country),outside_domain,11.036949262462878,False
+40.5,97.49999999999999,Outside India domain (ocean/neighboring country),outside_domain,11.127562237802314,False
+40.5,99.0,Outside India domain (ocean/neighboring country),outside_domain,11.41623868927277,False
+40.5,100.5,Outside India domain (ocean/neighboring country),outside_domain,11.887764283007083,False
+40.5,101.99999999999999,Outside India domain (ocean/neighboring country),outside_domain,12.522275092259761,False
+41.999999999999986,63.0,Outside India domain (ocean/neighboring country),outside_domain,13.165906918809728,False
+41.999999999999986,64.5,Outside India domain (ocean/neighboring country),outside_domain,11.94849063610504,False
+41.999999999999986,65.99999999999999,Outside India domain (ocean/neighboring country),outside_domain,10.80239565871469,False
+41.999999999999986,67.5,Outside India domain (ocean/neighboring country),outside_domain,9.750533367796312,False
+41.999999999999986,69.0,Outside India domain (ocean/neighboring country),outside_domain,8.828490241585312,False
+41.999999999999986,70.49999999999999,Outside India domain (ocean/neighboring country),outside_domain,8.081557952215958,False
+41.999999999999986,72.0,Outside India domain (ocean/neighboring country),outside_domain,7.560372666332309,False
+41.999999999999986,73.5,Outside India domain (ocean/neighboring country),outside_domain,7.244815014549083,False
+41.999999999999986,74.99999999999999,Outside India domain (ocean/neighboring country),outside_domain,7.085708753881608,False
+41.999999999999986,76.5,Outside India domain (ocean/neighboring country),outside_domain,6.632155158454183,False
+41.999999999999986,78.0,Outside India domain (ocean/neighboring country),outside_domain,6.50083905395505,False
+41.999999999999986,79.49999999999999,Outside India domain (ocean/neighboring country),outside_domain,6.660721570706736,False
+41.999999999999986,81.0,Outside India domain (ocean/neighboring country),outside_domain,7.129678386383109,False
+41.999999999999986,82.5,Outside India domain (ocean/neighboring country),outside_domain,7.859846775433631,False
+41.999999999999986,83.99999999999999,Outside India domain (ocean/neighboring country),outside_domain,8.787219434548753,False
+41.999999999999986,85.5,Outside India domain (ocean/neighboring country),outside_domain,9.856635300574355,False
+41.999999999999986,87.0,Outside India domain (ocean/neighboring country),outside_domain,11.026677775979742,False
+41.999999999999986,88.49999999999999,Outside India domain (ocean/neighboring country),outside_domain,12.222428578576803,False
+41.999999999999986,90.0,Outside India domain (ocean/neighboring country),outside_domain,13.42361272700252,False
+41.999999999999986,91.5,Outside India domain (ocean/neighboring country),outside_domain,13.032403059091223,False
+41.999999999999986,92.99999999999999,Outside India domain (ocean/neighboring country),outside_domain,12.755745912591768,False
+41.999999999999986,94.5,Outside India domain (ocean/neighboring country),outside_domain,12.63557603525168,False
+41.999999999999986,96.0,Outside India domain (ocean/neighboring country),outside_domain,12.53691410596147,False
+41.999999999999986,97.49999999999999,Outside India domain (ocean/neighboring country),outside_domain,12.6167589988174,False
+41.999999999999986,99.0,Outside India domain (ocean/neighboring country),outside_domain,12.872101614275117,False
+41.999999999999986,100.5,Outside India domain (ocean/neighboring country),outside_domain,13.292257417990987,False
+41.999999999999986,101.99999999999999,Outside India domain (ocean/neighboring country),outside_domain,13.862631103222315,False

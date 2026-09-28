@@ -1,0 +1,147 @@
+"""
+Phase 2 - A5: leakage audit. For every feature proposed in
+feature_inventory.py, answers: "could this value have been known at
+forecast issuance?" Anything derived from future observations, or any
+statistic fit on data that includes the 2021 test year, is rejected.
+
+Usage:
+    .venv/Scripts/python.exe -m src.phase2.leakage_audit
+"""
+from __future__ import annotations
+
+import os
+
+import pandas as pd
+
+OUT_DIR = os.path.join("outputs", "phase2")
+
+# (feature, source, available_at_forecast_time, uses_future_observation,
+#  train_only_required, status, notes)
+AUDIT_ROWS = [
+    (
+        "fcst_precip_mm / fcst_temp_c / fcst_mslp_hpa",
+        "HRES forecast (data/processed/error_db.parquet)",
+        True, False, False, "OK",
+        "the forecast itself - by definition known at issuance",
+    ),
+    (
+        "latitude / longitude",
+        "grid coordinate",
+        True, False, False, "OK",
+        "static, known always",
+    ),
+    (
+        "region_v2",
+        "src/phase2/geography.py, static state-boundary lookup",
+        True, False, False, "OK",
+        "static geographic fact, not fit from any weather data",
+    ),
+    (
+        "lead_day / month",
+        "forecast metadata (init_time, prediction_timedelta)",
+        True, False, False, "OK",
+        "known at issuance by construction",
+    ),
+    (
+        "fcst_*_anomaly_vs_domain_mean",
+        "computed from fcst_* at the SAME (init_time, lead_day) only",
+        True, False, False, "OK",
+        "uses only other forecast cells from the same issued forecast, never truth",
+    ),
+    (
+        "precip_forecast_jump / temp_forecast_jump",
+        "this forecast's fcst_* minus an EARLIER init_time's forecast "
+        "for the same valid_time (lead_day+1, issued 24h earlier)",
+        True, False, False, "OK",
+        "both forecasts being compared were issued at or before the "
+        "current forecast's issuance time - no future information used",
+    ),
+    (
+        "hist_bust_rate_region_lead_month",
+        "train-only-fit groupby mean of the TARGET label, "
+        "src/phase1/dataset.py / src/phase2/component_analysis.py pattern",
+        True, False, True, "OK - CONDITIONAL",
+        "legitimate ONLY when the lookup table is fit on TRAIN (2018-2020) "
+        "rows exclusively and then applied unchanged to test (2021) rows - "
+        "enforced in code by always calling the fit function with `train`, "
+        "never the full frame; see tests/test_phase2_leakage.py",
+    ),
+    (
+        "hist_mean_abs_error_region_lead_month",
+        "train-only-fit groupby mean of |error|",
+        True, False, True, "OK - CONDITIONAL",
+        "same condition as above",
+    ),
+    (
+        "actual/observed rainfall or temperature (obs_precip_mm, obs_temp_c, ...)",
+        "ERA5 truth",
+        False, True, False, "REJECTED",
+        "this is what the forecast is being verified against - using it as "
+        "a FEATURE would mean predicting the target from itself",
+    ),
+    (
+        "error_precip_mm / abs_error_temp_c / etc. (the actual realized error)",
+        "computed from forecast AND truth",
+        False, True, False, "REJECTED",
+        "requires the truth observation, which doesn't exist at forecast "
+        "issuance time - this is exactly what the model is trying to predict "
+        "the RISK of, not an input to it",
+    ),
+    (
+        "bust_any / bust_precip / bust_temp / any bust label",
+        "computed from forecast AND truth",
+        False, True, False, "REJECTED",
+        "the label itself - never a feature",
+    ),
+    (
+        "percentile bust thresholds fit on the FULL 2018-2021 sample "
+        "(Phase 0's original label_busts.py behaviour)",
+        "src/label_busts.py (Phase 0, untouched)",
+        None, False, True, "REJECTED for Phase 1/2 use",
+        "would leak 2021 statistics into 2021's own labels/features - this "
+        "is exactly why src/phase1/dataset.py refits thresholds on TRAIN "
+        "only; Phase 0's file itself is left unchanged (per instructions) "
+        "but its output (data/processed/bust_labels.parquet) is NOT used "
+        "downstream of Phase 1 for this reason",
+    ),
+    (
+        "ensemble mean/std/spread",
+        "WeatherBench2 ifs_ens store",
+        None, False, False, "UNAVAILABLE - not fabricated",
+        "see outputs/phase2/feature_availability.md - store's zarr metadata "
+        "could not be read in the time available; not built, not faked",
+    ),
+    (
+        "wind / humidity / geopotential height",
+        "confirmed available in source HRES store, not locally fetched",
+        True, False, False, "DEFERRED - not fabricated",
+        "real forecast-time-available variables, simply not downloaded "
+        "this pass - see feature_availability.md",
+    ),
+]
+
+COLUMNS = [
+    "feature", "source", "available_at_forecast_time", "uses_future_observation",
+    "train_only_required", "status", "notes",
+]
+
+
+def build_audit_table() -> pd.DataFrame:
+    return pd.DataFrame(AUDIT_ROWS, columns=COLUMNS)
+
+
+def main() -> None:
+    os.makedirs(OUT_DIR, exist_ok=True)
+    df = build_audit_table()
+    path = os.path.join(OUT_DIR, "leakage_audit.csv")
+    df.to_csv(path, index=False)
+    print(f"saved -> {path}")
+    n_rejected = (df.status == "REJECTED").sum()
+    n_ok = df.status.str.startswith("OK").sum()
+    print(f"{n_ok} features cleared, {n_rejected} rejected, "
+          f"{len(df) - n_ok - n_rejected} unavailable/deferred")
+    print(df[["feature", "status"]].to_string(index=False))
+
+
+if __name__ == "__main__":
+    main()

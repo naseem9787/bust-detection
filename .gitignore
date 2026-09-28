@@ -6,6 +6,10 @@ __pycache__/
 # Downloaded raw cache (regenerate via `python -m src.fetch_data` - see README)
 data/raw/*.nc
 
+# Public boundaries file (22.9MB) - refetch with the curl command in
+# src/phase2/geography.py's error message rather than committing it
+data/raw/india_states.geojson
+
 # Full row-level processed output can exceed GitHub's 100MB/file limit once
 # the date range is widened - regenerate locally via `python run_phase0.py`.
 # Only the small aggregated summary (data/processed/summary_*.csv) is committed.

@@ -1,0 +1,7 @@
+component,prevalence_train,prevalence_test,roc_auc_test,pr_auc_test,brier_test,lead_rate_min,lead_rate_max,lead_rate_range,region_rate_min,region_rate_max,region_rate_range,month_rate_min,month_rate_max,month_rate_range
+bust_precip_categorical,0.0133,0.0106,0.6858,0.0237,0.0104,0.0031,0.0186,0.0155,0.0103,0.0346,0.0243,0.0078,0.0122,0.0044
+bust_temp_hard,0.0814,0.0715,0.673,0.1274,0.0649,0.0288,0.1285,0.0998,0.0177,0.1244,0.1067,0.0576,0.133,0.0754
+bust_precip_percentile,0.1,0.0902,0.5184,0.093,0.0825,0.0881,0.0935,0.0054,0.0713,0.1031,0.0318,0.0652,0.1064,0.0412
+bust_temp_percentile,0.1,0.0885,0.526,0.096,0.0807,0.0841,0.0927,0.0086,0.0687,0.0933,0.0246,0.0744,0.1292,0.0548
+bust_mslp_percentile,0.1,0.0937,0.5685,0.1195,0.0844,0.0884,0.0975,0.009,0.0639,0.0967,0.0328,0.07,0.1337,0.0638
+bust_any,0.2666,0.2445,0.5174,0.2588,0.1853,0.2331,0.2678,0.0347,0.2018,0.2643,0.0625,0.2081,0.2931,0.085
