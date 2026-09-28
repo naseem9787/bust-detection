@@ -1,0 +1,321 @@
+region,lead_day,season,n_samples,bust_rate,precip_bust_rate,temp_bust_rate,mean_abs_error_precip_mm,mean_abs_error_temp_c,missed_heavy_rain_events,false_alarm_heavy_rain
+Central India (MP/Chhattisgarh/Vidarbha),1,monsoon_JJAS,27328,42.9,26.5,8.4,4.09,1.59,94,204
+Central India (MP/Chhattisgarh/Vidarbha),1,post_monsoon_ON,13664,17.2,4.5,9.1,0.8,1.82,3,6
+Central India (MP/Chhattisgarh/Vidarbha),1,pre_monsoon_MAM,20608,26.9,0.7,18.1,0.31,1.87,0,0
+Central India (MP/Chhattisgarh/Vidarbha),1,winter_DJF,20216,10.3,1.0,4.5,0.2,1.34,0,1
+Central India (MP/Chhattisgarh/Vidarbha),2,monsoon_JJAS,27328,42.3,26.5,8.6,5.35,1.59,141,285
+Central India (MP/Chhattisgarh/Vidarbha),2,post_monsoon_ON,13664,17.2,4.6,9.8,1.05,1.83,6,9
+Central India (MP/Chhattisgarh/Vidarbha),2,pre_monsoon_MAM,20608,26.0,0.6,17.4,0.36,1.84,2,2
+Central India (MP/Chhattisgarh/Vidarbha),2,winter_DJF,20216,10.6,1.0,4.4,0.25,1.32,0,3
+Central India (MP/Chhattisgarh/Vidarbha),3,monsoon_JJAS,27328,41.3,26.4,8.7,6.25,1.61,158,317
+Central India (MP/Chhattisgarh/Vidarbha),3,post_monsoon_ON,13664,18.9,4.9,11.0,1.27,1.87,7,6
+Central India (MP/Chhattisgarh/Vidarbha),3,pre_monsoon_MAM,20608,24.7,0.5,17.2,0.39,1.83,3,0
+Central India (MP/Chhattisgarh/Vidarbha),3,winter_DJF,20216,12.9,0.9,4.8,0.28,1.31,0,4
+Central India (MP/Chhattisgarh/Vidarbha),4,monsoon_JJAS,27328,42.5,26.4,9.3,6.79,1.62,176,313
+Central India (MP/Chhattisgarh/Vidarbha),4,post_monsoon_ON,13664,21.1,5.0,14.0,1.48,1.91,7,7
+Central India (MP/Chhattisgarh/Vidarbha),4,pre_monsoon_MAM,20608,23.9,0.5,17.6,0.43,1.82,4,4
+Central India (MP/Chhattisgarh/Vidarbha),4,winter_DJF,20216,13.1,0.9,5.5,0.32,1.3,0,2
+Central India (MP/Chhattisgarh/Vidarbha),5,monsoon_JJAS,27328,43.2,25.9,10.3,7.06,1.65,177,297
+Central India (MP/Chhattisgarh/Vidarbha),5,post_monsoon_ON,13664,24.3,5.8,16.9,1.75,1.98,12,3
+Central India (MP/Chhattisgarh/Vidarbha),5,pre_monsoon_MAM,20608,23.9,0.5,18.2,0.44,1.82,4,0
+Central India (MP/Chhattisgarh/Vidarbha),5,winter_DJF,20216,14.1,1.0,6.2,0.36,1.31,0,8
+Central India (MP/Chhattisgarh/Vidarbha),6,monsoon_JJAS,27328,43.5,25.7,11.2,7.29,1.68,183,287
+Central India (MP/Chhattisgarh/Vidarbha),6,post_monsoon_ON,13664,27.7,6.3,19.8,1.95,2.05,12,2
+Central India (MP/Chhattisgarh/Vidarbha),6,pre_monsoon_MAM,20608,23.7,0.5,18.9,0.52,1.83,3,9
+Central India (MP/Chhattisgarh/Vidarbha),6,winter_DJF,20216,14.6,1.0,7.0,0.4,1.34,1,5
+Central India (MP/Chhattisgarh/Vidarbha),7,monsoon_JJAS,27328,43.8,25.6,12.7,7.76,1.73,184,341
+Central India (MP/Chhattisgarh/Vidarbha),7,post_monsoon_ON,13664,29.0,6.0,22.0,2.07,2.11,12,8
+Central India (MP/Chhattisgarh/Vidarbha),7,pre_monsoon_MAM,20608,24.1,0.5,19.6,0.51,1.86,5,6
+Central India (MP/Chhattisgarh/Vidarbha),7,winter_DJF,20216,16.7,1.3,8.3,0.47,1.38,1,4
+Central India (MP/Chhattisgarh/Vidarbha),8,monsoon_JJAS,27328,44.0,25.5,14.0,8.18,1.78,181,396
+Central India (MP/Chhattisgarh/Vidarbha),8,post_monsoon_ON,13664,30.4,6.0,23.8,2.2,2.15,10,11
+Central India (MP/Chhattisgarh/Vidarbha),8,pre_monsoon_MAM,20608,25.5,0.6,21.2,0.56,1.91,5,9
+Central India (MP/Chhattisgarh/Vidarbha),8,winter_DJF,20216,19.3,1.4,9.8,0.56,1.44,0,3
+Central India (MP/Chhattisgarh/Vidarbha),9,monsoon_JJAS,27328,43.7,25.3,15.0,8.52,1.83,185,382
+Central India (MP/Chhattisgarh/Vidarbha),9,post_monsoon_ON,13664,33.3,6.2,25.6,2.39,2.2,12,18
+Central India (MP/Chhattisgarh/Vidarbha),9,pre_monsoon_MAM,20608,26.6,0.6,22.1,0.64,1.95,5,15
+Central India (MP/Chhattisgarh/Vidarbha),9,winter_DJF,20216,21.0,1.5,11.6,0.61,1.52,1,5
+Central India (MP/Chhattisgarh/Vidarbha),10,monsoon_JJAS,27328,43.6,25.2,15.5,8.65,1.86,187,383
+Central India (MP/Chhattisgarh/Vidarbha),10,post_monsoon_ON,13664,34.9,6.4,27.6,2.52,2.24,12,12
+Central India (MP/Chhattisgarh/Vidarbha),10,pre_monsoon_MAM,20608,28.9,0.6,23.7,0.65,2.02,5,8
+Central India (MP/Chhattisgarh/Vidarbha),10,winter_DJF,20216,22.4,1.5,13.7,0.61,1.61,1,2
+East Coast (Andhra/Odisha/TN coast),1,monsoon_JJAS,44896,36.4,16.4,9.9,2.48,0.65,87,73
+East Coast (Andhra/Odisha/TN coast),1,post_monsoon_ON,22448,32.8,17.2,13.2,2.45,0.73,45,47
+East Coast (Andhra/Odisha/TN coast),1,pre_monsoon_MAM,33856,20.1,2.8,9.7,0.57,0.61,24,19
+East Coast (Andhra/Odisha/TN coast),1,winter_DJF,33212,16.4,4.0,8.3,0.68,0.6,36,29
+East Coast (Andhra/Odisha/TN coast),2,monsoon_JJAS,44896,35.6,16.7,9.6,3.29,0.68,107,56
+East Coast (Andhra/Odisha/TN coast),2,post_monsoon_ON,22448,33.1,15.7,13.3,3.05,0.78,67,50
+East Coast (Andhra/Odisha/TN coast),2,pre_monsoon_MAM,33856,19.3,2.9,9.7,0.8,0.63,41,28
+East Coast (Andhra/Odisha/TN coast),2,winter_DJF,33212,17.2,4.3,8.6,0.97,0.63,41,28
+East Coast (Andhra/Odisha/TN coast),3,monsoon_JJAS,44896,34.7,16.4,10.0,3.74,0.72,137,41
+East Coast (Andhra/Odisha/TN coast),3,post_monsoon_ON,22448,33.4,16.1,13.3,3.67,0.82,80,44
+East Coast (Andhra/Odisha/TN coast),3,pre_monsoon_MAM,33856,18.6,2.9,9.5,1.02,0.65,46,45
+East Coast (Andhra/Odisha/TN coast),3,winter_DJF,33212,18.2,4.5,8.3,1.19,0.65,58,47
+East Coast (Andhra/Odisha/TN coast),4,monsoon_JJAS,44896,35.1,15.8,9.9,4.06,0.72,140,76
+East Coast (Andhra/Odisha/TN coast),4,post_monsoon_ON,22448,33.8,16.7,13.3,4.11,0.84,93,54
+East Coast (Andhra/Odisha/TN coast),4,pre_monsoon_MAM,33856,17.9,3.0,9.5,1.18,0.68,68,57
+East Coast (Andhra/Odisha/TN coast),4,winter_DJF,33212,17.4,4.8,8.4,1.39,0.67,66,41
+East Coast (Andhra/Odisha/TN coast),5,monsoon_JJAS,44896,34.1,15.4,9.9,4.23,0.74,133,78
+East Coast (Andhra/Odisha/TN coast),5,post_monsoon_ON,22448,33.6,17.0,13.3,4.55,0.88,110,53
+East Coast (Andhra/Odisha/TN coast),5,pre_monsoon_MAM,33856,17.7,3.1,9.4,1.32,0.69,70,57
+East Coast (Andhra/Odisha/TN coast),5,winter_DJF,33212,18.2,5.1,8.6,1.53,0.7,79,34
+East Coast (Andhra/Odisha/TN coast),6,monsoon_JJAS,44896,33.5,15.0,9.6,4.42,0.75,143,77
+East Coast (Andhra/Odisha/TN coast),6,post_monsoon_ON,22448,34.1,17.1,13.5,4.96,0.9,114,55
+East Coast (Andhra/Odisha/TN coast),6,pre_monsoon_MAM,33856,17.6,3.1,9.4,1.41,0.71,82,71
+East Coast (Andhra/Odisha/TN coast),6,winter_DJF,33212,18.6,5.5,8.8,1.71,0.72,84,40
+East Coast (Andhra/Odisha/TN coast),7,monsoon_JJAS,44896,32.8,14.6,9.4,4.6,0.77,146,90
+East Coast (Andhra/Odisha/TN coast),7,post_monsoon_ON,22448,33.9,17.3,13.6,5.26,0.94,114,51
+East Coast (Andhra/Odisha/TN coast),7,pre_monsoon_MAM,33856,18.0,3.3,9.6,1.61,0.74,95,82
+East Coast (Andhra/Odisha/TN coast),7,winter_DJF,33212,19.1,5.7,8.7,1.86,0.75,79,41
+East Coast (Andhra/Odisha/TN coast),8,monsoon_JJAS,44896,31.9,14.2,9.4,4.74,0.78,148,94
+East Coast (Andhra/Odisha/TN coast),8,post_monsoon_ON,22448,33.2,17.5,13.5,5.54,0.96,118,57
+East Coast (Andhra/Odisha/TN coast),8,pre_monsoon_MAM,33856,18.1,3.5,9.7,1.83,0.76,117,93
+East Coast (Andhra/Odisha/TN coast),8,winter_DJF,33212,20.9,5.9,8.7,1.99,0.77,78,34
+East Coast (Andhra/Odisha/TN coast),9,monsoon_JJAS,44896,30.5,14.0,9.3,4.82,0.8,150,69
+East Coast (Andhra/Odisha/TN coast),9,post_monsoon_ON,22448,34.2,18.1,13.5,5.85,0.97,119,56
+East Coast (Andhra/Odisha/TN coast),9,pre_monsoon_MAM,33856,18.6,3.4,10.0,1.84,0.79,125,66
+East Coast (Andhra/Odisha/TN coast),9,winter_DJF,33212,21.5,5.9,8.7,2.04,0.79,79,39
+East Coast (Andhra/Odisha/TN coast),10,monsoon_JJAS,44896,30.2,13.7,9.2,4.93,0.82,155,73
+East Coast (Andhra/Odisha/TN coast),10,post_monsoon_ON,22448,34.9,18.5,13.3,6.24,1.01,121,55
+East Coast (Andhra/Odisha/TN coast),10,pre_monsoon_MAM,33856,18.8,3.4,10.1,1.94,0.81,126,76
+East Coast (Andhra/Odisha/TN coast),10,winter_DJF,33212,20.9,5.9,8.7,2.14,0.81,81,43
+Indo-Gangetic Plain (UP/Bihar),1,monsoon_JJAS,25376,36.8,25.8,6.0,3.49,1.59,53,111
+Indo-Gangetic Plain (UP/Bihar),1,post_monsoon_ON,12688,15.8,1.9,9.0,0.42,1.69,1,9
+Indo-Gangetic Plain (UP/Bihar),1,pre_monsoon_MAM,19136,24.7,3.1,14.4,0.64,1.82,3,11
+Indo-Gangetic Plain (UP/Bihar),1,winter_DJF,18772,21.0,1.1,11.7,0.28,1.59,0,0
+Indo-Gangetic Plain (UP/Bihar),2,monsoon_JJAS,25376,37.1,25.5,6.2,4.13,1.58,73,138
+Indo-Gangetic Plain (UP/Bihar),2,post_monsoon_ON,12688,16.5,2.2,10.2,0.54,1.76,2,14
+Indo-Gangetic Plain (UP/Bihar),2,pre_monsoon_MAM,19136,24.5,3.2,14.1,0.79,1.82,8,13
+Indo-Gangetic Plain (UP/Bihar),2,winter_DJF,18772,21.1,1.2,11.8,0.35,1.65,0,0
+Indo-Gangetic Plain (UP/Bihar),3,monsoon_JJAS,25376,38.1,25.6,7.0,4.79,1.57,83,156
+Indo-Gangetic Plain (UP/Bihar),3,post_monsoon_ON,12688,18.0,2.3,12.2,0.62,1.82,3,10
+Indo-Gangetic Plain (UP/Bihar),3,pre_monsoon_MAM,19136,24.5,3.0,15.2,0.88,1.83,7,19
+Indo-Gangetic Plain (UP/Bihar),3,winter_DJF,18772,22.4,1.3,12.8,0.4,1.69,0,0
+Indo-Gangetic Plain (UP/Bihar),4,monsoon_JJAS,25376,39.1,25.5,8.1,5.32,1.6,94,182
+Indo-Gangetic Plain (UP/Bihar),4,post_monsoon_ON,12688,19.3,2.4,14.2,0.73,1.84,5,14
+Indo-Gangetic Plain (UP/Bihar),4,pre_monsoon_MAM,19136,25.3,2.8,16.2,0.95,1.84,10,13
+Indo-Gangetic Plain (UP/Bihar),4,winter_DJF,18772,22.5,1.5,13.7,0.46,1.72,0,0
+Indo-Gangetic Plain (UP/Bihar),5,monsoon_JJAS,25376,39.8,25.4,8.9,5.83,1.62,109,214
+Indo-Gangetic Plain (UP/Bihar),5,post_monsoon_ON,12688,20.7,2.5,15.6,0.82,1.86,5,11
+Indo-Gangetic Plain (UP/Bihar),5,pre_monsoon_MAM,19136,25.7,2.8,17.5,1.07,1.87,11,21
+Indo-Gangetic Plain (UP/Bihar),5,winter_DJF,18772,23.2,1.6,15.1,0.55,1.76,0,0
+Indo-Gangetic Plain (UP/Bihar),6,monsoon_JJAS,25376,40.7,25.0,10.7,6.24,1.66,111,229
+Indo-Gangetic Plain (UP/Bihar),6,post_monsoon_ON,12688,22.0,2.9,17.0,0.98,1.9,3,11
+Indo-Gangetic Plain (UP/Bihar),6,pre_monsoon_MAM,19136,25.5,2.8,17.7,1.14,1.86,8,24
+Indo-Gangetic Plain (UP/Bihar),6,winter_DJF,18772,24.7,1.9,16.4,0.64,1.8,0,1
+Indo-Gangetic Plain (UP/Bihar),7,monsoon_JJAS,25376,40.9,25.0,11.9,6.66,1.71,112,257
+Indo-Gangetic Plain (UP/Bihar),7,post_monsoon_ON,12688,23.5,3.2,18.3,1.07,1.92,5,10
+Indo-Gangetic Plain (UP/Bihar),7,pre_monsoon_MAM,19136,27.2,2.5,19.7,1.18,1.93,7,12
+Indo-Gangetic Plain (UP/Bihar),7,winter_DJF,18772,26.4,2.0,17.9,0.7,1.85,0,1
+Indo-Gangetic Plain (UP/Bihar),8,monsoon_JJAS,25376,40.5,24.5,13.0,6.96,1.76,118,285
+Indo-Gangetic Plain (UP/Bihar),8,post_monsoon_ON,12688,23.4,3.0,18.8,1.17,1.94,5,10
+Indo-Gangetic Plain (UP/Bihar),8,pre_monsoon_MAM,19136,28.4,2.8,21.0,1.27,1.96,12,16
+Indo-Gangetic Plain (UP/Bihar),8,winter_DJF,18772,30.2,2.5,20.5,0.85,1.96,0,0
+Indo-Gangetic Plain (UP/Bihar),9,monsoon_JJAS,25376,40.5,24.1,14.0,6.99,1.79,119,249
+Indo-Gangetic Plain (UP/Bihar),9,post_monsoon_ON,12688,25.9,3.3,20.6,1.27,1.99,4,13
+Indo-Gangetic Plain (UP/Bihar),9,pre_monsoon_MAM,19136,29.0,2.8,21.5,1.37,2.0,15,21
+Indo-Gangetic Plain (UP/Bihar),9,winter_DJF,18772,33.2,2.7,23.2,0.95,2.06,0,0
+Indo-Gangetic Plain (UP/Bihar),10,monsoon_JJAS,25376,41.3,24.5,15.2,7.23,1.82,123,235
+Indo-Gangetic Plain (UP/Bihar),10,post_monsoon_ON,12688,28.1,3.3,22.7,1.29,2.06,4,21
+Indo-Gangetic Plain (UP/Bihar),10,pre_monsoon_MAM,19136,31.8,2.7,23.7,1.41,2.09,13,14
+Indo-Gangetic Plain (UP/Bihar),10,winter_DJF,18772,34.7,2.4,25.4,0.94,2.16,0,2
+Northeast India,1,monsoon_JJAS,34160,32.9,22.2,6.0,4.68,1.66,107,247
+Northeast India,1,post_monsoon_ON,17080,16.6,4.6,7.8,1.34,1.7,8,28
+Northeast India,1,pre_monsoon_MAM,25760,32.8,6.8,16.1,1.81,1.8,17,34
+Northeast India,1,winter_DJF,25270,21.0,0.5,11.1,0.42,1.64,0,4
+Northeast India,2,monsoon_JJAS,34160,34.7,22.0,7.0,5.69,1.66,122,402
+Northeast India,2,post_monsoon_ON,17080,16.9,4.7,9.3,1.72,1.73,8,42
+Northeast India,2,pre_monsoon_MAM,25760,32.4,6.8,16.3,2.23,1.78,18,38
+Northeast India,2,winter_DJF,25270,20.3,0.7,11.7,0.51,1.66,0,4
+Northeast India,3,monsoon_JJAS,34160,36.2,22.3,7.5,6.54,1.65,129,494
+Northeast India,3,post_monsoon_ON,17080,17.6,4.6,10.6,1.9,1.75,18,43
+Northeast India,3,pre_monsoon_MAM,25760,31.7,6.6,16.7,2.49,1.79,17,55
+Northeast India,3,winter_DJF,25270,20.8,0.6,12.5,0.56,1.69,0,5
+Northeast India,4,monsoon_JJAS,34160,37.3,22.3,8.2,7.11,1.66,137,566
+Northeast India,4,post_monsoon_ON,17080,18.7,4.6,11.8,2.05,1.78,15,41
+Northeast India,4,pre_monsoon_MAM,25760,30.5,6.5,16.6,2.68,1.79,22,46
+Northeast India,4,winter_DJF,25270,20.8,0.7,12.8,0.62,1.7,1,5
+Northeast India,5,monsoon_JJAS,34160,38.8,22.4,9.3,7.68,1.68,152,602
+Northeast India,5,post_monsoon_ON,17080,20.1,4.5,13.1,2.23,1.8,23,33
+Northeast India,5,pre_monsoon_MAM,25760,29.0,6.3,16.4,2.85,1.78,26,41
+Northeast India,5,winter_DJF,25270,20.4,0.8,13.0,0.7,1.7,2,4
+Northeast India,6,monsoon_JJAS,34160,39.4,22.2,10.4,8.23,1.71,149,690
+Northeast India,6,post_monsoon_ON,17080,21.6,4.8,13.9,2.45,1.81,27,30
+Northeast India,6,pre_monsoon_MAM,25760,27.7,6.3,16.0,3.03,1.76,29,55
+Northeast India,6,winter_DJF,25270,21.0,1.0,13.6,0.78,1.7,1,6
+Northeast India,7,monsoon_JJAS,34160,38.2,22.0,11.2,8.6,1.74,151,742
+Northeast India,7,post_monsoon_ON,17080,22.8,5.0,14.6,2.65,1.81,25,26
+Northeast India,7,pre_monsoon_MAM,25760,28.9,6.5,16.5,3.26,1.76,36,56
+Northeast India,7,winter_DJF,25270,21.9,0.9,13.7,0.83,1.72,2,4
+Northeast India,8,monsoon_JJAS,34160,38.0,21.5,12.2,8.73,1.77,165,683
+Northeast India,8,post_monsoon_ON,17080,22.9,5.1,15.3,2.83,1.82,25,29
+Northeast India,8,pre_monsoon_MAM,25760,29.5,7.0,16.9,3.53,1.78,43,54
+Northeast India,8,winter_DJF,25270,24.4,1.0,14.8,0.89,1.74,2,1
+Northeast India,9,monsoon_JJAS,34160,38.5,21.4,13.4,8.99,1.8,185,710
+Northeast India,9,post_monsoon_ON,17080,23.8,5.3,16.0,3.04,1.85,27,41
+Northeast India,9,pre_monsoon_MAM,25760,29.7,6.8,17.7,3.67,1.8,40,53
+Northeast India,9,winter_DJF,25270,26.3,1.1,16.3,1.0,1.79,2,1
+Northeast India,10,monsoon_JJAS,34160,38.8,21.2,14.4,9.38,1.83,203,728
+Northeast India,10,post_monsoon_ON,17080,25.7,5.6,17.3,3.31,1.89,27,49
+Northeast India,10,pre_monsoon_MAM,25760,32.3,6.9,19.7,3.92,1.87,52,48
+Northeast India,10,winter_DJF,25270,27.6,1.0,17.7,1.06,1.85,2,6
+Northwest India (Punjab/Haryana/Rajasthan),1,monsoon_JJAS,29280,41.1,23.5,7.4,1.74,1.3,26,98
+Northwest India (Punjab/Haryana/Rajasthan),1,post_monsoon_ON,14640,19.5,3.9,13.7,0.21,1.44,1,1
+Northwest India (Punjab/Haryana/Rajasthan),1,pre_monsoon_MAM,22080,23.9,4.1,12.8,0.26,1.52,0,1
+Northwest India (Punjab/Haryana/Rajasthan),1,winter_DJF,21660,14.3,2.0,8.1,0.1,1.2,0,0
+Northwest India (Punjab/Haryana/Rajasthan),2,monsoon_JJAS,29280,39.8,23.7,7.9,2.22,1.35,34,163
+Northwest India (Punjab/Haryana/Rajasthan),2,post_monsoon_ON,14640,17.7,4.0,12.6,0.26,1.48,1,1
+Northwest India (Punjab/Haryana/Rajasthan),2,pre_monsoon_MAM,22080,22.9,3.7,12.8,0.3,1.55,0,8
+Northwest India (Punjab/Haryana/Rajasthan),2,winter_DJF,21660,16.4,1.9,8.3,0.12,1.26,0,0
+Northwest India (Punjab/Haryana/Rajasthan),3,monsoon_JJAS,29280,40.3,24.0,8.4,2.74,1.41,38,210
+Northwest India (Punjab/Haryana/Rajasthan),3,post_monsoon_ON,14640,16.4,4.1,11.6,0.3,1.5,1,1
+Northwest India (Punjab/Haryana/Rajasthan),3,pre_monsoon_MAM,22080,21.4,3.3,12.9,0.34,1.58,1,6
+Northwest India (Punjab/Haryana/Rajasthan),3,winter_DJF,21660,17.3,1.9,8.2,0.15,1.32,0,0
+Northwest India (Punjab/Haryana/Rajasthan),4,monsoon_JJAS,29280,40.5,23.7,8.9,3.05,1.47,47,201
+Northwest India (Punjab/Haryana/Rajasthan),4,post_monsoon_ON,14640,15.5,4.1,10.9,0.34,1.54,1,1
+Northwest India (Punjab/Haryana/Rajasthan),4,pre_monsoon_MAM,22080,21.0,3.3,12.6,0.38,1.62,1,10
+Northwest India (Punjab/Haryana/Rajasthan),4,winter_DJF,21660,17.1,2.3,8.2,0.2,1.36,0,0
+Northwest India (Punjab/Haryana/Rajasthan),5,monsoon_JJAS,29280,40.3,23.7,10.2,3.24,1.55,64,195
+Northwest India (Punjab/Haryana/Rajasthan),5,post_monsoon_ON,14640,16.1,4.1,11.2,0.37,1.57,1,0
+Northwest India (Punjab/Haryana/Rajasthan),5,pre_monsoon_MAM,22080,21.5,3.2,13.6,0.42,1.66,1,8
+Northwest India (Punjab/Haryana/Rajasthan),5,winter_DJF,21660,18.9,2.4,9.1,0.22,1.41,0,0
+Northwest India (Punjab/Haryana/Rajasthan),6,monsoon_JJAS,29280,41.0,23.5,11.7,3.36,1.61,71,185
+Northwest India (Punjab/Haryana/Rajasthan),6,post_monsoon_ON,14640,17.1,4.2,11.9,0.41,1.6,1,1
+Northwest India (Punjab/Haryana/Rajasthan),6,pre_monsoon_MAM,22080,22.8,3.3,15.2,0.44,1.72,1,6
+Northwest India (Punjab/Haryana/Rajasthan),6,winter_DJF,21660,20.5,2.5,10.8,0.25,1.48,0,0
+Northwest India (Punjab/Haryana/Rajasthan),7,monsoon_JJAS,29280,41.0,23.1,13.5,3.5,1.69,74,180
+Northwest India (Punjab/Haryana/Rajasthan),7,post_monsoon_ON,14640,19.1,4.4,14.2,0.46,1.66,1,0
+Northwest India (Punjab/Haryana/Rajasthan),7,pre_monsoon_MAM,22080,23.8,3.5,16.8,0.49,1.79,1,3
+Northwest India (Punjab/Haryana/Rajasthan),7,winter_DJF,21660,23.9,2.7,13.4,0.28,1.59,0,0
+Northwest India (Punjab/Haryana/Rajasthan),8,monsoon_JJAS,29280,41.1,22.9,15.1,3.7,1.76,82,186
+Northwest India (Punjab/Haryana/Rajasthan),8,post_monsoon_ON,14640,21.1,4.6,15.8,0.51,1.73,1,0
+Northwest India (Punjab/Haryana/Rajasthan),8,pre_monsoon_MAM,22080,25.1,3.6,18.8,0.58,1.86,1,9
+Northwest India (Punjab/Haryana/Rajasthan),8,winter_DJF,21660,26.7,2.8,15.9,0.33,1.71,0,0
+Northwest India (Punjab/Haryana/Rajasthan),9,monsoon_JJAS,29280,41.4,23.0,17.1,3.82,1.83,81,181
+Northwest India (Punjab/Haryana/Rajasthan),9,post_monsoon_ON,14640,23.4,4.5,18.2,0.55,1.82,1,2
+Northwest India (Punjab/Haryana/Rajasthan),9,pre_monsoon_MAM,22080,26.9,3.3,20.4,0.53,1.94,1,0
+Northwest India (Punjab/Haryana/Rajasthan),9,winter_DJF,21660,29.9,3.0,18.4,0.36,1.81,0,0
+Northwest India (Punjab/Haryana/Rajasthan),10,monsoon_JJAS,29280,41.4,22.8,18.7,3.98,1.91,81,207
+Northwest India (Punjab/Haryana/Rajasthan),10,post_monsoon_ON,14640,25.7,4.7,19.9,0.62,1.9,0,2
+Northwest India (Punjab/Haryana/Rajasthan),10,pre_monsoon_MAM,22080,28.9,3.4,21.9,0.58,2.03,1,3
+Northwest India (Punjab/Haryana/Rajasthan),10,winter_DJF,21660,32.1,3.0,21.5,0.38,1.93,0,1
+Unclassified,1,monsoon_JJAS,461648,27.7,15.9,7.0,1.59,0.89,369,585
+Unclassified,1,post_monsoon_ON,230824,29.1,11.6,11.3,1.16,1.03,184,149
+Unclassified,1,pre_monsoon_MAM,348128,23.3,6.8,10.0,0.75,0.97,89,94
+Unclassified,1,winter_DJF,341506,25.2,4.2,13.1,0.52,1.08,142,97
+Unclassified,2,monsoon_JJAS,461648,28.2,16.1,7.1,2.1,0.94,533,626
+Unclassified,2,post_monsoon_ON,230824,28.6,11.2,11.0,1.48,1.07,231,124
+Unclassified,2,pre_monsoon_MAM,348128,23.4,6.7,10.0,0.98,1.02,131,102
+Unclassified,2,winter_DJF,341506,24.9,4.3,13.1,0.68,1.14,173,83
+Unclassified,3,monsoon_JJAS,461648,28.2,16.3,7.2,2.51,0.98,589,686
+Unclassified,3,post_monsoon_ON,230824,27.5,10.8,10.7,1.71,1.11,258,213
+Unclassified,3,pre_monsoon_MAM,348128,23.5,6.6,10.2,1.17,1.07,153,123
+Unclassified,3,winter_DJF,341506,25.3,4.4,13.1,0.81,1.18,184,119
+Unclassified,4,monsoon_JJAS,461648,27.4,16.2,7.3,2.74,1.02,668,767
+Unclassified,4,post_monsoon_ON,230824,27.6,10.8,10.4,1.9,1.15,276,231
+Unclassified,4,pre_monsoon_MAM,348128,23.9,6.6,10.5,1.29,1.12,154,125
+Unclassified,4,winter_DJF,341506,25.4,4.5,12.8,0.91,1.22,187,137
+Unclassified,5,monsoon_JJAS,461648,26.8,16.0,7.5,2.91,1.08,715,827
+Unclassified,5,post_monsoon_ON,230824,27.4,10.7,10.2,2.04,1.2,290,210
+Unclassified,5,pre_monsoon_MAM,348128,24.0,6.7,10.7,1.39,1.19,174,156
+Unclassified,5,winter_DJF,341506,25.6,4.8,12.6,1.0,1.27,196,104
+Unclassified,6,monsoon_JJAS,461648,26.2,15.8,7.7,3.1,1.15,711,856
+Unclassified,6,post_monsoon_ON,230824,27.6,10.9,10.2,2.2,1.27,305,172
+Unclassified,6,pre_monsoon_MAM,348128,24.2,6.8,11.0,1.53,1.27,181,160
+Unclassified,6,winter_DJF,341506,25.6,4.9,12.4,1.09,1.34,206,85
+Unclassified,7,monsoon_JJAS,461648,26.8,15.6,9.0,3.22,1.22,723,847
+Unclassified,7,post_monsoon_ON,230824,29.5,11.0,11.9,2.35,1.35,311,181
+Unclassified,7,pre_monsoon_MAM,348128,25.0,6.9,12.8,1.64,1.36,195,186
+Unclassified,7,winter_DJF,341506,26.8,5.0,13.7,1.18,1.42,206,74
+Unclassified,8,monsoon_JJAS,461648,27.4,15.3,10.6,3.34,1.29,749,745
+Unclassified,8,post_monsoon_ON,230824,30.3,11.3,13.4,2.51,1.44,314,165
+Unclassified,8,pre_monsoon_MAM,348128,26.1,6.9,14.3,1.75,1.45,202,195
+Unclassified,8,winter_DJF,341506,28.3,5.2,15.6,1.27,1.53,209,90
+Unclassified,9,monsoon_JJAS,461648,28.5,15.2,12.3,3.5,1.38,765,711
+Unclassified,9,post_monsoon_ON,230824,31.6,11.1,15.4,2.6,1.55,318,144
+Unclassified,9,pre_monsoon_MAM,348128,27.5,7.0,16.2,1.85,1.56,207,204
+Unclassified,9,winter_DJF,341506,29.7,5.2,17.4,1.35,1.64,218,116
+Unclassified,10,monsoon_JJAS,461648,29.8,15.2,14.0,3.66,1.47,781,759
+Unclassified,10,post_monsoon_ON,230824,32.5,11.0,17.1,2.71,1.64,324,146
+Unclassified,10,pre_monsoon_MAM,348128,28.5,6.9,17.9,1.93,1.67,212,215
+Unclassified,10,winter_DJF,341506,31.1,5.4,19.1,1.43,1.75,222,108
+West Coast (Konkan/Goa/Kerala),1,monsoon_JJAS,27328,37.4,19.2,12.2,3.18,0.83,118,108
+West Coast (Konkan/Goa/Kerala),1,post_monsoon_ON,13664,30.0,12.5,12.6,2.14,0.83,21,23
+West Coast (Konkan/Goa/Kerala),1,pre_monsoon_MAM,20608,23.6,4.4,11.4,0.97,0.76,27,17
+West Coast (Konkan/Goa/Kerala),1,winter_DJF,20216,11.3,1.7,3.8,0.42,0.58,5,2
+West Coast (Konkan/Goa/Kerala),2,monsoon_JJAS,27328,37.0,19.4,11.5,4.07,0.85,167,109
+West Coast (Konkan/Goa/Kerala),2,post_monsoon_ON,13664,29.7,11.9,12.7,2.58,0.86,26,29
+West Coast (Konkan/Goa/Kerala),2,pre_monsoon_MAM,20608,23.2,4.4,11.3,1.29,0.78,39,20
+West Coast (Konkan/Goa/Kerala),2,winter_DJF,20216,11.6,1.8,4.8,0.53,0.6,6,7
+West Coast (Konkan/Goa/Kerala),3,monsoon_JJAS,27328,36.1,19.9,11.3,4.92,0.89,183,112
+West Coast (Konkan/Goa/Kerala),3,post_monsoon_ON,13664,30.5,11.3,12.8,3.08,0.91,25,35
+West Coast (Konkan/Goa/Kerala),3,pre_monsoon_MAM,20608,23.4,4.3,11.4,1.51,0.83,45,21
+West Coast (Konkan/Goa/Kerala),3,winter_DJF,20216,12.7,1.6,5.0,0.6,0.63,7,5
+West Coast (Konkan/Goa/Kerala),4,monsoon_JJAS,27328,37.1,20.3,11.1,5.42,0.9,193,151
+West Coast (Konkan/Goa/Kerala),4,post_monsoon_ON,13664,29.7,11.1,13.0,3.32,0.92,31,25
+West Coast (Konkan/Goa/Kerala),4,pre_monsoon_MAM,20608,22.7,4.1,11.4,1.67,0.83,57,34
+West Coast (Konkan/Goa/Kerala),4,winter_DJF,20216,12.2,1.4,5.1,0.6,0.64,11,4
+West Coast (Konkan/Goa/Kerala),5,monsoon_JJAS,27328,36.7,20.1,10.9,5.75,0.92,198,149
+West Coast (Konkan/Goa/Kerala),5,post_monsoon_ON,13664,29.2,11.2,13.0,3.59,0.95,36,29
+West Coast (Konkan/Goa/Kerala),5,pre_monsoon_MAM,20608,23.1,4.3,11.3,1.76,0.85,64,29
+West Coast (Konkan/Goa/Kerala),5,winter_DJF,20216,12.9,1.4,5.5,0.61,0.66,11,1
+West Coast (Konkan/Goa/Kerala),6,monsoon_JJAS,27328,37.5,20.3,10.6,6.18,0.93,207,140
+West Coast (Konkan/Goa/Kerala),6,post_monsoon_ON,13664,28.8,10.9,13.0,3.82,0.97,40,22
+West Coast (Konkan/Goa/Kerala),6,pre_monsoon_MAM,20608,21.3,4.3,11.1,1.91,0.87,80,25
+West Coast (Konkan/Goa/Kerala),6,winter_DJF,20216,13.0,1.3,6.0,0.64,0.7,11,0
+West Coast (Konkan/Goa/Kerala),7,monsoon_JJAS,27328,37.2,20.3,10.1,6.58,0.94,223,163
+West Coast (Konkan/Goa/Kerala),7,post_monsoon_ON,13664,28.7,10.8,13.2,4.08,1.0,39,20
+West Coast (Konkan/Goa/Kerala),7,pre_monsoon_MAM,20608,20.4,4.3,11.2,2.12,0.89,88,29
+West Coast (Konkan/Goa/Kerala),7,winter_DJF,20216,14.4,1.4,6.4,0.69,0.73,12,4
+West Coast (Konkan/Goa/Kerala),8,monsoon_JJAS,27328,36.7,20.5,9.6,6.99,0.95,218,176
+West Coast (Konkan/Goa/Kerala),8,post_monsoon_ON,13664,27.8,10.2,13.5,4.11,1.03,38,25
+West Coast (Konkan/Goa/Kerala),8,pre_monsoon_MAM,20608,19.9,4.2,11.5,2.24,0.92,83,45
+West Coast (Konkan/Goa/Kerala),8,winter_DJF,20216,16.4,1.6,6.6,0.8,0.76,14,5
+West Coast (Konkan/Goa/Kerala),9,monsoon_JJAS,27328,35.4,20.5,9.5,7.4,0.96,210,229
+West Coast (Konkan/Goa/Kerala),9,post_monsoon_ON,13664,27.4,10.0,13.4,4.19,1.04,39,17
+West Coast (Konkan/Goa/Kerala),9,pre_monsoon_MAM,20608,20.8,4.4,11.5,2.38,0.95,86,49
+West Coast (Konkan/Goa/Kerala),9,winter_DJF,20216,17.5,1.5,6.9,0.83,0.8,14,5
+West Coast (Konkan/Goa/Kerala),10,monsoon_JJAS,27328,35.0,20.7,9.2,7.72,0.98,215,254
+West Coast (Konkan/Goa/Kerala),10,post_monsoon_ON,13664,27.9,10.0,12.7,4.28,1.06,40,16
+West Coast (Konkan/Goa/Kerala),10,pre_monsoon_MAM,20608,21.0,4.3,11.5,2.5,0.99,94,39
+West Coast (Konkan/Goa/Kerala),10,winter_DJF,20216,17.6,1.4,7.7,0.87,0.84,14,7
+Western Himalaya (J&K/HP/Uttarakhand),1,monsoon_JJAS,35136,29.7,20.1,9.0,1.58,1.58,39,36
+Western Himalaya (J&K/HP/Uttarakhand),1,post_monsoon_ON,17568,25.2,3.6,17.9,0.33,2.02,1,6
+Western Himalaya (J&K/HP/Uttarakhand),1,pre_monsoon_MAM,26496,24.5,6.7,14.5,0.55,1.82,1,4
+Western Himalaya (J&K/HP/Uttarakhand),1,winter_DJF,25992,36.0,4.1,21.0,0.32,2.07,1,0
+Western Himalaya (J&K/HP/Uttarakhand),2,monsoon_JJAS,35136,30.1,19.9,9.5,1.9,1.59,38,54
+Western Himalaya (J&K/HP/Uttarakhand),2,post_monsoon_ON,17568,25.0,3.6,18.3,0.4,2.04,1,9
+Western Himalaya (J&K/HP/Uttarakhand),2,pre_monsoon_MAM,26496,26.4,6.6,16.2,0.67,1.87,0,7
+Western Himalaya (J&K/HP/Uttarakhand),2,winter_DJF,25992,36.5,4.4,22.2,0.42,2.12,1,2
+Western Himalaya (J&K/HP/Uttarakhand),3,monsoon_JJAS,35136,30.1,19.7,9.8,2.11,1.57,41,52
+Western Himalaya (J&K/HP/Uttarakhand),3,post_monsoon_ON,17568,25.1,3.6,18.7,0.47,2.05,1,12
+Western Himalaya (J&K/HP/Uttarakhand),3,pre_monsoon_MAM,26496,28.1,6.5,18.0,0.76,1.91,3,6
+Western Himalaya (J&K/HP/Uttarakhand),3,winter_DJF,25992,37.6,4.7,23.2,0.5,2.16,1,0
+Western Himalaya (J&K/HP/Uttarakhand),4,monsoon_JJAS,35136,30.2,18.9,10.8,2.3,1.61,43,64
+Western Himalaya (J&K/HP/Uttarakhand),4,post_monsoon_ON,17568,26.0,3.9,19.5,0.55,2.09,2,14
+Western Himalaya (J&K/HP/Uttarakhand),4,pre_monsoon_MAM,26496,29.6,6.8,19.2,0.89,1.93,2,4
+Western Himalaya (J&K/HP/Uttarakhand),4,winter_DJF,25992,38.2,5.3,24.1,0.61,2.2,2,0
+Western Himalaya (J&K/HP/Uttarakhand),5,monsoon_JJAS,35136,31.1,18.2,12.3,2.49,1.66,43,72
+Western Himalaya (J&K/HP/Uttarakhand),5,post_monsoon_ON,17568,27.0,4.2,20.3,0.65,2.11,3,14
+Western Himalaya (J&K/HP/Uttarakhand),5,pre_monsoon_MAM,26496,30.8,7.1,20.3,0.99,1.97,3,6
+Western Himalaya (J&K/HP/Uttarakhand),5,winter_DJF,25992,39.2,5.9,25.5,0.73,2.24,2,0
+Western Himalaya (J&K/HP/Uttarakhand),6,monsoon_JJAS,35136,31.7,17.7,13.8,2.71,1.71,46,89
+Western Himalaya (J&K/HP/Uttarakhand),6,post_monsoon_ON,17568,28.8,4.4,21.8,0.75,2.15,4,15
+Western Himalaya (J&K/HP/Uttarakhand),6,pre_monsoon_MAM,26496,32.0,7.2,22.0,1.11,2.01,3,3
+Western Himalaya (J&K/HP/Uttarakhand),6,winter_DJF,25992,40.4,6.2,27.4,0.88,2.32,2,1
+Western Himalaya (J&K/HP/Uttarakhand),7,monsoon_JJAS,35136,32.2,17.0,15.4,2.88,1.76,50,93
+Western Himalaya (J&K/HP/Uttarakhand),7,post_monsoon_ON,17568,30.0,4.7,22.9,0.81,2.21,5,6
+Western Himalaya (J&K/HP/Uttarakhand),7,pre_monsoon_MAM,26496,33.3,7.3,23.6,1.28,2.08,4,6
+Western Himalaya (J&K/HP/Uttarakhand),7,winter_DJF,25992,43.1,6.9,29.3,1.05,2.4,2,3
+Western Himalaya (J&K/HP/Uttarakhand),8,monsoon_JJAS,35136,33.6,16.8,17.6,3.09,1.85,52,98
+Western Himalaya (J&K/HP/Uttarakhand),8,post_monsoon_ON,17568,31.3,4.7,24.9,0.89,2.28,4,2
+Western Himalaya (J&K/HP/Uttarakhand),8,pre_monsoon_MAM,26496,34.7,7.3,25.2,1.41,2.15,4,6
+Western Himalaya (J&K/HP/Uttarakhand),8,winter_DJF,25992,44.2,7.2,31.0,1.23,2.46,2,1
+Western Himalaya (J&K/HP/Uttarakhand),9,monsoon_JJAS,35136,34.6,16.4,19.4,3.19,1.93,54,83
+Western Himalaya (J&K/HP/Uttarakhand),9,post_monsoon_ON,17568,32.9,4.4,26.5,0.91,2.33,6,3
+Western Himalaya (J&K/HP/Uttarakhand),9,pre_monsoon_MAM,26496,36.6,7.8,27.2,1.58,2.24,4,12
+Western Himalaya (J&K/HP/Uttarakhand),9,winter_DJF,25992,45.4,7.5,32.7,1.37,2.55,2,1
+Western Himalaya (J&K/HP/Uttarakhand),10,monsoon_JJAS,35136,36.3,16.4,21.5,3.39,2.02,58,92
+Western Himalaya (J&K/HP/Uttarakhand),10,post_monsoon_ON,17568,35.3,4.5,29.2,0.99,2.43,8,4
+Western Himalaya (J&K/HP/Uttarakhand),10,pre_monsoon_MAM,26496,37.7,7.5,28.9,1.61,2.34,4,2
+Western Himalaya (J&K/HP/Uttarakhand),10,winter_DJF,25992,46.7,7.6,34.4,1.47,2.66,2,4

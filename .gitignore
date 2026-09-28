@@ -15,3 +15,6 @@ data/processed/bust_labels.parquet
 # Run logs / scratch
 *.log
 _test_*.py
+
+# Claude Code local tool state
+.claude/

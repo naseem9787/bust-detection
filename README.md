@@ -75,7 +75,14 @@ mean |error| per region/lead_day/season) is the small, committed view of it.
 
 ### Scaling up
 
-- Widen `--start`/`--end` for a bigger sample (more seasons/years).
+- For more than ~1 season, fetch year-by-year instead of one continuous
+  range - a transient network blip then only costs the year in progress:
+  ```bash
+  ./fetch_multi_year.sh 2018 2021
+  ```
+  (this is how the 2018-2021 data in this repo's summary was built - 4 years,
+  20.5M rows, ~830MB of full row-level detail kept local-only, see below)
+- Widen `--start`/`--end` on a single `run_phase0.py` call for a smaller custom range.
 - Add more variables in `src/config.py` (`VARIABLES`) - e.g. geopotential
   height at 500hPa for large-scale pattern skill, wind fields for cyclones.
 - Move to the full 0.25-degree WB2 stores for higher spatial detail (ideally
