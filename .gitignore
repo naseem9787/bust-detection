@@ -1,0 +1,11 @@
+# Python / venv
+.venv/
+__pycache__/
+*.pyc
+
+# Downloaded raw cache (regenerate via `python -m src.fetch_data` - see README)
+data/raw/*.nc
+
+# Run logs / scratch
+*.log
+_test_*.py

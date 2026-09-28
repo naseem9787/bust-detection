@@ -1,0 +1,13 @@
+# Phase 0 - data acquisition + error database
+# Pinned loosely; Python 3.14 on Windows needs recent wheels for zarr/numcodecs.
+numpy
+pandas
+xarray
+zarr>=2.18
+gcsfs
+fsspec
+aiohttp
+dask[array]
+netCDF4
+pyarrow
+tqdm
