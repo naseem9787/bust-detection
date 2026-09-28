@@ -1,0 +1,17 @@
+[
+  {
+    "check": "no_future_observation_in_feature_cols",
+    "passed": true,
+    "detail": "clean"
+  },
+  {
+    "check": "no_duplicate_rows_and_no_cross_split_init_time",
+    "passed": true,
+    "detail": "train duplicate rows=0, test duplicate rows=0, init_times appearing in BOTH splits=0 (train inits: 732, test inits: 244)"
+  },
+  {
+    "check": "grouped_generalization_by_init_time",
+    "passed": true,
+    "detail": "train years=[np.int32(2018), np.int32(2019), np.int32(2020)], test years=[np.int32(2021)] - disjoint calendar years mean every init_time (and every forecast issuance's full lead-day ladder) is entirely in one split; no additional row-shuffling could have crossed this boundary because the split key (year) is coarser than any row-level grouping"
+  }
+]

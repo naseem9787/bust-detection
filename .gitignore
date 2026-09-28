@@ -10,6 +10,9 @@ data/raw/*.nc
 # src/phase2/geography.py's error message rather than committing it
 data/raw/india_states.geojson
 
+# Phase 3 ensemble pilot cache (18MB) - regenerate via src/phase3/ensemble_features.py
+data/raw/ensemble_pilot_*.parquet
+
 # Phase 2 row-level tables (up to ~40MB each) - regenerate locally via
 # run_phase2.py. The trained LightGBM models (.txt, <2MB) and every CSV/
 # JSON/MD/PNG analysis output ARE committed - only these bulky per-row

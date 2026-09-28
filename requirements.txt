@@ -21,3 +21,6 @@ pytest
 shapely
 lightgbm
 tabulate
+
+# Phase 3 - ensemble pilot association check
+scipy

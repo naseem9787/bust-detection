@@ -1,0 +1,3 @@
+target,train_prevalence,test_prevalence,train_n_positive,test_n_positive,note
+bust_precip_categorical,0.028346621278628803,0.022608169846815372,37972,10095,"PR-AUC and Brier must be read against this prevalence, not against the 0.5/uniform-class assumption ROC-AUC implicitly avoids"
+bust_temp_hard,0.0943309743497865,0.07173026964077757,126362,32029,"PR-AUC and Brier must be read against this prevalence, not against the 0.5/uniform-class assumption ROC-AUC implicitly avoids"
