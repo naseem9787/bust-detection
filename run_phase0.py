@@ -11,7 +11,7 @@ from __future__ import annotations
 import argparse
 import os
 
-from src import build_error_db, config, fetch_data, label_busts
+from src import build_error_db, config, fetch_data, label_busts, summarize
 
 
 def main() -> None:
@@ -43,10 +43,17 @@ def main() -> None:
     print("\n=== Step 2/3: building error database ===")
     build_error_db.main()
 
-    print("\n=== Step 3/3: labeling busts ===")
+    print("\n=== Step 3/4: labeling busts ===")
     label_busts.main()
 
-    print("\nDone. See data/processed/error_db.parquet and data/processed/bust_labels.parquet")
+    print("\n=== Step 4/4: writing git-friendly summary ===")
+    summarize.main()
+
+    print(
+        "\nDone. Full detail: data/processed/error_db.parquet, bust_labels.parquet "
+        "(gitignored once large)\nSummary (committed): "
+        "data/processed/summary_by_region_lead_season.csv"
+    )
 
 
 if __name__ == "__main__":

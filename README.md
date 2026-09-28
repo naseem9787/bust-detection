@@ -41,10 +41,16 @@ src/
   fetch_data.py       pulls forecast + truth from WeatherBench2, crops to India, caches locally
   build_error_db.py   aligns forecast vs truth, computes error per grid cell/lead day/region
   label_busts.py       flags busts: percentile rule + IMD rainfall-category rule + temp threshold
-run_phase0.py          one-command pipeline: fetch -> error db -> bust labels
+  summarize.py          collapses bust_labels.parquet into a small, git-friendly CSV summary
+run_phase0.py          one-command pipeline: fetch -> error db -> bust labels -> summary
 data/
   raw/                 cached NetCDFs from fetch_data.py (gitignored - regenerate, don't commit)
-  processed/            error_db.parquet, bust_labels.parquet
+  processed/
+    error_db.parquet, bust_labels.parquet   full row-level detail (gitignored once the date
+                                              range is wide enough to exceed GitHub's 100MB/file
+                                              limit - regenerate locally via run_phase0.py)
+    summary_by_region_lead_season.csv        small aggregate, safe to commit - what's actually
+                                              tracked in this repo
 ```
 
 ## Running it
@@ -63,7 +69,9 @@ date range); re-runs reuse the cache unless you pass `--force`.
 Output: `data/processed/bust_labels.parquet` - one row per
 (init_time, lead_day, grid cell), with forecast value, observed value, error,
 region, and bust flags (`bust_precip`, `bust_temp`, `bust_any`), plus a crude
-`forecast_confidence` score.
+`forecast_confidence` score. This file is gitignored once it gets large (see
+below) - `data/processed/summary_by_region_lead_season.csv` (bust rate and
+mean |error| per region/lead_day/season) is the small, committed view of it.
 
 ### Scaling up
 

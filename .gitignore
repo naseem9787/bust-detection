@@ -6,6 +6,12 @@ __pycache__/
 # Downloaded raw cache (regenerate via `python -m src.fetch_data` - see README)
 data/raw/*.nc
 
+# Full row-level processed output can exceed GitHub's 100MB/file limit once
+# the date range is widened - regenerate locally via `python run_phase0.py`.
+# Only the small aggregated summary (data/processed/summary_*.csv) is committed.
+data/processed/error_db.parquet
+data/processed/bust_labels.parquet
+
 # Run logs / scratch
 *.log
 _test_*.py
