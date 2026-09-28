@@ -1,0 +1,8 @@
+region,bust_precip_categorical,bust_temp_hard,bust_precip_percentile,bust_temp_percentile,bust_mslp_percentile
+Central India (MP/Chhattisgarh/Vidarbha),0.0434,0.115,0.0938,0.0922,0.0944
+East Coast (Andhra/Odisha/TN coast),0.0175,0.021,0.0964,0.0983,0.0985
+Indo-Gangetic Plain (UP/Bihar),0.027,0.1027,0.1008,0.094,0.0992
+Northeast India,0.0256,0.1029,0.0976,0.0953,0.099
+Northwest India (Punjab/Haryana/Rajasthan),0.0223,0.1098,0.0949,0.0939,0.097
+West Coast (Konkan/Goa/Kerala),0.019,0.0247,0.0928,0.0955,0.091
+Western Himalaya (J&K/HP/Uttarakhand),0.0096,0.1397,0.0982,0.0963,0.097

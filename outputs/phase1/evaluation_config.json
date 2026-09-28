@@ -1,0 +1,13 @@
+{
+  "train_years": [
+    2018,
+    2019,
+    2020
+  ],
+  "test_year": 2021,
+  "operating_threshold": 0.2665874628306322,
+  "operating_threshold_definition": "train-period overall bust_any rate (calibrated cutoff, not an arbitrary 0.5 - see evaluate.py module docstring)",
+  "brier_skill_score_reference": "constant forecast = train-period overall bust_any rate",
+  "false_alarm_rate_definition": "FP / (FP + TN)  [false positive rate]",
+  "miss_rate_definition": "FN / (FN + TP)  [= 1 - recall]"
+}

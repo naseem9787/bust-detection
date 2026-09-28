@@ -1,0 +1,132 @@
+{
+  "experiment_window": "JJAS 2018-2021 (init_time-based, inclusive)",
+  "jjas_windows": {
+    "2018": [
+      "2018-06-01",
+      "2018-09-30"
+    ],
+    "2019": [
+      "2019-06-01",
+      "2019-09-30"
+    ],
+    "2020": [
+      "2020-06-01",
+      "2020-09-30"
+    ],
+    "2021": [
+      "2021-06-01",
+      "2021-09-30"
+    ]
+  },
+  "train_years": [
+    2018,
+    2019,
+    2020
+  ],
+  "test_year": 2021,
+  "n_rows_total": 6851520,
+  "n_forecast_issuances_total": 976,
+  "n_grid_points": 702,
+  "n_regions_named": 7,
+  "regions": [
+    "Central India (MP/Chhattisgarh/Vidarbha)",
+    "East Coast (Andhra/Odisha/TN coast)",
+    "Indo-Gangetic Plain (UP/Bihar)",
+    "Northeast India",
+    "Northwest India (Punjab/Haryana/Rajasthan)",
+    "Unclassified",
+    "West Coast (Konkan/Goa/Kerala)",
+    "Western Himalaya (J&K/HP/Uttarakhand)"
+  ],
+  "unclassified_row_fraction": 0.6737891737891738,
+  "variables": [
+    "total_precipitation_24hr",
+    "2m_temperature",
+    "mean_sea_level_pressure"
+  ],
+  "lead_days": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10
+  ],
+  "date_range_init_time": [
+    "2018-06-01 00:00:00",
+    "2021-09-30 12:00:00"
+  ],
+  "date_range_valid_time": [
+    "2018-06-02 00:00:00",
+    "2021-10-10 12:00:00"
+  ],
+  "missing_values_by_column": {
+    "fcst_precip_mm": 0,
+    "obs_precip_mm": 0,
+    "error_precip_mm": 0,
+    "abs_error_precip_mm": 0,
+    "fcst_temp_c": 0,
+    "obs_temp_c": 0,
+    "error_temp_c": 0,
+    "abs_error_temp_c": 0,
+    "fcst_mslp_hpa": 0,
+    "obs_mslp_hpa": 0,
+    "error_mslp_hpa": 0,
+    "abs_error_mslp_hpa": 0
+  },
+  "missing_values_total": 0,
+  "bust_definition": {
+    "categorical_rule": "IMD rainfall-category miss (>=2 category steps apart) or a heavy-or-above event missed/falsely predicted - fixed bins, no fitting, config.IMD_RAIN_BINS/HEAVY_OR_ABOVE_INDEX",
+    "percentile_rule": "|error| > 90% percentile for that (region, lead_day), fit on the TRAIN split (2018-2020) ONLY to avoid leaking 2021 statistics into the test-year labels - see src/phase1/dataset.py module docstring",
+    "temp_hard_threshold_degC": 3.0
+  },
+  "train": {
+    "n_rows": 5138640,
+    "n_forecast_issuances": 732,
+    "date_range_init_time": [
+      "2018-06-01 00:00:00",
+      "2020-09-30 12:00:00"
+    ],
+    "bust_rate": 0.2665874628306322,
+    "precip_bust_rate": 0.10101213550667103,
+    "temp_bust_rate": 0.11141157971759065,
+    "missed_heavy_rain_events": 11751,
+    "false_alarm_heavy_rain": 17930
+  },
+  "test": {
+    "n_rows": 1712880,
+    "n_forecast_issuances": 244,
+    "date_range_init_time": [
+      "2021-06-01 00:00:00",
+      "2021-09-30 12:00:00"
+    ],
+    "bust_rate": 0.2445413572462753,
+    "precip_bust_rate": 0.09121713138106581,
+    "temp_bust_rate": 0.09851594974545794,
+    "missed_heavy_rain_events": 3159,
+    "false_alarm_heavy_rain": 4538
+  },
+  "overall": {
+    "n_rows": 6851520,
+    "n_forecast_issuances": 976,
+    "date_range_init_time": [
+      "2018-06-01 00:00:00",
+      "2021-09-30 12:00:00"
+    ],
+    "bust_rate": 0.26107593643454297,
+    "precip_bust_rate": 0.09856338447526972,
+    "temp_bust_rate": 0.10818767222455747,
+    "missed_heavy_rain_events": 14910,
+    "false_alarm_heavy_rain": 22468
+  },
+  "software_versions": {
+    "python": "3.14.6",
+    "platform": "Windows-11-10.0.26200-SP0",
+    "pandas": "3.0.6",
+    "numpy": "2.5.3"
+  }
+}

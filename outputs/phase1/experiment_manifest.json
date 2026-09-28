@@ -1,0 +1,138 @@
+{
+  "phase": "Phase 1 - forecast error baselines and analysis",
+  "dataset_version": "JJAS 2018-2021 (init_time-based windows)",
+  "jjas_windows": {
+    "2018": [
+      "2018-06-01",
+      "2018-09-30"
+    ],
+    "2019": [
+      "2019-06-01",
+      "2019-09-30"
+    ],
+    "2020": [
+      "2020-06-01",
+      "2020-09-30"
+    ],
+    "2021": [
+      "2021-06-01",
+      "2021-09-30"
+    ]
+  },
+  "forecast_source": {
+    "name": "ECMWF HRES (deterministic)",
+    "zarr_store": "gs://weatherbench2/datasets/hres/2016-2022-0012-240x121_equiangular_with_poles_conservative.zarr"
+  },
+  "truth_source": {
+    "name": "ERA5 reanalysis",
+    "zarr_store": "gs://weatherbench2/datasets/era5/1959-2023_01_10-6h-240x121_equiangular_with_poles_conservative.zarr"
+  },
+  "spatial_bounds": {
+    "lat": [
+      5.0,
+      40.0
+    ],
+    "lon": [
+      65.0,
+      100.0
+    ],
+    "bbox_buffer_deg": 2.0,
+    "grid_resolution_deg": 1.5
+  },
+  "lead_days": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10
+  ],
+  "lead_hours": [
+    24,
+    48,
+    72,
+    96,
+    120,
+    144,
+    168,
+    192,
+    216,
+    240
+  ],
+  "variables": [
+    "total_precipitation_24hr",
+    "2m_temperature",
+    "mean_sea_level_pressure"
+  ],
+  "bust_definition": {
+    "categorical_rule": {
+      "description": "IMD rainfall-category gap >=2, or heavy-or-above missed/false-alarmed",
+      "imd_rain_bins_mm": [
+        -0.01,
+        2.5,
+        15.6,
+        64.5,
+        115.6,
+        204.5,
+        Infinity
+      ],
+      "imd_rain_labels": [
+        "no_rain",
+        "light",
+        "moderate",
+        "heavy",
+        "very_heavy",
+        "extremely_heavy"
+      ],
+      "heavy_or_above_index": 3
+    },
+    "percentile_rule": {
+      "description": "|error| > Nth percentile per (region, lead_day), threshold fit on TRAIN split only (Phase 1 fix over Phase 0's global-sample threshold - see src/phase1/dataset.py docstring)",
+      "percentile": 0.9
+    },
+    "temp_hard_threshold_degC": 3.0
+  },
+  "regions": {
+    "method": "coarse lat/lon bounding boxes (src/regions.py), not a real shapefile",
+    "note": "Boxes don't tile the full India+buffer domain, so a majority of grid cells fall in 'Unclassified' - see dataset_summary.md"
+  },
+  "temporal_split": {
+    "method": "chronological (no random splitting)",
+    "train_years": [
+      2018,
+      2019,
+      2020
+    ],
+    "test_year_unseen_holdout": 2021
+  },
+  "evaluation": {
+    "train_years": [
+      2018,
+      2019,
+      2020
+    ],
+    "test_year": 2021,
+    "operating_threshold": 0.2665874628306322,
+    "operating_threshold_definition": "train-period overall bust_any rate (calibrated cutoff, not an arbitrary 0.5 - see evaluate.py module docstring)",
+    "brier_skill_score_reference": "constant forecast = train-period overall bust_any rate",
+    "false_alarm_rate_definition": "FP / (FP + TN)  [false positive rate]",
+    "miss_rate_definition": "FN / (FN + TP)  [= 1 - recall]"
+  },
+  "baselines": {
+    "A_historical_climatology": "P(bust | region, lead_day, month), fit on train",
+    "B_lead_time_only": "P(bust | lead_day), fit on train",
+    "C_ensemble_spread": "NOT AVAILABLE - see src/phase1/baselines.py BASELINE_C_STATUS"
+  },
+  "random_seed": "not applicable - all Phase 1 baselines are deterministic historical-frequency lookups; no stochastic component is used",
+  "software_versions": {
+    "python": "3.14.6",
+    "platform": "Windows-11-10.0.26200-SP0",
+    "pandas": "3.0.6",
+    "numpy": "2.5.3",
+    "scikit_learn": "1.9.1"
+  }
+}

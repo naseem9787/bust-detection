@@ -1,0 +1,4 @@
+method,n_test,test_bust_rate,roc_auc,pr_auc,brier_score,brier_skill_score,precision,recall,f1,false_alarm_rate,miss_rate,operating_threshold,status
+Historical baseline (region x lead x month),1712880.0,0.2445413572462753,0.5174,0.2588,0.1853,-0.0003,0.2548,0.4294,0.3198,0.4064,0.5706,0.2665874628306322,
+Lead-time-only baseline,1712880.0,0.2445413572462753,0.5118,0.2524,0.1851,0.0005,0.2565,0.3147,0.2827,0.2952,0.6853,0.2665874628306322,
+Ensemble spread baseline,,,,,,,,,,,,,"NOT AVAILABLE - Phase 0/1 forecast source (ECMWF HRES) is a single deterministic run with no ensemble members, so no spread can be computed without fabricating one. Add once ensemble data (e.g. WeatherBench2's `ifs_ens` store) is ingested."

@@ -91,7 +91,52 @@ mean |error| per region/lead_day/season) is the small, committed view of it.
 - Swap in ensemble forecasts (`ifs_ens` store) to get spread-based confidence,
   not just single-forecast error.
 
-## Roadmap (Phase 1+)
+## Phase 1 - forecast error atlas + baselines
+
+`src/phase1/` turns the Phase-0 error database into a rigorous baseline and
+analysis system, over an explicit **JJAS 2018-2021** window (no re-fetching -
+it reuses `data/processed/error_db.parquet`, already built from the full
+2018-2021 calendar years):
+
+```
+src/phase1/
+  dataset.py          JJAS 2018-2021 filter + chronological train(2018-2020)/test(2021)
+                        split + bust labels with percentile thresholds fit on TRAIN ONLY
+                        (a leakage fix over Phase 0's label_busts.py - see its docstring)
+  dataset_summary.py    outputs/phase1/dataset_summary.{json,md}
+  error_atlas.py         error_by_lead/region/month/region_lead.csv, bust_rate_by_lead.csv,
+                        bust_label_composition_by_region.csv
+  plots.py                5 PNGs under outputs/phase1/plots/
+  baselines.py             Baseline A (region x lead x month climatology), B (lead-only);
+                        C (ensemble spread) is documented as unavailable, not fabricated -
+                        HRES is a single deterministic run, no ensemble members to derive spread from
+  evaluate.py                ROC-AUC, PR-AUC, Brier, Brier Skill Score, precision/recall/F1,
+                        false-alarm rate, miss rate, reliability diagram - on the 2021 holdout
+  manifest.py                outputs/phase1/experiment_manifest.json (full reproducibility record)
+run_phase1.py            one-command pipeline: summary -> atlas -> plots -> baselines -> manifest
+tests/                    first automated test suite (12 tests) - region assignment, IMD bins,
+                        JJAS window boundaries, and a dedicated leakage check that a
+                        train-only threshold is unaffected by test-only outliers
+```
+
+```bash
+.venv\Scripts\python -m pytest tests/ -v
+.venv\Scripts\python run_phase1.py
+```
+
+**Key finding so far:** simple region/lead/month climatology barely beats a
+flat base-rate reference (ROC-AUC ~0.51-0.52, Brier Skill Score ~0). Traced
+to the bust label itself: 3 of its 5 component rules are percentile
+thresholds *fit per (region, lead_day)*, so they occur at a near-constant
+~9% rate everywhere by construction - which caps how much region/lead
+climatology can ever predict. The two fixed-threshold rules (IMD category
+miss, temp hard threshold) *do* carry real regional signal but are a
+minority of overall bust occurrences (see
+`outputs/phase1/bust_label_composition_by_region.csv`). This is expected at
+this stage - Phase 1's job is to establish that honestly, not to be
+predictive yet.
+
+## Roadmap (Phase 2+)
 
 1. **Baselines + LightGBM**: predict bust probability from spread, run-to-run
    jumpiness, model disagreement, regime indices (MJO/ENSO), lead day, region.

@@ -11,3 +11,8 @@ dask[array]
 netCDF4
 pyarrow
 tqdm
+
+# Phase 1 - error atlas, baselines, evaluation
+scikit-learn
+matplotlib
+pytest

@@ -1,0 +1,8 @@
+region,n_samples,mae_precip_mm,rmse_precip_mm,bias_precip_mm,median_abs_error_precip_mm,mae_temp_c,rmse_temp_c,bias_temp_c,median_abs_error_temp_c,mae_mslp_hpa,rmse_mslp_hpa,bias_mslp_hpa,median_abs_error_mslp_hpa,bust_rate,heavy_rain_miss_rate,heavy_rain_false_alarm_rate
+Central India (MP/Chhattisgarh/Vidarbha),273280,6.9726,13.9863,-0.5366,2.9332,1.7172,2.0253,-1.4004,1.6283,0.9845,1.3696,-0.1824,0.709,0.2757,0.0061,0.0117
+East Coast (Andhra/Odisha/TN coast),448960,4.1341,8.1188,-0.5653,1.7926,0.7468,1.0927,-0.3812,0.4632,0.7855,1.0745,-0.1473,0.5911,0.2583,0.003,0.0015
+Indo-Gangetic Plain (UP/Bihar),253760,5.7935,11.5859,0.0753,2.5263,1.6859,1.9913,-1.3439,1.5943,1.1538,1.5657,-0.4622,0.8577,0.2771,0.0039,0.0083
+Northeast India,341600,7.3777,12.779,2.3402,4.0277,1.7426,1.9902,-1.6852,1.6418,1.0391,1.4167,-0.3261,0.7654,0.2753,0.0044,0.0165
+Northwest India (Punjab/Haryana/Rajasthan),292800,3.1517,9.4245,0.4155,0.3281,1.586,1.9837,-0.8294,1.3767,1.145,1.5641,-0.6601,0.8452,0.2662,0.0021,0.0061
+West Coast (Konkan/Goa/Kerala),273280,5.6073,10.4162,0.07,2.6701,0.9197,1.2409,-0.639,0.6702,0.6802,0.9255,0.0194,0.5114,0.2499,0.0067,0.0052
+Western Himalaya (J&K/HP/Uttarakhand),351360,2.5362,6.449,-0.3111,0.7545,1.7351,2.1485,-0.8866,1.5391,1.3813,1.8707,-0.3804,1.0393,0.2856,0.0013,0.0021

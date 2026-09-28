@@ -1,0 +1,5 @@
+month_name,n_samples,mae_precip_mm,rmse_precip_mm,bias_precip_mm,median_abs_error_precip_mm,mae_temp_c,rmse_temp_c,bias_temp_c,median_abs_error_temp_c,mae_mslp_hpa,rmse_mslp_hpa,bias_mslp_hpa,median_abs_error_mslp_hpa,bust_rate,heavy_rain_miss_rate,heavy_rain_false_alarm_rate
+Aug,1740960,3.6939,8.2303,0.0876,1.2098,1.2021,1.6583,-0.5072,0.874,1.0487,1.5518,-0.1141,0.7051,0.2481,0.0024,0.0034
+Jul,1740960,3.9129,8.4797,0.2417,1.4034,1.208,1.6797,-0.4049,0.8719,1.1205,1.6382,-0.3178,0.7559,0.2672,0.0026,0.0043
+Jun,1375920,3.4964,8.0894,0.4759,1.081,1.2114,1.7075,-0.3657,0.8512,1.1894,1.7712,-0.3246,0.7686,0.2843,0.002,0.004
+Sep,1684800,3.1651,7.1424,-0.0046,0.9509,1.2625,1.7298,-0.6445,0.9206,1.0602,1.6537,-0.0055,0.6755,0.2509,0.002,0.0021
