@@ -1,0 +1,205 @@
+/**
+ * Global CSS Design System Variables & Base Rules
+ * SIH 26079: AI-Based Forecast Bust Detection
+ * Professional meteorological intelligence aesthetic.
+ */
+
+:root {
+  /* Surface & Background Hierarchy */
+  --bg-canvas: #090D16;
+  --bg-surface: #101726;
+  --bg-surface-raised: #182235;
+  --bg-subtle: #1C273C;
+  --bg-hover: #24324D;
+  --bg-active: #2E3E5E;
+
+  /* Borders & Dividers */
+  --border-subtle: #1A2438;
+  --border-default: #28354E;
+  --border-strong: #3D4E70;
+  --border-focus: #38BDF8;
+
+  /* High Legibility Typography Colors */
+  --text-primary: #F8FAFC;
+  --text-secondary: #94A3B8;
+  --text-muted: #64748B;
+  --text-dim: #475569;
+  --text-inverse: #090D16;
+
+  /* Meteorological Risk States (IMD Severity Alignment) */
+  --risk-low: #10B981;
+  --risk-low-bg: rgba(16, 185, 129, 0.12);
+  --risk-low-border: rgba(16, 185, 129, 0.35);
+
+  --risk-moderate: #F59E0B;
+  --risk-moderate-bg: rgba(245, 158, 11, 0.12);
+  --risk-moderate-border: rgba(245, 158, 11, 0.35);
+
+  --risk-elevated: #F97316;
+  --risk-elevated-bg: rgba(249, 115, 22, 0.12);
+  --risk-elevated-border: rgba(249, 115, 22, 0.35);
+
+  --risk-high: #EF4444;
+  --risk-high-bg: rgba(239, 68, 68, 0.12);
+  --risk-high-border: rgba(239, 68, 68, 0.35);
+
+  --risk-extreme: #B91C1C;
+  --risk-extreme-bg: rgba(185, 28, 28, 0.22);
+  --risk-extreme-border: rgba(185, 28, 28, 0.55);
+
+  /* Calibrated Forecast Confidence */
+  --confidence-high: #10B981;
+  --confidence-high-bg: rgba(16, 185, 129, 0.12);
+  --confidence-mod: #F59E0B;
+  --confidence-mod-bg: rgba(245, 158, 11, 0.12);
+  --confidence-low: #F43F5E;
+  --confidence-low-bg: rgba(244, 63, 94, 0.12);
+
+  /* Physical Meteorological Variables */
+  --var-precip: #0284C7;
+  --var-precip-light: #38BDF8;
+  --var-temp: #EA580C;
+  --var-temp-light: #FB923C;
+  --var-mslp: #6366F1;
+  --var-mslp-light: #818CF8;
+  --var-truth: #E2E8F0;
+
+  /* Typography Scales */
+  --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-mono: 'JetBrains Mono', 'SF Mono', Menlo, Consolas, monospace;
+
+  /* Radii - Restrained, clean engineering lines */
+  --radius-xs: 2px;
+  --radius-sm: 4px;
+  --radius-md: 6px;
+  --radius-pill: 9999px;
+
+  /* Box Shadows - Functional depth only */
+  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.4);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.4), 0 2px 4px -2px rgba(0, 0, 0, 0.3);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.5);
+}
+
+/* Base Reset & Box Sizing */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html, body {
+  width: 100%;
+  min-height: 100%;
+  background-color: var(--bg-canvas);
+  color: var(--text-primary);
+  font-family: var(--font-sans);
+  font-size: 13px;
+  line-height: 1.45;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Force Tabular Numbers for Coordinates, Measurements, and Lead Days */
+.tabular-nums, code, kbd, samp, .stat-value, .tick-label, .time-stamp {
+  font-variant-numeric: tabular-nums;
+  font-feature-settings: 'tnum' 1;
+}
+
+/* Custom Lean Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: var(--bg-canvas);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--border-default);
+  border-radius: var(--radius-xs);
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--border-strong);
+}
+
+/* Focus Outline Consistency */
+:focus-visible {
+  outline: 2px solid var(--border-focus);
+  outline-offset: 1px;
+}
+
+/* Layout Utilities */
+.app-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.main-content {
+  flex: 1;
+  padding: 16px 20px 32px;
+  max-width: 1600px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+.grid-2col {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+.grid-3col {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+}
+
+.grid-4col {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+}
+
+@media (max-width: 1024px) {
+  .grid-2col, .grid-3col, .grid-4col {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ==========================================================================
+   Utility Animations (Meteorological & Feedback)
+   ========================================================================== */
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.spin {
+  animation: spin 1s linear infinite;
+}
+
+@keyframes radarSweep {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.loading-radar-icon {
+  animation: radarSweep 3s linear infinite;
+}
+
+@keyframes pulseGlow {
+  0%, 100% {
+    opacity: 0.75;
+    transform: scale(1);
+    box-shadow: 0 0 0 0 rgba(56, 189, 248, 0.2);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.04);
+    box-shadow: 0 0 0 6px rgba(56, 189, 248, 0);
+  }
+}
+
+.loading-radar-ring {
+  animation: pulseGlow 3s ease-in-out infinite;
+}
