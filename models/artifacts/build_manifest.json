@@ -1,0 +1,53 @@
+{
+  "git_commit": "036054e68e9152690f5f22c3edb1b29571827f20",
+  "rain_v1": {
+    "feature_order": [
+      "fcst_precip_mm",
+      "fcst_temp_c",
+      "fcst_mslp_hpa",
+      "latitude",
+      "longitude",
+      "fcst_precip_anomaly_vs_domain_mean",
+      "fcst_temp_anomaly_vs_domain_mean",
+      "lead_day",
+      "month",
+      "precip_forecast_jump",
+      "temp_forecast_jump",
+      "hist_bust_precip_categorical_rate",
+      "hist_bust_temp_hard_rate",
+      "hist_mean_abs_error_precip_mm",
+      "hist_mean_abs_error_temp_c",
+      "region_v2"
+    ],
+    "train_prevalence": 0.028346621278628803
+  },
+  "temperature_v1": {
+    "feature_order": [
+      "lead_day",
+      "month",
+      "latitude",
+      "longitude",
+      "region_v2",
+      "fcst_precip_mm",
+      "fcst_temp_c",
+      "fcst_mslp_hpa",
+      "precip_forecast_jump",
+      "temp_forecast_jump",
+      "hist_bust_precip_categorical_rate",
+      "hist_bust_temp_hard_rate",
+      "hist_mean_abs_error_precip_mm",
+      "hist_mean_abs_error_temp_c",
+      "fcst_precip_anomaly_vs_domain_mean",
+      "fcst_temp_anomaly_vs_domain_mean",
+      "wind_speed_10m"
+    ],
+    "best_iteration": 499,
+    "train_prevalence": 0.0943309743497865,
+    "test_metrics": {
+      "roc_auc": 0.8249680182104191,
+      "pr_auc": 0.2501289381957565,
+      "brier_score": 0.06007628132058412,
+      "best_iteration": 499
+    }
+  }
+}

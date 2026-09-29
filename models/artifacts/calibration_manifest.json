@@ -1,0 +1,22 @@
+[
+  {
+    "target": "bust_precip_categorical",
+    "method": "none (raw preserved)",
+    "brier_raw": 0.015276881116306752,
+    "brier_calibrated": 0.015290702521816005,
+    "improves": false,
+    "fit_on": "2020 validation-year predictions (probe model, never trained on 2020 or 2021)",
+    "evaluated_on": "2021 test set",
+    "artifact_path": null
+  },
+  {
+    "target": "bust_temp_hard",
+    "method": "isotonic",
+    "brier_raw": 0.06007628132058412,
+    "brier_calibrated": 0.05933476325696497,
+    "improves": true,
+    "fit_on": "2020 validation-year predictions (probe model, never trained on 2020 or 2021)",
+    "evaluated_on": "2021 test set",
+    "artifact_path": "models\\artifacts\\bust_temp_hard_calibrator.pkl"
+  }
+]

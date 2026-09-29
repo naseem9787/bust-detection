@@ -1,0 +1,171 @@
+{
+  "model_name": "temperature_v1",
+  "model_version": "v1",
+  "display_name": "Temperature hard-threshold bust probability",
+  "status": "production",
+  "target_variable": "bust_temp_hard",
+  "target_definition": "Temperature hard-threshold bust: |forecast 2m temperature - observed 2m temperature| > 3.0 degC. Fixed physical threshold (config.TEMP_BUST_ABS_ERROR_K), not data-derived - see src/label_busts.py.",
+  "model_artifact_path": "models/artifacts/temperature_v1.txt",
+  "calibration": {
+    "method": "isotonic",
+    "artifact_path": "models\\artifacts\\bust_temp_hard_calibrator.pkl",
+    "fit_on": "2020 validation-year predictions (probe model, never trained on 2020 or 2021)",
+    "evaluated_on": "2021 test set",
+    "brier_raw": 0.06007628132058412,
+    "brier_calibrated": 0.05933476325696497
+  },
+  "feature_order": [
+    "lead_day",
+    "month",
+    "latitude",
+    "longitude",
+    "region_v2",
+    "fcst_precip_mm",
+    "fcst_temp_c",
+    "fcst_mslp_hpa",
+    "precip_forecast_jump",
+    "temp_forecast_jump",
+    "hist_bust_precip_categorical_rate",
+    "hist_bust_temp_hard_rate",
+    "hist_mean_abs_error_precip_mm",
+    "hist_mean_abs_error_temp_c",
+    "fcst_precip_anomaly_vs_domain_mean",
+    "fcst_temp_anomaly_vs_domain_mean",
+    "wind_speed_10m"
+  ],
+  "n_features": 17,
+  "training_config": {
+    "algorithm": "LightGBM (binary classification)",
+    "fit_years": [
+      2018,
+      2019
+    ],
+    "validation_year": 2020,
+    "final_train_years": [
+      2018,
+      2019,
+      2020
+    ],
+    "test_year": 2021,
+    "random_seed": 42,
+    "hyperparameters": {
+      "learning_rate": 0.05,
+      "num_leaves": 31,
+      "min_child_samples": 200,
+      "subsample": 0.8,
+      "colsample_bytree": 0.8
+    }
+  },
+  "source_dataset": {
+    "forecast_source": "ECMWF HRES (deterministic)",
+    "truth_source": "ERA5 reanalysis",
+    "domain": "India + neighboring buffer, restricted to in-India-domain grid cells (183 of 702 points - see outputs/phase2/region_assignment_summary.csv)",
+    "date_range": "JJAS 2018-2021 (init_time-based)",
+    "grid_resolution_deg": 1.5
+  },
+  "region_mapping": {
+    "source": "src/phase2/geography.py (public GADM-derived state boundaries)",
+    "n_regions": 29,
+    "known_limitation": "boundary vintage predates 2014 Telangana split (merged into Andhra Pradesh) and 2019 Ladakh split (merged into Jammu & Kashmir)"
+  },
+  "metrics_2021_test": {
+    "1": {
+      "roc_auc": 0.8578,
+      "pr_auc": 0.1874,
+      "brier": 0.0321,
+      "n": 44652
+    },
+    "2": {
+      "roc_auc": 0.8433,
+      "pr_auc": 0.2043,
+      "brier": 0.0382,
+      "n": 44652
+    },
+    "3": {
+      "roc_auc": 0.8337,
+      "pr_auc": 0.2147,
+      "brier": 0.0432,
+      "n": 44652
+    },
+    "4": {
+      "roc_auc": 0.8253,
+      "pr_auc": 0.2089,
+      "brier": 0.0484,
+      "n": 44652
+    },
+    "5": {
+      "roc_auc": 0.8124,
+      "pr_auc": 0.2269,
+      "brier": 0.0554,
+      "n": 44652
+    },
+    "6": {
+      "roc_auc": 0.8081,
+      "pr_auc": 0.232,
+      "brier": 0.0625,
+      "n": 44652
+    },
+    "7": {
+      "roc_auc": 0.7998,
+      "pr_auc": 0.243,
+      "brier": 0.0693,
+      "n": 44652
+    },
+    "8": {
+      "roc_auc": 0.7949,
+      "pr_auc": 0.2567,
+      "brier": 0.0771,
+      "n": 44652
+    },
+    "9": {
+      "roc_auc": 0.8006,
+      "pr_auc": 0.2975,
+      "brier": 0.0837,
+      "n": 44652
+    },
+    "10": {
+      "roc_auc": 0.7895,
+      "pr_auc": 0.2937,
+      "brier": 0.0909,
+      "n": 44652
+    }
+  },
+  "year_robustness": [
+    {
+      "experiment": "Exp1_train1819_test20",
+      "train_years": "[2018, 2019]",
+      "test_year": 2020,
+      "roc_auc": 0.7963,
+      "pr_auc": 0.256,
+      "brier_score": 0.0701,
+      "brier_skill_score": 0.0938,
+      "n": 446520,
+      "prevalence": 0.0842
+    },
+    {
+      "experiment": "Exp2_train181920_test21",
+      "train_years": "[2018, 2019, 2020]",
+      "test_year": 2021,
+      "roc_auc": 0.8155,
+      "pr_auc": 0.2372,
+      "brier_score": 0.0607,
+      "brier_skill_score": 0.0951,
+      "n": 446520,
+      "prevalence": 0.0717
+    },
+    {
+      "experiment": "Exp3_train1920_test21",
+      "train_years": "[2019, 2020]",
+      "test_year": 2021,
+      "roc_auc": 0.8109,
+      "pr_auc": 0.2345,
+      "brier_score": 0.0608,
+      "brier_skill_score": 0.0896,
+      "n": 446520,
+      "prevalence": 0.0717
+    }
+  ],
+  "git_commit": "036054e68e9152690f5f22c3edb1b29571827f20",
+  "created_at": "2026-09-29T01:42:45.045117+00:00",
+  "notes": "Phase 3 Model 6: Phase 2's full feature set PLUS 10m_wind_speed (full JJAS 2018-2021 scale, not the pilot-scope ensemble/humidity/geopotential features - those remain experimental, see src/phase3/ensemble_pilot_experiment.py)."
+}

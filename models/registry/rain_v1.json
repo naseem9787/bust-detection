@@ -1,0 +1,170 @@
+{
+  "model_name": "rain_v1",
+  "model_version": "v1",
+  "display_name": "Rainfall category-miss bust probability",
+  "status": "production",
+  "target_variable": "bust_precip_categorical",
+  "target_definition": "IMD rainfall-category miss: forecast and observed 24h rainfall fall >=2 IMD categories apart (no_rain/light/moderate/heavy/very_heavy/extremely_heavy), OR a heavy-or-above event is missed or falsely predicted. Fixed physical bins (config.IMD_RAIN_BINS), not a percentile threshold - see src/label_busts.py and src/phase2/bust_definition_audit.md.",
+  "model_artifact_path": "models/artifacts/rain_v1.txt",
+  "calibration": {
+    "method": "none (raw preserved)",
+    "artifact_path": null,
+    "fit_on": "2020 validation-year predictions (probe model, never trained on 2020 or 2021)",
+    "evaluated_on": "2021 test set",
+    "brier_raw": 0.015276881116306752,
+    "brier_calibrated": 0.015290702521816005
+  },
+  "feature_order": [
+    "fcst_precip_mm",
+    "fcst_temp_c",
+    "fcst_mslp_hpa",
+    "latitude",
+    "longitude",
+    "fcst_precip_anomaly_vs_domain_mean",
+    "fcst_temp_anomaly_vs_domain_mean",
+    "lead_day",
+    "month",
+    "precip_forecast_jump",
+    "temp_forecast_jump",
+    "hist_bust_precip_categorical_rate",
+    "hist_bust_temp_hard_rate",
+    "hist_mean_abs_error_precip_mm",
+    "hist_mean_abs_error_temp_c",
+    "region_v2"
+  ],
+  "n_features": 16,
+  "training_config": {
+    "algorithm": "LightGBM (binary classification)",
+    "fit_years": [
+      2018,
+      2019
+    ],
+    "validation_year": 2020,
+    "final_train_years": [
+      2018,
+      2019,
+      2020
+    ],
+    "test_year": 2021,
+    "random_seed": 42,
+    "hyperparameters": {
+      "learning_rate": 0.05,
+      "num_leaves": 31,
+      "min_child_samples": 200,
+      "subsample": 0.8,
+      "colsample_bytree": 0.8
+    }
+  },
+  "source_dataset": {
+    "forecast_source": "ECMWF HRES (deterministic)",
+    "truth_source": "ERA5 reanalysis",
+    "domain": "India + neighboring buffer, restricted to in-India-domain grid cells (183 of 702 points - see outputs/phase2/region_assignment_summary.csv)",
+    "date_range": "JJAS 2018-2021 (init_time-based)",
+    "grid_resolution_deg": 1.5
+  },
+  "region_mapping": {
+    "source": "src/phase2/geography.py (public GADM-derived state boundaries)",
+    "n_regions": 29,
+    "known_limitation": "boundary vintage predates 2014 Telangana split (merged into Andhra Pradesh) and 2019 Ladakh split (merged into Jammu & Kashmir)"
+  },
+  "metrics_2021_test": {
+    "1": {
+      "roc_auc": 0.9742,
+      "pr_auc": 0.5138,
+      "brier": 0.0042,
+      "n": 44652
+    },
+    "2": {
+      "roc_auc": 0.9411,
+      "pr_auc": 0.5035,
+      "brier": 0.0065,
+      "n": 44652
+    },
+    "3": {
+      "roc_auc": 0.923,
+      "pr_auc": 0.4932,
+      "brier": 0.0094,
+      "n": 44652
+    },
+    "4": {
+      "roc_auc": 0.9189,
+      "pr_auc": 0.4749,
+      "brier": 0.0118,
+      "n": 44652
+    },
+    "5": {
+      "roc_auc": 0.9105,
+      "pr_auc": 0.4838,
+      "brier": 0.0143,
+      "n": 44652
+    },
+    "6": {
+      "roc_auc": 0.8963,
+      "pr_auc": 0.4597,
+      "brier": 0.0159,
+      "n": 44652
+    },
+    "7": {
+      "roc_auc": 0.8959,
+      "pr_auc": 0.4475,
+      "brier": 0.0188,
+      "n": 44652
+    },
+    "8": {
+      "roc_auc": 0.8883,
+      "pr_auc": 0.4386,
+      "brier": 0.0211,
+      "n": 44652
+    },
+    "9": {
+      "roc_auc": 0.8801,
+      "pr_auc": 0.4093,
+      "brier": 0.0244,
+      "n": 44652
+    },
+    "10": {
+      "roc_auc": 0.8706,
+      "pr_auc": 0.4062,
+      "brier": 0.0264,
+      "n": 44652
+    }
+  },
+  "year_robustness": [
+    {
+      "experiment": "Exp1_train1819_test20",
+      "train_years": "[2018, 2019]",
+      "test_year": 2020,
+      "roc_auc": 0.9079,
+      "pr_auc": 0.4777,
+      "brier_score": 0.0191,
+      "brier_skill_score": 0.3144,
+      "n": 446520,
+      "prevalence": 0.0287
+    },
+    {
+      "experiment": "Exp2_train181920_test21",
+      "train_years": "[2018, 2019, 2020]",
+      "test_year": 2021,
+      "roc_auc": 0.913,
+      "pr_auc": 0.4574,
+      "brier_score": 0.0153,
+      "brier_skill_score": 0.3083,
+      "n": 446520,
+      "prevalence": 0.0226
+    },
+    {
+      "experiment": "Exp3_train1920_test21",
+      "train_years": "[2019, 2020]",
+      "test_year": 2021,
+      "roc_auc": 0.9068,
+      "pr_auc": 0.4445,
+      "brier_score": 0.0157,
+      "brier_skill_score": 0.2923,
+      "n": 446520,
+      "prevalence": 0.0226
+    }
+  ],
+  "git_commit": "036054e68e9152690f5f22c3edb1b29571827f20",
+  "created_at": "2026-09-29T01:42:45.006860+00:00",
+  "notes": "Identical model to Phase 2's full feature-set LightGBM (Model 5 in the Phase 3 ablation). Wind was tested (Phase 3 Model 6) and did NOT meaningfully help this target, so it is excluded from rain_v1."
+}
