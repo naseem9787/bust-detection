@@ -174,6 +174,18 @@ def _predict_points(points: pd.DataFrame) -> pd.DataFrame:
     return out
 
 
+def _representative_point(pts: pd.DataFrame, sid: str) -> pd.Series:
+    """The one real grid point nearest a state's real geometric centroid.
+    Used for EVERY per-state number on this page (map tile, tooltip,
+    sidebar panel, and /explanations) - using a different statistic (e.g. a
+    state-wide mean) in one place and this representative point in another
+    produces two different real numbers for the same state/lead-day, which
+    is confusing even though each is individually honest. One definition,
+    shared by every endpoint below, avoids that."""
+    clon, clat = _state_meta()[sid]["centroid"]
+    return pts.assign(_d=((pts.latitude - clat) ** 2 + (pts.longitude - clon) ** 2)).sort_values("_d").iloc[0]
+
+
 # ===========================================================================
 # 1. GET /api/v1/forecast
 # ===========================================================================
@@ -190,15 +202,15 @@ def forecast(
     snapshot = df[(df.init_time == init_time) & (df.lead_day == lead_day)]
     scored = _predict_points(snapshot)
 
-    # regionalMetrics: real per-point model predictions aggregated per state
-    # (mean across every real grid point production assigns to that state -
-    # states with only one real grid point simply return that point's value)
+    # regionalMetrics: the SAME representative-point statistic as `verification`
+    # below - never a separately-computed state-wide average for the same field.
     regional_metrics = {}
     for sid, smeta in _state_meta().items():
         spts = scored[scored.region_v2 == smeta["name"]]
         if spts.empty:
             continue
-        bust_prob = float(spts.rain_prob.mean())
+        rp = _representative_point(spts, sid)
+        bust_prob = float(rp.rain_prob)
         regional_metrics[sid] = {
             "regionId": sid,
             "regionName": smeta["name"],
@@ -206,17 +218,16 @@ def forecast(
             # Same 1 - calibrated_probability definition ProductionInferenceEngine
             # returns - identical formula everywhere on this page (map, panel).
             "confidence": round(float(1.0 - bust_prob), 4),
-            "precipError": round(float(spts.abs_error_precip_mm.mean()), 2),
-            "tempError": round(float(spts.abs_error_temp_c.mean()), 2),
+            "precipError": round(float(rp.abs_error_precip_mm), 2),
+            "tempError": round(float(rp.abs_error_temp_c), 2),
         }
 
     spts = scored[scored.region_v2 == state_name]
     if spts.empty:
         raise HTTPException(status_code=404, detail=f"no real grid points fall in {state_name!r}")
-    # representative point = real grid point nearest the state's real
-    # geometric centroid, for the single-value `variables`/`verification` fields
-    clon, clat = _state_meta()[state_id]["centroid"]
-    rep = spts.assign(_d=((spts.latitude - clat) ** 2 + (spts.longitude - clon) ** 2)).sort_values("_d").iloc[0]
+    # Same representative point as regionalMetrics[state_id] above - the map
+    # tile/tooltip and this panel must always agree for the same state.
+    rep = _representative_point(spts, state_id)
 
     fcst_cat = _rain_category(pd.Series([rep.fcst_precip_mm])).cat.codes.iloc[0]
     obs_cat = _rain_category(pd.Series([rep.obs_precip_mm])).cat.codes.iloc[0]
@@ -380,8 +391,7 @@ def explanations(
     snapshot = df[(df.init_time == init_time) & (df.lead_day == lead_day) & (df.region_v2 == state_name)]
     if snapshot.empty:
         raise HTTPException(status_code=404, detail=f"no real grid points fall in {state_name!r}")
-    clon, clat = _state_meta()[state_id]["centroid"]
-    rep = snapshot.assign(_d=((snapshot.latitude - clat) ** 2 + (snapshot.longitude - clon) ** 2)).sort_values("_d").iloc[0]
+    rep = _representative_point(snapshot, state_id)
 
     engine = _engine()
     row, _region_v2 = engine.feature_row_for_explanation(

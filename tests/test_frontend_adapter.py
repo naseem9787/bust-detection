@@ -85,6 +85,21 @@ def test_confidence_is_consistently_one_minus_bust_probability(client):
         assert abs(m["confidence"] - (1.0 - m["bustProbability"])) < 1e-6
 
 
+def test_map_tile_and_selected_state_panel_agree_on_bust_probability(client):
+    # Regression test: the map's regionalMetrics used to average across all
+    # of a state's real grid points while the sidebar panel used a single
+    # representative point - two different real numbers for the same
+    # state/lead-day (e.g. Bihar showing 7% on the map and 37.6% in the
+    # panel). Both must now come from the exact same representative point.
+    for region_id in ("bihar", "kerala", "maharashtra", "west-bengal"):
+        body = client.get("/api/v1/forecast", params={"lead_day": 3, "region_id": region_id}).json()
+        panel_bust = body["verification"]["bustProbability"]
+        tile_bust = body["regionalMetrics"][region_id]["bustProbability"]
+        assert abs(panel_bust - tile_bust) < 1e-6, (
+            f"{region_id}: panel={panel_bust} vs map tile={tile_bust}"
+        )
+
+
 def test_forecast_uses_real_verified_archive_not_fabricated_future(client):
     body = client.get("/api/v1/forecast", params={"cycle": "2026-09-29 00Z", "lead_day": 5, "region_id": "kerala"}).json()
     assert body["meta"]["timestamp"] < "2022-01-01"
