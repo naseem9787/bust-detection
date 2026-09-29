@@ -1,0 +1,4 @@
+corr_analog_expected_vs_actual_abs_error_precip=0.4577
+corr_analog_expected_vs_actual_abs_error_temp=0.5217
+best_spatial_constraint=same_region
+best_temporal_constraint=exact_month

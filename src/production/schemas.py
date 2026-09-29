@@ -164,13 +164,106 @@ class FeatureContribution(BaseModel):
     direction: str = Field(..., pattern="^(increases_bust_probability|decreases_bust_probability)$")
 
 
-class ExplanationResponse(BaseModel):
-    variable: Variable
-    model_version: str
+class ModelEvidence(BaseModel):
     base_value: float
     raw_probability: float
     top_features: list[FeatureContribution]
     human_readable_reasons: list[str]
+
+
+class AnalogRecord(BaseModel):
+    rank: int
+    distance: float
+    similarity: float = Field(..., description="1 / (1 + distance) - bounded (0,1], NOT an invented percentage")
+    historical_init_time: datetime
+    historical_valid_time: datetime
+    lead_day: int
+    latitude: float
+    longitude: float
+    region: str
+    forecast_precip_mm: float
+    forecast_temp_c: float
+    actual_precip_mm: float
+    actual_temp_c: float
+    precip_error_mm: float
+    temp_error_c: float
+    rain_bust: bool
+    temperature_bust: bool
+
+
+class HistoricalEvidence(BaseModel):
+    status: str = Field(..., description="'ok' or 'no_reliable_analogs'")
+    spatial_constraint: str
+    temporal_constraint: str
+    analogs: list[AnalogRecord]
+    warning: str | None = None
+    framing: str = (
+        "These are historically similar forecast situations and what actually "
+        "happened, retrieved by similarity search - evidence, not proof. "
+        "Similarity does not guarantee a similar outcome this time."
+    )
+
+
+class ExplanationResponse(BaseModel):
+    variable: Variable
+    model_version: str
+    model_evidence: ModelEvidence
+    historical_analogs: HistoricalEvidence
+
+
+# --------------------------------------------------------------------------
+# /analogs, /analog-summary, /events/{event_id}
+# --------------------------------------------------------------------------
+class AnalogQueryResponse(BaseModel):
+    status: str
+    n_candidates_considered: int
+    spatial_constraint: str
+    temporal_constraint: str
+    max_distance_used: float
+    analogs: list[AnalogRecord]
+    warning: str | None = None
+
+
+class AnalogSummaryResponse(BaseModel):
+    status: str
+    n_analogs: int
+    mean_distance: float | None = None
+    median_distance: float | None = None
+    historical_rain_bust_rate: float | None = None
+    historical_temp_bust_rate: float | None = None
+    mean_abs_precip_error_mm: float | None = None
+    median_abs_precip_error_mm: float | None = None
+    mean_abs_temp_error_c: float | None = None
+    median_abs_temp_error_c: float | None = None
+    precip_outcome_range_mm: tuple[float, float] | None = None
+    temp_outcome_range_c: tuple[float, float] | None = None
+    fraction_heavy_rain_miss: float | None = None
+    fraction_temperature_bust: float | None = None
+    warning: str | None = None
+
+
+class EventRecord(BaseModel):
+    event_id: str
+    init_time: datetime
+    valid_time: datetime
+    region: str
+    latitude: float
+    longitude: float
+    lead_day: int
+    forecast_precip_mm: float
+    forecast_temp_c: float
+    forecast_mslp_hpa: float
+    wind_speed_10m: float | None = None
+    actual_precip_mm: float
+    actual_temp_c: float
+    precip_error_mm: float
+    temp_error_c: float
+    rain_bust: bool
+    temperature_bust: bool
+    rain_severity: float
+    temp_severity: float
+    severity_score: float
+    source: dict
 
 
 # --------------------------------------------------------------------------

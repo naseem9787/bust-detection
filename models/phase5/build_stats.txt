@@ -1,0 +1,2 @@
+n_rows=1786080
+build_time_seconds=10.623

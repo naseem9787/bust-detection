@@ -136,8 +136,11 @@ def test_explain_rain(client):
     )
     assert r.status_code == 200
     body = r.json()
-    assert len(body["top_features"]) > 0
-    assert len(body["human_readable_reasons"]) > 0
+    # Phase 5 restructured /explain into separate model/historical evidence
+    # (see docs/historical_analogs.md) - updated assertion accordingly
+    assert len(body["model_evidence"]["top_features"]) > 0
+    assert len(body["model_evidence"]["human_readable_reasons"]) > 0
+    assert "historical_analogs" in body
 
 
 def test_explain_temperature_requires_wind(client):

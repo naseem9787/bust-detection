@@ -196,10 +196,12 @@ lead day (1–10) that a historical forecast targeted that date.
 Use this to draw a "how did confidence change as the event approached"
 chart — this is the D1→D10 trajectory view.
 
-## `GET /explain`
+## `GET /explain` (Phase 5: now two separate evidence types)
 
-Real SHAP feature attribution + deterministic human-readable reasons — no
-LLM, nothing invented beyond the model's actual features.
+Response is now split into `model_evidence` (SHAP) and `historical_analogs`
+(analog retrieval) — **never merged into one vague "reason"**, because they
+are scientifically different kinds of evidence (one is model attribution,
+the other is retrieved historical fact).
 
 `GET /explain?variable=rain&init_time=2021-08-01&lead_day=9&latitude=24.0&longitude=85.5&forecast_precip_mm=92.8&forecast_temp_c=26.1&forecast_mslp_hpa=1001.0`
 
@@ -207,24 +209,116 @@ LLM, nothing invented beyond the model's actual features.
 {
   "variable": "rain",
   "model_version": "v1",
-  "base_value": -4.91,
-  "raw_probability": 0.9149,
-  "top_features": [
-    { "feature": "fcst_precip_mm", "value": 92.8, "contribution": 4.80, "direction": "increases_bust_probability" },
-    { "feature": "fcst_precip_anomaly_vs_domain_mean", "value": 84.2, "contribution": 1.24, "direction": "increases_bust_probability" }
-  ],
-  "human_readable_reasons": [
-    "The forecast rainfall amount strongly increases the predicted bust probability.",
-    "How unusual the rainfall forecast is versus the broader pattern strongly increases the predicted bust probability."
-  ]
+  "model_evidence": {
+    "base_value": -4.91,
+    "raw_probability": 0.9149,
+    "top_features": [
+      { "feature": "fcst_precip_mm", "value": 92.8, "contribution": 4.80, "direction": "increases_bust_probability" }
+    ],
+    "human_readable_reasons": [
+      "The forecast rainfall amount strongly increases the predicted bust probability."
+    ]
+  },
+  "historical_analogs": {
+    "status": "ok",
+    "spatial_constraint": "same_region",
+    "temporal_constraint": "exact_month",
+    "analogs": [
+      {
+        "rank": 1, "distance": 0.36, "similarity": 0.74,
+        "historical_init_time": "2019-06-02T00:00:00", "historical_valid_time": "2019-06-11T00:00:00",
+        "lead_day": 9, "region": "Jharkhand",
+        "forecast_precip_mm": 0.0, "actual_precip_mm": 0.00004,
+        "precip_error_mm": -0.00004, "rain_bust": false, "temperature_bust": false
+      }
+    ],
+    "warning": null,
+    "framing": "These are historically similar forecast situations and what actually happened, retrieved by similarity search - evidence, not proof. Similarity does not guarantee a similar outcome this time."
+  }
 }
 ```
 
 `variable=temperature` requires `forecast_wind_speed_10m` (422 without it).
-`base_value`/`contribution` are in the model's raw margin (log-odds) space
-(standard SHAP convention) — display `human_readable_reasons` directly, or
-use `top_features` for a custom "why" panel; don't try to sum
-`contribution` values into a percentage without a sigmoid transform.
+`model_evidence.base_value`/`contribution` are in the model's raw margin
+(log-odds) space (standard SHAP convention). If `historical_analogs.status`
+is `"no_reliable_analogs"`, `analogs` is empty and `warning` explains why —
+show that honestly, don't hide the panel.
+
+## `GET /analogs`
+
+Ranked historical analogs on their own (without a model prediction
+alongside). Params: `init_time`, `lead_day` (1-10), `latitude`, `longitude`,
+`forecast_precip_mm`, `forecast_temp_c`, `forecast_mslp_hpa`,
+`forecast_wind_speed_10m` (optional — defaults to the train-period mean if
+omitted), `k` (default 10), `spatial_constraint`
+(`same_region`/`nearby`/`india_wide`, default `same_region`),
+`temporal_constraint` (`none`/`exact_month`/`jjas`, default `exact_month` —
+these defaults are the empirically best-performing combination, see
+docs/historical_analogs.md).
+
+```json
+{
+  "status": "ok",
+  "n_candidates_considered": 7880,
+  "spatial_constraint": "same_region",
+  "temporal_constraint": "exact_month",
+  "max_distance_used": 0.57,
+  "analogs": [ { "rank": 1, "distance": 0.36, "...": "..." } ],
+  "warning": null
+}
+```
+
+If too few real analogs pass quality control, `status` is
+`"no_reliable_analogs"` with an explanatory `warning` — **never a forced
+result**.
+
+## `GET /analog-summary`
+
+Same inputs as `/analogs` (no `spatial_constraint`/`temporal_constraint` -
+always uses the default best config), returns aggregate statistics instead
+of the individual list:
+
+```json
+{
+  "status": "ok",
+  "n_analogs": 10,
+  "mean_distance": 0.41, "median_distance": 0.39,
+  "historical_rain_bust_rate": 0.2, "historical_temp_bust_rate": 0.1,
+  "mean_abs_precip_error_mm": 12.4, "median_abs_precip_error_mm": 8.1,
+  "mean_abs_temp_error_c": 1.1, "median_abs_temp_error_c": 0.9,
+  "precip_outcome_range_mm": [0.0, 46.1], "temp_outcome_range_c": [22.4, 31.2],
+  "fraction_heavy_rain_miss": 0.2, "fraction_temperature_bust": 0.1,
+  "warning": null
+}
+```
+
+If `status` is `"low_analog_confidence"` or `"no_reliable_analogs"`, every
+numeric field is `null` — don't display a confident-looking number from a
+thin or absent sample.
+
+## `GET /events/{event_id}`
+
+Full historical record for one specific (init_time, lead_day, grid cell)
+case. `event_id` comes from an analog's... actually analogs don't currently
+expose their own `event_id` field directly — construct one via
+`src.phase5.events.make_event_id(init_time, lead_day, lat, lon)` server-side
+if you need to deep-link one, or ask the backend team to add it to
+`AnalogRecord` in a future pass. Unknown IDs return 404.
+
+```json
+{
+  "event_id": "d3a6633184042e98",
+  "init_time": "2018-06-19T12:00:00", "valid_time": "2018-06-29T12:00:00",
+  "region": "Jammu and Kashmir", "lead_day": 10,
+  "forecast_precip_mm": 0.001, "actual_precip_mm": 14.55,
+  "rain_bust": true, "severity_score": 5.01,
+  "source": { "forecast_source": "ECMWF HRES (deterministic)", "truth_source": "ERA5 reanalysis" }
+}
+```
+
+`severity_score` formula (documented, not subjective):
+`max(IMD category gap / 5, |temp error C| / 3.0)` — ≥1.0 means at least one
+variable crossed its bust threshold.
 
 ---
 
@@ -246,7 +340,13 @@ use `top_features` for a custom "why" panel; don't try to sum
    region-aggregated fields (`region_max_probability` etc. — see
    `aggregate_region()` in `src/production/aggregation.py`) if you'd rather
    receive them pre-aggregated.
-6. **For "why is this risky" panels:** `GET /explain`.
+6. **For "why is this risky" panels:** `GET /explain` — show
+   `model_evidence` and `historical_analogs` as two visually distinct
+   sections, never merged into one sentence.
+7. **For "has this happened before" panels:** `GET /analogs` (full list) or
+   `GET /analog-summary` (aggregate stats). Always show the `framing`/
+   `status` fields — if `no_reliable_analogs`, say so plainly rather than
+   hiding the panel.
 7. **Never call any LightGBM/pandas/training code directly** — everything
    you need is behind these 7 endpoints.
 8. **If an endpoint 404s with a structured `error` field**, that means data

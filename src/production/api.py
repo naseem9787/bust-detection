@@ -23,12 +23,18 @@ from .features import UnknownRegionError
 from .inference import ProductionInferenceEngine
 from .registry import ExperimentalFeatureRequestedError, UnknownModelError
 from .schemas import (
+    AnalogQueryResponse,
+    AnalogRecord,
+    AnalogSummaryResponse,
     BustProbability,
     ErrorResponse,
+    EventRecord,
     ExplanationResponse,
     FeatureContribution,
     GridPrediction,
     HealthResponse,
+    HistoricalEvidence,
+    ModelEvidence,
     ModelMetadata,
     PredictionRequest,
     PredictionResponse,
@@ -38,8 +44,27 @@ from .schemas import (
 )
 from .thresholds import DEFAULT_THRESHOLDS, THRESHOLD_BASIS
 
-API_VERSION = "0.1.0"
+API_VERSION = "0.2.0"
 _state: dict = {}
+
+
+def _analog_index():
+    if "analog_index" not in _state:
+        from ..phase5.analogs import INDEX_DIR, AnalogIndex
+
+        index = AnalogIndex.load(INDEX_DIR)
+        index.warm_cache()
+        _state["analog_index"] = index
+    return _state["analog_index"]
+
+
+def _event_index() -> pd.DataFrame:
+    if "event_index" not in _state:
+        from ..phase5.analogs import INDEX_DIR
+
+        path = os.path.join(INDEX_DIR, "event_index.parquet")
+        _state["event_index"] = pd.read_parquet(path).set_index("event_id")
+    return _state["event_index"]
 
 
 @asynccontextmanager
@@ -317,11 +342,137 @@ def explain_prediction(
         forecast_mslp_hpa=forecast_mslp_hpa, forecast_wind_speed_10m=forecast_wind_speed_10m,
     )
     result = explain_module.explain(model_key, row)
-    return ExplanationResponse(
-        variable=variable,
-        model_version=registry.load_entry(model_key).raw["model_version"],
+    model_evidence = ModelEvidence(
         base_value=result["base_value"],
         raw_probability=result["raw_probability"],
         top_features=[FeatureContribution(**f) for f in result["top_features"]],
         human_readable_reasons=result["human_readable_reasons"],
     )
+
+    # historical evidence - kept explicitly separate from model_evidence
+    # (Phase 5 Stage 15) - never merged into one vague "reason"
+    query_row = dict(row)
+    query_row["init_time"] = pd.Timestamp(init_time)
+    query_row["month"] = int((pd.Timestamp(init_time) + pd.Timedelta(days=lead_day)).month)
+    if "wind_speed_10m" not in query_row or query_row["wind_speed_10m"] is None:
+        from ..phase5.features import _train_period_mean_wind
+
+        query_row["wind_speed_10m"] = _train_period_mean_wind()
+    analog_result = _analog_index().query(
+        query_row, k=10, spatial_constraint="same_region", temporal_constraint="exact_month",
+    )
+    historical_evidence = HistoricalEvidence(
+        status=analog_result.status,
+        spatial_constraint=analog_result.spatial_constraint,
+        temporal_constraint=analog_result.temporal_constraint,
+        analogs=[AnalogRecord(**vars(a)) for a in analog_result.analogs],
+        warning=analog_result.warning,
+    )
+
+    return ExplanationResponse(
+        variable=variable,
+        model_version=registry.load_entry(model_key).raw["model_version"],
+        model_evidence=model_evidence,
+        historical_analogs=historical_evidence,
+    )
+
+
+# --------------------------------------------------------------------------
+@app.get("/analogs", response_model=AnalogQueryResponse)
+def analogs(
+    init_time: str,
+    lead_day: int = Query(..., ge=1, le=10),
+    latitude: float = Query(..., ge=-90, le=90),
+    longitude: float = Query(..., ge=0, le=360),
+    forecast_precip_mm: float = 0.0,
+    forecast_temp_c: float = 25.0,
+    forecast_mslp_hpa: float = 1010.0,
+    forecast_wind_speed_10m: float | None = None,
+    k: int = Query(10, ge=1, le=50),
+    spatial_constraint: str = Query("same_region", pattern="^(same_region|nearby|india_wide)$"),
+    temporal_constraint: str = Query("exact_month", pattern="^(none|exact_month|jjas)$"),
+) -> AnalogQueryResponse:
+    """Ranked historical analogs - real retrieved records, never invented.
+    Default constraints (same_region, exact_month) are the empirically
+    best-performing combination from Phase 5's retrospective evaluation
+    (outputs/phase5/constraint_comparison.csv), not an arbitrary default."""
+    from ..phase5.features import build_query_row
+
+    try:
+        query_row = build_query_row(
+            init_time=init_time, lead_day=lead_day, latitude=latitude, longitude=longitude,
+            forecast_precip_mm=forecast_precip_mm, forecast_temp_c=forecast_temp_c,
+            forecast_mslp_hpa=forecast_mslp_hpa, forecast_wind_speed_10m=forecast_wind_speed_10m,
+        )
+    except Exception as exc:
+        raise HTTPException(status_code=422, detail=str(exc))
+
+    result = _analog_index().query(
+        query_row, k=k, spatial_constraint=spatial_constraint, temporal_constraint=temporal_constraint,
+    )
+    return AnalogQueryResponse(
+        status=result.status,
+        n_candidates_considered=result.n_candidates_considered,
+        spatial_constraint=result.spatial_constraint,
+        temporal_constraint=result.temporal_constraint,
+        max_distance_used=result.max_distance_used,
+        analogs=[AnalogRecord(**vars(a)) for a in result.analogs],
+        warning=result.warning,
+    )
+
+
+# --------------------------------------------------------------------------
+@app.get("/analog-summary", response_model=AnalogSummaryResponse)
+def analog_summary(
+    init_time: str,
+    lead_day: int = Query(..., ge=1, le=10),
+    latitude: float = Query(..., ge=-90, le=90),
+    longitude: float = Query(..., ge=0, le=360),
+    forecast_precip_mm: float = 0.0,
+    forecast_temp_c: float = 25.0,
+    forecast_mslp_hpa: float = 1010.0,
+    forecast_wind_speed_10m: float | None = None,
+    k: int = Query(10, ge=1, le=50),
+) -> AnalogSummaryResponse:
+    from ..phase5.analog_summary import summarize
+    from ..phase5.features import build_query_row
+
+    try:
+        query_row = build_query_row(
+            init_time=init_time, lead_day=lead_day, latitude=latitude, longitude=longitude,
+            forecast_precip_mm=forecast_precip_mm, forecast_temp_c=forecast_temp_c,
+            forecast_mslp_hpa=forecast_mslp_hpa, forecast_wind_speed_10m=forecast_wind_speed_10m,
+        )
+    except Exception as exc:
+        raise HTTPException(status_code=422, detail=str(exc))
+
+    result = _analog_index().query(
+        query_row, k=k, spatial_constraint="same_region", temporal_constraint="exact_month",
+    )
+    summary = summarize(result)
+    return AnalogSummaryResponse(**vars(summary))
+
+
+# --------------------------------------------------------------------------
+@app.get("/events/{event_id}", response_model=EventRecord)
+def get_event(event_id: str) -> EventRecord:
+    events = _event_index()
+    if event_id not in events.index:
+        raise HTTPException(status_code=404, detail=f"unknown event_id: {event_id}")
+    from ..phase5.events import to_event_record
+
+    row = events.loc[event_id]
+    row_with_id = row.copy()
+    record = to_event_record(row_with_id)
+    record["event_id"] = event_id
+    record["region"] = record.pop("region_v2")
+    record["forecast_precip_mm"] = record.pop("fcst_precip_mm")
+    record["forecast_temp_c"] = record.pop("fcst_temp_c")
+    record["forecast_mslp_hpa"] = record.pop("fcst_mslp_hpa")
+    record["actual_precip_mm"] = record.pop("obs_precip_mm")
+    record["actual_temp_c"] = record.pop("obs_temp_c")
+    record["precip_error_mm"] = record.pop("error_precip_mm")
+    record["temp_error_c"] = record.pop("error_temp_c")
+    record["rain_bust"] = record.pop("bust_precip_categorical")
+    record["temperature_bust"] = record.pop("bust_temp_hard")
+    return EventRecord(**record)
