@@ -1,9 +1,9 @@
 /**
- * Calibrated Forecast Confidence Indicator Component
- * Reusable scientific confidence gauge distinguishing calibrated skill tiers:
- * High (>= 80%), Moderate (50-79%), Low (< 50%)
- *
- * Designed for scientific decision support — no glowing neon or generic AI effects.
+ * Forecast Reliability Indicator Component
+ * Reliability = 100% - chance of a major forecast error (the same number
+ * shown everywhere else on the page - map, panel, tooltip). Tiers:
+ * High (>= 97%), Moderate (94-97%), Low (< 94%) - see weatherRules.js
+ * getConfidenceTier, based on the real distribution of model output.
  */
 
 import React from 'react';
@@ -13,7 +13,7 @@ import { Tooltip } from '../ui/Tooltip.jsx';
 import { InfoIcon } from '../icons/Icons.jsx';
 
 function ConfidenceIndicatorComponent({
-  confidence = 0.27,
+  confidence = 0.99,
   showMeter = true,
   showThresholds = true,
   leadDay = null,
@@ -29,9 +29,9 @@ function ConfidenceIndicatorComponent({
       <div style={{ display: 'flex', alignItems: 'baseline', justifyContent: 'space-between', marginBottom: '6px' }}>
         <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
           <span style={{ fontSize: '11px', color: 'var(--text-muted)', textTransform: 'uppercase', letterSpacing: '0.05em', fontWeight: 600 }}>
-            Forecast Confidence
+            Forecast Reliability
           </span>
-          <Tooltip content="Calibrated probability score derived from historical reliability and ensemble dispersion. A score of 27% indicates high forecast uncertainty.">
+          <Tooltip content="How reliable this specific forecast is estimated to be. Reliability = 100% minus the chance of a major forecast error.">
             <span style={{ cursor: 'pointer', display: 'inline-flex', alignItems: 'center' }}>
               <InfoIcon size={12} style={{ color: 'var(--text-muted)' }} />
             </span>
@@ -49,7 +49,7 @@ function ConfidenceIndicatorComponent({
             className={`badge badge-conf-${tier === 'moderate' ? 'mod' : tier}`}
             style={{ fontSize: '10.5px', padding: '2px 8px', fontWeight: 600 }}
           >
-            {confInfo.label} Skill
+            {confInfo.label} Reliability
           </span>
         </div>
       </div>
@@ -58,9 +58,9 @@ function ConfidenceIndicatorComponent({
         <div
           className="confidence-meter-track"
           style={{ height: '8px', backgroundColor: 'var(--bg-canvas)', border: '1px solid var(--border-subtle)', borderRadius: 'var(--radius-pill)', position: 'relative', overflow: 'hidden' }}
-          title={`Calibrated Skill Score: ${percent}% (${confInfo.label})`}
+          title={`Reliability: ${percent}% (${confInfo.label})`}
         >
-          {/* Calibrated Fill Bar */}
+          {/* Reliability Fill Bar */}
           <div
             className="confidence-meter-fill"
             style={{
@@ -71,52 +71,52 @@ function ConfidenceIndicatorComponent({
               transition: 'width 250ms ease',
             }}
           />
-          {/* Calibration benchmark markers */}
+          {/* Same 94%/97% cutoffs as getConfidenceTier - real data-based, not arbitrary */}
           <div
             style={{
               position: 'absolute',
-              left: '50%',
+              left: '94%',
               top: 0,
               bottom: 0,
               width: '1px',
               backgroundColor: 'rgba(255, 255, 255, 0.35)',
               zIndex: 2,
             }}
-            title="50% Moderate Skill Threshold"
+            title="94% Moderate Reliability cutoff"
           />
           <div
             style={{
               position: 'absolute',
-              left: '80%',
+              left: '97%',
               top: 0,
               bottom: 0,
               width: '1px',
               backgroundColor: 'rgba(255, 255, 255, 0.35)',
               zIndex: 2,
             }}
-            title="80% High Skill Threshold"
+            title="97% High Reliability cutoff"
           />
         </div>
       )}
 
       {showThresholds && (
         <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '9.5px', color: 'var(--text-muted)', marginTop: '4px', fontFamily: 'var(--font-mono)' }}>
-          <span>0% (High Uncertainty)</span>
-          <span>50% (Moderate)</span>
-          <span>80% (High Skill)</span>
+          <span>Low</span>
+          <span>94%</span>
+          <span>97%</span>
           <span>100%</span>
         </div>
       )}
 
       {leadDay && (
         <div style={{ fontSize: '11px', color: 'var(--text-secondary)', marginTop: '6px', lineHeight: 1.4 }}>
-          {percent < 50 ? (
+          {percent < 94 ? (
             <span>
-              Confidence at Lead Day {leadDay} is constrained below the 50% operational reliability threshold. Decision makers should cross-verify with ensemble scenarios.
+              At {leadDay} day{leadDay === 1 ? '' : 's'} ahead, this forecast has a higher than usual chance of being significantly wrong here. Treat it with extra caution.
             </span>
           ) : (
             <span>
-              Forecast skill at Lead Day {leadDay} conforms with operational standards.
+              At {leadDay} day{leadDay === 1 ? '' : 's'} ahead, this forecast is within the normal, reliable range for this location.
             </span>
           )}
         </div>

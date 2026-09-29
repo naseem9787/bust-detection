@@ -48,8 +48,8 @@ function HistoricalPerformanceComponent({
 
   return (
     <Card
-      title={`Climatological Verification Skill &bull; ${regionName}`}
-      subtitle={`Evaluated against 2018–2021 database at Lead Day ${leadDay}`}
+      title={`Past Track Record • ${regionName}`}
+      subtitle={`How forecasts here have done in the past (2018–2021), at ${leadDay} day${leadDay === 1 ? '' : 's'} ahead`}
       icon={DatabaseIcon}
       className={className}
     >
@@ -92,31 +92,31 @@ function HistoricalPerformanceComponent({
           </div>
         </div>
 
-        {/* Operational Misses & Sample Depth */}
+        {/* Past Misses & Sample Depth */}
         <div className="historical-metric-subcard">
-          <div className="subcard-title">Operational Extreme Events (2018–2021)</div>
+          <div className="subcard-title">Heavy Rain Events (2018–2021)</div>
           <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '8px', marginTop: '6px' }}>
             <div style={{ padding: '6px 8px', backgroundColor: 'var(--bg-canvas)', borderRadius: 'var(--radius-sm)', border: '1px solid var(--border-subtle)' }}>
-              <div style={{ fontSize: '10px', color: 'var(--text-muted)' }}>Missed Heavy Rain</div>
+              <div style={{ fontSize: '10px', color: 'var(--text-muted)' }}>Heavy Rain Missed</div>
               <div className="tabular-nums" style={{ fontSize: '16px', fontWeight: 700, color: '#F87171' }}>
                 {metrics.missedHeavy}
               </div>
-              <div style={{ fontSize: '9px', color: 'var(--text-muted)' }}>Obs &ge;64.5mm missed</div>
+              <div style={{ fontSize: '9px', color: 'var(--text-muted)' }}>Heavy rain happened but wasn't forecast</div>
             </div>
 
             <div style={{ padding: '6px 8px', backgroundColor: 'var(--bg-canvas)', borderRadius: 'var(--radius-sm)', border: '1px solid var(--border-subtle)' }}>
-              <div style={{ fontSize: '10px', color: 'var(--text-muted)' }}>False Alarm Heavy</div>
+              <div style={{ fontSize: '10px', color: 'var(--text-muted)' }}>False Alarms</div>
               <div className="tabular-nums" style={{ fontSize: '16px', fontWeight: 700, color: '#FBBF24' }}>
                 {metrics.falseAlarm}
               </div>
-              <div style={{ fontSize: '9px', color: 'var(--text-muted)' }}>Fcst &ge;64.5mm not observed</div>
+              <div style={{ fontSize: '9px', color: 'var(--text-muted)' }}>Heavy rain was forecast but didn't happen</div>
             </div>
           </div>
 
           <div style={{ marginTop: '8px', display: 'flex', alignItems: 'center', justifyContent: 'space-between', fontSize: '10.5px', color: 'var(--text-muted)' }}>
-            <span>Verification depth:</span>
+            <span>Based on:</span>
             <span className="tabular-nums" style={{ color: 'var(--text-secondary)' }}>
-              {metrics.samples} regional grid-hours
+              {metrics.samples} real forecast records
             </span>
           </div>
         </div>

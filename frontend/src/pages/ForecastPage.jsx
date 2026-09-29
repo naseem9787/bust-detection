@@ -19,6 +19,7 @@ import {
   getExplanation,
   getRegions,
   getHistoricalPerformance,
+  getRegionAnalysis,
 } from '../services/api.js';
 
 // Modular Forecast Components
@@ -38,11 +39,12 @@ const EMPTY_REGIONAL_METRICS = {};
 export function ForecastPage({ selectedCycle = '2026-09-29 00Z' }) {
   // Page State
   const [leadDay, setLeadDay] = useState(5);
-  const [selectedRegionShortName, setSelectedRegionShortName] = useState('West Coast');
+  const [selectedRegionShortName, setSelectedRegionShortName] = useState('Maharashtra');
   const [allRegions, setAllRegions] = useState([]);
   const [forecastPayload, setForecastPayload] = useState(null);
   const [explanationPayload, setExplanationPayload] = useState(null);
   const [historicalData, setHistoricalData] = useState([]);
+  const [errorProgression, setErrorProgression] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
   const [retryCount, setRetryCount] = useState(0);
@@ -91,12 +93,19 @@ export function ForecastPage({ selectedCycle = '2026-09-29 00Z' }) {
         regionId: selectedRegionShortName,
         forceReload,
       }),
+      getRegionAnalysis({
+        regionId: selectedRegionShortName,
+        leadDay,
+        cycle: selectedCycle,
+        forceReload,
+      }),
     ])
-      .then(([fcst, exp, hist]) => {
+      .then(([fcst, exp, hist, regionDetail]) => {
         if (!isMounted) return;
         setForecastPayload(fcst);
         setExplanationPayload(exp);
         setHistoricalData(hist);
+        setErrorProgression(regionDetail?.errorProgression || []);
         setIsLoading(false);
       })
       .catch((err) => {
@@ -119,11 +128,11 @@ export function ForecastPage({ selectedCycle = '2026-09-29 00Z' }) {
           r.shortName === selectedRegionShortName ||
           r.id === selectedRegionShortName ||
           r.name.includes(selectedRegionShortName)
-      ) || allRegions[5] || {
-        id: 'west-coast',
-        name: 'West Coast (Konkan/Goa/Kerala)',
-        shortName: 'West Coast',
-        baselineRisk: 0.451,
+      ) || allRegions[0] || {
+        id: 'maharashtra',
+        name: 'Maharashtra',
+        shortName: 'Maharashtra',
+        baselineRisk: null,
       }
     );
   }, [allRegions, selectedRegionShortName]);
@@ -131,9 +140,10 @@ export function ForecastPage({ selectedCycle = '2026-09-29 00Z' }) {
   // Regional metrics for the choropleth map supplied by the forecast API layer
   const regionalMetrics = forecastPayload?.regionalMetrics || EMPTY_REGIONAL_METRICS;
 
-  // Identify the highest risk region at current lead time from API regional metrics
+  // Identify the state with the highest chance of a major forecast error
+  // at the current lead time, from the real API regional metrics
   const topRiskItem = useMemo(() => {
-    let topName = 'West Coast';
+    let topName = activeRegion.shortName;
     let maxProb = 0;
     Object.entries(regionalMetrics).forEach(([key, m]) => {
       if (m?.bustProbability > maxProb) {
@@ -142,7 +152,7 @@ export function ForecastPage({ selectedCycle = '2026-09-29 00Z' }) {
       }
     });
     return { name: topName, probability: maxProb };
-  }, [regionalMetrics]);
+  }, [regionalMetrics, activeRegion]);
 
   return (
     <div className="forecast-page-layout">
@@ -154,7 +164,7 @@ export function ForecastPage({ selectedCycle = '2026-09-29 00Z' }) {
         leadDay={leadDay}
         topRiskRegion={topRiskItem.name}
         topRiskProbability={topRiskItem.probability}
-        primaryTrigger="IMD heavy rainfall categorical shift (moderate -> heavy miss)"
+        primaryTrigger="Rainfall category may be significantly different from the forecast"
       />
 
       {/* =========================================================================
@@ -177,8 +187,8 @@ export function ForecastPage({ selectedCycle = '2026-09-29 00Z' }) {
 
       {isLoading && !forecastPayload && (
         <LoadingState
-          message={`Loading Medium-Range Forecast & Verification: Day ${leadDay}...`}
-          subtext="Fetching ECMWF HRES 1.5° pointwise comparison against ERA5 truth"
+          message={`Loading the forecast for ${leadDay} day${leadDay === 1 ? '' : 's'} ahead...`}
+          subtext="Comparing the forecast against real recorded weather"
         />
       )}
 
@@ -226,7 +236,7 @@ export function ForecastPage({ selectedCycle = '2026-09-29 00Z' }) {
           <ForecastErrorChart
             regionName={activeRegion.shortName}
             leadDay={leadDay}
-            bustProbability={forecastPayload.verification?.bustProbability ?? 0.45}
+            errorProgression={errorProgression}
           />
 
           {/* Supporting Historical Climatology Context */}

@@ -16,26 +16,26 @@ export function MapLegend({
 }) {
   if (mode === 'confidence') {
     return (
-      <div className={`legend-panel ${className}`} role="region" aria-label="Forecast Confidence Legend">
+      <div className={`legend-panel ${className}`} role="region" aria-label="Forecast Reliability Legend">
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '4px' }}>
-          <span className="legend-title">Forecast Confidence Scale (Calibrated)</span>
-          <span style={{ fontSize: '9.5px', color: 'var(--text-muted)', fontFamily: 'var(--font-mono)' }}>
-            ECMWF Ensemble Spread
+          <span className="legend-title">Forecast Reliability</span>
+          <span style={{ fontSize: '9.5px', color: 'var(--text-muted)' }} title="Reliability = 100% minus the chance of a major forecast error.">
+            100% &minus; chance of error
           </span>
         </div>
 
         <div className="legend-discrete-grid" style={{ gridTemplateColumns: 'repeat(3, 1fr)' }}>
           <div className="legend-discrete-item">
             <span className="legend-color-chip" style={{ backgroundColor: TOKENS.colors.confidence.high.color }} />
-            <span>High (&ge;80%)</span>
+            <span>High (&ge;97%)</span>
           </div>
           <div className="legend-discrete-item">
             <span className="legend-color-chip" style={{ backgroundColor: TOKENS.colors.confidence.moderate.color }} />
-            <span>Moderate (50–79%)</span>
+            <span>Moderate (94&ndash;97%)</span>
           </div>
           <div className="legend-discrete-item">
             <span className="legend-color-chip" style={{ backgroundColor: TOKENS.colors.confidence.low.color }} />
-            <span>Low / Uncertain (&lt;50%)</span>
+            <span>Low (&lt;94%)</span>
           </div>
         </div>
       </div>
@@ -70,37 +70,33 @@ export function MapLegend({
     );
   }
 
-  // Default: Bust Risk Scale (Cool/Neutral -> Warning -> Danger)
+  // Default: Chance of Major Forecast Error scale (green -> yellow -> orange -> red)
+  // Bins come from the real distribution of the production model's output
+  // across all states/lead days (see weatherRules.js getBustRiskLevel) -
+  // not an assumed or invented scale.
   return (
-    <div className={`legend-panel ${className}`} role="region" aria-label="Bust Probability Scale">
+    <div className={`legend-panel ${className}`} role="region" aria-label="Chance of Major Forecast Error Scale">
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '4px' }}>
-        <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-          <span className="legend-title">Forecast Bust Probability Scale</span>
-          <span style={{ fontSize: '9.5px', color: 'var(--text-muted)' }}>
-            (Cool = Nominal &bull; Amber = Warning &bull; Red = Danger)
-          </span>
-        </div>
-        <span style={{ fontSize: '9.5px', color: 'var(--text-muted)', fontFamily: 'var(--font-mono)' }}>
-          90th %ile Threshold: 35%
+        <span className="legend-title">Chance of Major Forecast Error</span>
+        <span style={{ fontSize: '9.5px', color: 'var(--text-muted)' }} title="Estimated chance that the forecast will be substantially wrong for this state.">
+          Low &rarr; High
         </span>
       </div>
 
-      {/* Discrete 5-tier ramp bar */}
+      {/* Discrete 4-tier ramp bar */}
       <div className="legend-ramp-bar">
-        <div className="legend-ramp-segment" style={{ backgroundColor: '#10B981' }} title="Low Risk (<15%)" />
-        <div className="legend-ramp-segment" style={{ backgroundColor: '#F59E0B' }} title="Moderate Risk (15-25%)" />
-        <div className="legend-ramp-segment" style={{ backgroundColor: '#F97316' }} title="Elevated Risk (25-35%)" />
-        <div className="legend-ramp-segment" style={{ backgroundColor: '#EF4444' }} title="High Risk (35-45%)" />
-        <div className="legend-ramp-segment" style={{ backgroundColor: '#991B1B' }} title="Severe Bust (≥45%)" />
+        <div className="legend-ramp-segment" style={{ backgroundColor: '#10B981' }} title="Low (below 1%)" />
+        <div className="legend-ramp-segment" style={{ backgroundColor: '#EAB308' }} title="Moderate (1-3%)" />
+        <div className="legend-ramp-segment" style={{ backgroundColor: '#F97316' }} title="Elevated (3-6%)" />
+        <div className="legend-ramp-segment" style={{ backgroundColor: '#EF4444' }} title="High (above 6%)" />
       </div>
 
-      {/* Clear numeric labels below each tier */}
+      {/* Clear numeric labels below each tier - never rely on color alone */}
       <div className="legend-labels">
-        <span style={{ color: '#34D399' }}>Low &lt;15%</span>
-        <span style={{ color: '#FBBF24' }}>15–25%</span>
-        <span style={{ color: '#FB923C' }}>25–35%</span>
-        <span style={{ color: '#F87171' }}>35–45%</span>
-        <span style={{ color: '#FCA5A5', fontWeight: 600 }}>Severe &ge;45%</span>
+        <span style={{ color: '#34D399' }}>Low &lt;1%</span>
+        <span style={{ color: '#FDE047' }}>Moderate 1&ndash;3%</span>
+        <span style={{ color: '#FB923C' }}>Elevated 3&ndash;6%</span>
+        <span style={{ color: '#F87171', fontWeight: 600 }}>High &gt;6%</span>
       </div>
     </div>
   );

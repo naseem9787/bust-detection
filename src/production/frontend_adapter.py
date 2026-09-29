@@ -2,53 +2,53 @@
 Phase 6 - thin frontend integration adapter, mounted under `/api/v1`.
 
 This module exists ONLY to reshape existing, already-validated Phase 0-5
-outputs into the exact JSON contract the React frontend expects (see
-`FRONTEND_API_CONTRACT.md` at the repo root). It does not:
+outputs into the JSON shape the React frontend expects. It does not:
   - retrain, recalibrate, or otherwise touch any model artifact
   - change the root production endpoints (/predict, /explain, /analogs, ...)
     in `src/production/api.py` - those keep their original schemas verbatim
   - fabricate any number that isn't derived from a real, already-committed
     artifact or a real call into `ProductionInferenceEngine`
 
-Region model - READ THIS FIRST
--------------------------------
-The frontend's India choropleth expects exactly 8 "presentation zones"
-(`western-himalaya`, `northwest-india`, `indo-gangetic-plain`,
-`northeast-india`, `central-india`, `west-coast`, `east-coast`,
-`south-peninsula` - see FRONTEND_API_CONTRACT.md Section 6). The production
-rain_v1/temperature_v1 models do NOT predict on this geography - they use
-the validated 29-state `region_v2` geography from Phase 2
-(`src/phase2/geography.py`), which is what `/predict`, `/explain`,
-`/analogs`, and `/regions` all use.
+Region model
+------------
+The map shows the REAL production geography directly: the 29 states/UTs
+of `region_v2` (`src/phase2/geography.py`), the same geography `/predict`,
+`/explain`, `/analogs`, and the root `/regions` all use. There is no
+separate presentation geography and no aggregation judgment calls - each
+state IS a `region_v2` category, one to one.
 
-A dormant, never-wired-into-production 8-zone module already exists at
-`src/regions.py` with bounding boxes that happen to match the frontend's
-8 zones almost exactly. It is NOT used here for point classification,
-because inspecting it during this integration surfaced a real bug: its
-South Peninsula box (lat 8-16, lon 74.5-80) is fully nested inside its
-West Coast box (lat 8-20, lon 72-77), so naive first-match bounding-box
-classification always resolves South Peninsula points to West Coast -
-South Peninsula would never receive any data. `src/regions.py` itself is
-left untouched (per the integration plan: don't modify shared/legacy
-files unless the frontend genuinely requires a compatible change, and
-this bug is pre-existing and was never exercised because nothing else
-imports that module's `assign_region`).
+(An earlier version of this adapter aggregated the 29 states into 8 broad
+zones for a first integration pass. That required a documented but
+inherently approximate state->zone mapping - see git history if you need
+it. It has been replaced by this direct state-level model per explicit
+product direction: showing India's real states is both more accurate and
+more meaningful to a non-expert viewer than 8 hand-drawn blobs.)
 
-Instead, this adapter aggregates the real 29-state `region_v2` predictions
-into the 8 zones via a direct, documented STATE_TO_ZONE mapping (below).
-Every explicit zone name in FRONTEND_API_CONTRACT.md's Section 6
-parenthetical (e.g. "West Coast (Konkan/Goa/Kerala)") is honored exactly.
-A handful of states are NOT named in any zone description (Gujarat, West
-Bengal, Jharkhand) or are split across two zone descriptions in the
-contract itself (Maharashtra's Konkan-vs-Vidarbha, Tamil Nadu's coast-vs-
-interior) - `region_v2` is state-level only, so a sub-state split isn't
-possible from existing data. Those are resolved with a documented,
-best-effort judgment call, listed inline below. This is the same kind of
-disclosed simplification as the project's existing Telangana/Ladakh
-`known_limitation` note in the model registry - never silent.
+State geometry: `frontend/src/data/indiaStatesGeo.js` (real SVG paths) and
+`outputs/phase2/state_geo_meta.json` (bbox/centroid only, used here) are
+both generated from the SAME real GADM-derived boundary file
+(`data/raw/india_states.geojson`) that `src/phase2/geography.py` uses to
+assign every real grid point to a state - see
+`src/phase2/export_state_svg.py`. 6 small union territories in that source
+file (Chandigarh, Delhi, Puducherry, Dadra & Nagar Haveli, Daman & Diu,
+Nagaland) never receive a real production grid point on this 1.5-degree
+grid and are intentionally absent rather than shown with fabricated data.
+
+Risk color bands
+-----------------
+Chosen from the REAL distribution of calibrated state-level bust
+probability across all 10 lead days (computed during this integration,
+183 real grid points x 10 lead days): 10th pctile 0.08%, 50th 0.14%,
+75th 0.5%, 90th 2.5%, 95th 5.1%, 99th 12.9%, max 15.3%. The distribution
+is heavily right-skewed - most state/lead-day combinations are very safe,
+with a real, occasional high-risk tail. Bands (`RISK_BANDS` below) are
+round numbers close to the 75th/90th/97th percentiles, not the old
+mock-data-era thresholds (which assumed probabilities commonly reached
+20-60%day and would have shown nearly everything as "low" on real data).
 """
 from __future__ import annotations
 
+import json
 import os
 from functools import lru_cache
 
@@ -56,89 +56,12 @@ import pandas as pd
 from fastapi import APIRouter, HTTPException, Query
 
 from ..label_busts import _rain_category
-from .thresholds import DEFAULT_THRESHOLDS
 
 router = APIRouter(prefix="/api/v1", tags=["frontend-adapter"])
 
 REFERENCE_PATH = os.path.join("models", "phase5", "reference.parquet")
 EVENT_INDEX_PATH = os.path.join("models", "phase5", "event_index.parquet")
-
-# ---------------------------------------------------------------------------
-# 8-zone presentation geography. bbox/centroid taken directly from the
-# (unused-in-production) src/regions.py boxes, which already match
-# FRONTEND_API_CONTRACT.md Section 6 exactly.
-ZONE_META = {
-    "western-himalaya": {
-        "id": "western-himalaya", "name": "Western Himalaya (J&K/HP/Uttarakhand)",
-        "shortName": "Western Himalaya", "bbox": [73.0, 28.0, 81.0, 36.0], "centroid": [77.0, 32.0],
-    },
-    "northwest-india": {
-        "id": "northwest-india", "name": "Northwest India (Punjab/Haryana/Rajasthan)",
-        "shortName": "Northwest India", "bbox": [69.0, 24.0, 79.0, 32.0], "centroid": [74.0, 28.0],
-    },
-    "indo-gangetic-plain": {
-        "id": "indo-gangetic-plain", "name": "Indo-Gangetic Plain (UP/Bihar)",
-        "shortName": "Indo-Gangetic Plain", "bbox": [79.0, 24.0, 88.0, 30.0], "centroid": [83.5, 27.0],
-    },
-    "northeast-india": {
-        "id": "northeast-india", "name": "Northeast India",
-        "shortName": "Northeast India", "bbox": [88.0, 22.0, 97.5, 29.5], "centroid": [92.75, 25.75],
-    },
-    "central-india": {
-        "id": "central-india", "name": "Central India (MP/Chhattisgarh/Vidarbha)",
-        "shortName": "Central India", "bbox": [74.0, 18.0, 84.0, 26.0], "centroid": [79.0, 22.0],
-    },
-    "west-coast": {
-        "id": "west-coast", "name": "West Coast (Konkan/Goa/Kerala)",
-        "shortName": "West Coast", "bbox": [72.0, 8.0, 77.0, 20.0], "centroid": [74.5, 14.0],
-    },
-    "east-coast": {
-        "id": "east-coast", "name": "East Coast (Andhra/Odisha/TN coast)",
-        "shortName": "East Coast", "bbox": [78.0, 8.0, 87.0, 20.0], "centroid": [82.5, 14.0],
-    },
-    "south-peninsula": {
-        "id": "south-peninsula", "name": "South Peninsula (Interior Karnataka/TN)",
-        "shortName": "South Peninsula", "bbox": [74.5, 8.0, 80.0, 16.0], "centroid": [77.25, 12.0],
-    },
-}
-
-# Direct state (region_v2) -> zone mapping. Entries marked "judgment call"
-# are states not explicitly named in any FRONTEND_API_CONTRACT.md zone
-# description, or split across two zone descriptions there; region_v2 is
-# state-level only so a sub-state split is not possible from existing data.
-STATE_TO_ZONE: dict[str, str] = {
-    # -- explicitly named in the frontend contract's own zone descriptions --
-    "Jammu and Kashmir": "western-himalaya",
-    "Himachal Pradesh": "western-himalaya",
-    "Uttarakhand": "western-himalaya",
-    "Punjab": "northwest-india",
-    "Haryana": "northwest-india",
-    "Rajasthan": "northwest-india",
-    "Uttar Pradesh": "indo-gangetic-plain",
-    "Bihar": "indo-gangetic-plain",
-    "Arunachal Pradesh": "northeast-india",
-    "Assam": "northeast-india",
-    "Manipur": "northeast-india",
-    "Meghalaya": "northeast-india",
-    "Mizoram": "northeast-india",
-    "Tripura": "northeast-india",
-    "Sikkim": "northeast-india",
-    "Madhya Pradesh": "central-india",
-    "Chhattisgarh": "central-india",
-    "Kerala": "west-coast",
-    "Goa": "west-coast",
-    "Andhra Pradesh": "east-coast",
-    "Odisha": "east-coast",
-    "Karnataka": "south-peninsula",
-    # -- judgment calls (state not named, or named in two zones) --
-    "Maharashtra": "west-coast",  # coastal Konkan identity chosen over interior Vidarbha
-    "Tamil Nadu": "east-coast",  # coastal identity chosen over interior south-peninsula half
-    "Gujarat": "northwest-india",  # not named anywhere; closest bbox/climate affinity
-    "West Bengal": "indo-gangetic-plain",  # Gangetic delta identity
-    "Jharkhand": "indo-gangetic-plain",  # borders Bihar, conventionally grouped with it
-    "Andaman and Nicobar": "east-coast",  # island territory, Bay of Bengal
-    "Lakshadweep": "west-coast",  # island territory, Arabian Sea
-}
+STATE_META_PATH = os.path.join("outputs", "phase2", "state_geo_meta.json")
 
 SEASON_MONTHS = {
     "monsoon_JJAS": {6, 7, 8, 9},
@@ -147,19 +70,34 @@ SEASON_MONTHS = {
     "winter_DJF": {12, 1, 2},
 }
 
-RISK_LEVEL_BANDS = [
-    (0.45, "extreme"), (0.35, "high"), (0.25, "elevated"), (0.15, "moderate"),
-]
+# See module docstring "Risk color bands" for how these were chosen.
+RISK_BANDS = [(0.06, "high"), (0.03, "elevated"), (0.01, "moderate")]
 
 
 def _risk_level(p: float) -> str:
-    """Frontend's own 5-tier presentational scheme (FRONTEND_API_CONTRACT.md
-    Section 5) - separate from and does not replace the backend's own
-    configurable DEFAULT_THRESHOLDS (3-tier) used by the root /predict etc."""
-    for cutoff, label in RISK_LEVEL_BANDS:
+    for cutoff, label in RISK_BANDS:
         if p >= cutoff:
             return label
     return "low"
+
+
+@lru_cache(maxsize=1)
+def _state_meta() -> dict:
+    if not os.path.exists(STATE_META_PATH):
+        raise HTTPException(
+            status_code=503,
+            detail=(
+                f"{STATE_META_PATH} not found - run `.venv/Scripts/python.exe "
+                "-m src.phase2.export_state_svg` first to regenerate it."
+            ),
+        )
+    with open(STATE_META_PATH, encoding="utf-8") as f:
+        entries = json.load(f)
+    return {e["id"]: e for e in entries}
+
+
+def _name_to_id() -> dict:
+    return {e["name"]: sid for sid, e in _state_meta().items()}
 
 
 @lru_cache(maxsize=1)
@@ -173,9 +111,7 @@ def _reference() -> pd.DataFrame:
                 "(gitignored, regenerable artifact)."
             ),
         )
-    df = pd.read_parquet(REFERENCE_PATH)
-    df["zone"] = df["region_v2"].map(STATE_TO_ZONE)
-    return df
+    return pd.read_parquet(REFERENCE_PATH)
 
 
 @lru_cache(maxsize=1)
@@ -189,20 +125,20 @@ def _event_index() -> pd.DataFrame:
             ),
         )
     df = pd.read_parquet(EVENT_INDEX_PATH)
-    df["zone"] = df["region_v2"].map(STATE_TO_ZONE)
     return df.set_index("event_id")
 
 
-def _resolve_zone_id(region_id: str) -> str:
-    """Accepts canonical kebab-case id, display name, or short name - api.js
-    normalizes most of this already, but the adapter stays permissive."""
-    if region_id in ZONE_META:
+def _resolve_state_id(region_id: str) -> str:
+    """Accepts the canonical slug id, the exact region_v2 state name, or a
+    case-insensitive/space-separated variant of either."""
+    meta = _state_meta()
+    if region_id in meta:
         return region_id
-    for zid, meta in ZONE_META.items():
-        if region_id in (meta["name"], meta["shortName"]):
-            return zid
+    name_to_id = _name_to_id()
+    if region_id in name_to_id:
+        return name_to_id[region_id]
     lowered = region_id.strip().lower().replace(" ", "-")
-    if lowered in ZONE_META:
+    if lowered in meta:
         return lowered
     raise HTTPException(status_code=422, detail=f"unknown region_id: {region_id!r}")
 
@@ -247,34 +183,40 @@ def forecast(
     lead_day: int = Query(..., ge=1, le=10),
     region_id: str = Query(...),
 ):
-    zone_id = _resolve_zone_id(region_id)
+    state_id = _resolve_state_id(region_id)
+    state_name = _state_meta()[state_id]["name"]
     df = _reference()
     init_time = _latest_real_init_time(df, lead_day)
     snapshot = df[(df.init_time == init_time) & (df.lead_day == lead_day)]
     scored = _predict_points(snapshot)
 
-    # regionalMetrics: real per-point model predictions aggregated per zone
+    # regionalMetrics: real per-point model predictions aggregated per state
+    # (mean across every real grid point production assigns to that state -
+    # states with only one real grid point simply return that point's value)
     regional_metrics = {}
-    for zid, zmeta in ZONE_META.items():
-        zpts = scored[scored.zone == zid]
-        if zpts.empty:
+    for sid, smeta in _state_meta().items():
+        spts = scored[scored.region_v2 == smeta["name"]]
+        if spts.empty:
             continue
-        regional_metrics[zid] = {
-            "regionId": zid,
-            "regionName": zmeta["shortName"],
-            "bustProbability": round(float(zpts.rain_prob.mean()), 4),
-            "confidence": round(float(1.0 - zpts.rain_prob.std(ddof=0)) if len(zpts) > 1 else 0.5, 4),
-            "precipError": round(float(zpts.abs_error_precip_mm.mean()), 2),
-            "tempError": round(float(zpts.abs_error_temp_c.mean()), 2),
+        bust_prob = float(spts.rain_prob.mean())
+        regional_metrics[sid] = {
+            "regionId": sid,
+            "regionName": smeta["name"],
+            "bustProbability": round(bust_prob, 4),
+            # Same 1 - calibrated_probability definition ProductionInferenceEngine
+            # returns - identical formula everywhere on this page (map, panel).
+            "confidence": round(float(1.0 - bust_prob), 4),
+            "precipError": round(float(spts.abs_error_precip_mm.mean()), 2),
+            "tempError": round(float(spts.abs_error_temp_c.mean()), 2),
         }
 
-    zpts = scored[scored.zone == zone_id]
-    if zpts.empty:
-        raise HTTPException(status_code=404, detail=f"no real grid points fall in zone {zone_id!r}")
-    # representative point = real grid point nearest the zone centroid, for
-    # the single-value `variables`/`verification` fields
-    clon, clat = ZONE_META[zone_id]["centroid"]
-    rep = zpts.assign(_d=((zpts.latitude - clat) ** 2 + (zpts.longitude - clon) ** 2)).sort_values("_d").iloc[0]
+    spts = scored[scored.region_v2 == state_name]
+    if spts.empty:
+        raise HTTPException(status_code=404, detail=f"no real grid points fall in {state_name!r}")
+    # representative point = real grid point nearest the state's real
+    # geometric centroid, for the single-value `variables`/`verification` fields
+    clon, clat = _state_meta()[state_id]["centroid"]
+    rep = spts.assign(_d=((spts.latitude - clat) ** 2 + (spts.longitude - clon) ** 2)).sort_values("_d").iloc[0]
 
     fcst_cat = _rain_category(pd.Series([rep.fcst_precip_mm])).cat.codes.iloc[0]
     obs_cat = _rain_category(pd.Series([rep.obs_precip_mm])).cat.codes.iloc[0]
@@ -288,8 +230,8 @@ def forecast(
             "gridResolution": "1.5 deg (real domain grid points, Phase 0-5 archive)",
             "leadDay": lead_day,
             "leadHours": lead_day * 24,
-            "regionId": zone_id,
-            "regionName": ZONE_META[zone_id]["name"],
+            "regionId": state_id,
+            "regionName": state_name,
             "timestamp": pd.Timestamp(init_time).isoformat(),
             "disclaimer": (
                 "Operational research verification prototype. Backed by the most "
@@ -300,7 +242,7 @@ def forecast(
         },
         "verification": {
             "bustProbability": round(bust_prob, 4),
-            "confidence": round(float(1.0 - bust_prob), 4) if pd.isna(rep.temp_prob) else round(float(1.0 - abs(rep.rain_prob - rep.temp_prob)), 4),
+            "confidence": round(float(1.0 - bust_prob), 4),
             "riskLevel": _risk_level(bust_prob),
             "historicalPercentileExceeded": bool(rep.bust_precip_categorical),
             "rulesTriggered": {
@@ -347,32 +289,19 @@ def regions_list():
     df = _reference()
     train = df[df.split == "train"]
     out = []
-    for zid, zmeta in ZONE_META.items():
-        zpts = train[train.zone == zid]
-        baseline = float(zpts.bust_precip_categorical.mean()) if not zpts.empty else None
-        top_states = (
-            zpts.groupby("region_v2")["bust_precip_categorical"].mean().sort_values(ascending=False).head(2)
-            if not zpts.empty else pd.Series(dtype=float)
-        )
-        lon_min, lat_min, lon_max, lat_max = zmeta["bbox"]
+    for sid, smeta in _state_meta().items():
+        spts = train[train.region_v2 == smeta["name"]]
+        baseline = float(spts.bust_precip_categorical.mean()) if not spts.empty else None
+        lon_min, lat_min, lon_max, lat_max = smeta["bbox"]
         out.append({
-            "id": zid,
-            "name": zmeta["name"],
-            "shortName": zmeta["shortName"],
-            # NOTE: FRONTEND_API_CONTRACT.md Section 7 documents `bbox` as an
-            # array, but the actual RegionalSummary.jsx reads
-            # `region.bbox.{latMin,latMax,lonMin,lonMax}` as an object - the
-            # real component code wins over the written doc (per integration
-            # instructions). indiaGeoData.js's own separate `bbox` arrays
-            # (static SVG map data) are untouched.
+            "id": sid,
+            "name": smeta["name"],
+            "shortName": smeta["name"],
             "bbox": {"latMin": lat_min, "latMax": lat_max, "lonMin": lon_min, "lonMax": lon_max},
-            "centroid": zmeta["centroid"],
+            "centroid": smeta["centroid"],
             "baselineRisk": round(baseline, 4) if baseline is not None else None,
             "dominantSeason": "monsoon_JJAS",
-            "climatologicalBustModes": [
-                f"{state}: {rate:.1%} historical IMD-category bust rate (2018-2020 train split)"
-                for state, rate in top_states.items()
-            ],
+            "nRealGridPoints": int(spts[["latitude", "longitude"]].drop_duplicates().shape[0]),
         })
     return out
 
@@ -384,17 +313,18 @@ def region_detail(
     lead_day: int = Query(5, ge=1, le=10),
     cycle: str = "latest",
 ):
-    zone_id = _resolve_zone_id(region_id)
+    state_id = _resolve_state_id(region_id)
+    state_name = _state_meta()[state_id]["name"]
     df = _reference()
-    zdf = df[df.zone == zone_id]
-    if zdf.empty:
-        raise HTTPException(status_code=404, detail=f"no real data for zone {zone_id!r}")
+    sdf = df[df.region_v2 == state_name]
+    if sdf.empty:
+        raise HTTPException(status_code=404, detail=f"no real data for {state_name!r}")
     months = SEASON_MONTHS.get(season)
     if months is not None:
-        zdf = zdf[zdf.month.isin(months)]
+        sdf = sdf[sdf.month.isin(months)]
 
     by_lead = (
-        zdf.groupby("lead_day")
+        sdf.groupby("lead_day")
         .agg(
             meanAbsErrorPrecipMm=("abs_error_precip_mm", "mean"),
             meanAbsErrorTempC=("abs_error_temp_c", "mean"),
@@ -414,18 +344,14 @@ def region_detail(
         for r in by_lead.itertuples()
     ]
 
-    top_states = zdf.groupby("region_v2")["bust_precip_categorical"].mean().sort_values(ascending=False).head(3)
     return {
-        "id": zone_id,
-        "name": ZONE_META[zone_id]["name"],
+        "id": state_id,
+        "name": state_name,
         "season": season,
         "requestedLeadDay": lead_day,
         "cycle": cycle,
         "errorProgression": error_progression,
-        "dominantBustModes": [
-            f"{state}: {rate:.1%} historical IMD-category bust rate" for state, rate in top_states.items()
-        ],
-        "nSamplesTotal": int(len(zdf)),
+        "nSamplesTotal": int(len(sdf)),
         "disclaimer": (
             "All statistics computed from the real 2018-2021 ECMWF HRES / ERA5 "
             "verification archive (JJAS only - see docs/historical_analogs.md "
@@ -443,22 +369,22 @@ def explanations(
     lead_day: int = Query(..., ge=1, le=10),
     region_id: str = Query(...),
 ):
-    from . import registry
     from .api import _analog_index, _engine
     from . import explain as explain_module
     from ..phase5.features import _train_period_mean_wind
 
-    zone_id = _resolve_zone_id(region_id)
+    state_id = _resolve_state_id(region_id)
+    state_name = _state_meta()[state_id]["name"]
     df = _reference()
     init_time = _latest_real_init_time(df, lead_day)
-    snapshot = df[(df.init_time == init_time) & (df.lead_day == lead_day) & (df.zone == zone_id)]
+    snapshot = df[(df.init_time == init_time) & (df.lead_day == lead_day) & (df.region_v2 == state_name)]
     if snapshot.empty:
-        raise HTTPException(status_code=404, detail=f"no real grid points fall in zone {zone_id!r}")
-    clon, clat = ZONE_META[zone_id]["centroid"]
+        raise HTTPException(status_code=404, detail=f"no real grid points fall in {state_name!r}")
+    clon, clat = _state_meta()[state_id]["centroid"]
     rep = snapshot.assign(_d=((snapshot.latitude - clat) ** 2 + (snapshot.longitude - clon) ** 2)).sort_values("_d").iloc[0]
 
     engine = _engine()
-    row, region_v2 = engine.feature_row_for_explanation(
+    row, _region_v2 = engine.feature_row_for_explanation(
         init_time=rep.init_time, lead_day=int(rep.lead_day),
         latitude=float(rep.latitude), longitude=float(rep.longitude),
         forecast_precip_mm=float(rep.fcst_precip_mm), forecast_temp_c=float(rep.fcst_temp_c),
@@ -474,29 +400,50 @@ def explanations(
         query_row["wind_speed_10m"] = _train_period_mean_wind()
     analog_result = _analog_index().query(query_row, k=5, spatial_constraint="same_region", temporal_constraint="exact_month")
 
+    # Plain-English feature names - a non-expert should never see a raw
+    # Python column name like "hist_bust_precip_categorical_rate".
+    PLAIN_FEATURE_NAMES = {
+        "hist_bust_precip_categorical_rate": "How often forecasts have been wrong here before",
+        "hist_bust_temp_hard_rate": "How often temperature forecasts have been wrong here before",
+        "hist_mean_abs_error_precip_mm": "Typical rainfall forecast error in this area",
+        "hist_mean_abs_error_temp_c": "Typical temperature forecast error in this area",
+        "fcst_precip_mm": "How much rain is forecast",
+        "fcst_temp_c": "Forecast temperature",
+        "fcst_mslp_hpa": "Forecast air pressure pattern",
+        "fcst_precip_anomaly_vs_domain_mean": "Rain forecast is unusually high/low for this time of year",
+        "fcst_temp_anomaly_vs_domain_mean": "Temperature forecast is unusually high/low for this time of year",
+        "precip_forecast_jump": "Rain forecast changed a lot from the previous model run",
+        "temp_forecast_jump": "Temperature forecast changed a lot from the previous model run",
+        "wind_speed_10m": "Forecast wind speed",
+        "lead_day": "How many days ahead this forecast is for",
+        "month": "Time of year",
+        "region_v2": "Location",
+    }
+
     factors = []
     for f in result["top_features"]:
+        plain_name = PLAIN_FEATURE_NAMES.get(f["feature"], f["feature"].replace("_", " ").title())
         factors.append({
             "factorId": f"model-{f['feature']}",
-            "name": f["feature"].replace("_", " ").title(),
-            "plainReason": f["feature"].replace("_", " "),
-            "description": f"Model feature contribution for {f['feature']} (real SHAP value, rain_v1).",
+            "name": plain_name,
+            "plainReason": plain_name,
+            "description": f"Model input: {plain_name.lower()} (value={f['value']}).",
             "source": "model_output",
             "contribution": round(float(f["contribution"]), 4),
             "shapValue": round(float(f["contribution"]), 4),
             "direction": "positive_risk" if f["direction"] == "increases_bust_probability" else "negative_risk",
             "severity": "high" if abs(f["contribution"]) > 0.2 else ("elevated" if abs(f["contribution"]) > 0.1 else "low"),
             "evidenceValue": f"value={f['value']}",
-            "tooltip": "Real LightGBM/SHAP feature contribution - see docs/production_inference.md.",
+            "tooltip": "From the model's own real calculation for this forecast (SHAP feature contribution).",
         })
     for a in analog_result.analogs:
         factors.append({
             "factorId": f"analog-{a.rank}",
-            "name": f"Historical Analog #{a.rank} ({a.region}, {pd.Timestamp(a.historical_valid_time).date()})",
-            "plainReason": f"Similar past forecast in {a.region} realized {a.actual_precip_mm:.1f}mm vs {a.forecast_precip_mm:.1f}mm forecast",
+            "name": f"Similar past case: {a.region}, {pd.Timestamp(a.historical_valid_time).date()}",
+            "plainReason": f"A similar past forecast in {a.region} predicted {a.forecast_precip_mm:.1f}mm of rain, but {a.actual_precip_mm:.1f}mm actually fell",
             "description": (
-                f"Retrieved historical analog (similarity={a.similarity:.3f}, real ERA5-verified "
-                f"outcome) - evidence, not proof; similarity does not guarantee a similar outcome."
+                "A real, verified past forecast that closely resembles this one, and what actually "
+                "happened then. This is evidence, not proof - it does not guarantee the same outcome this time."
             ),
             "source": "historical_context",
             "contribution": None,
@@ -504,16 +451,16 @@ def explanations(
             "direction": "positive_risk" if a.actual_precip_mm > a.forecast_precip_mm else "negative_risk",
             "severity": "elevated",
             "evidenceValue": f"forecast={a.forecast_precip_mm:.1f}mm, actual={a.actual_precip_mm:.1f}mm",
-            "tooltip": "Real Phase 5 analog retrieval - never a fabricated case.",
+            "tooltip": "Real historical case retrieved by similarity search - never a fabricated example.",
         })
 
     return {
         "cycle": cycle,
         "leadDay": lead_day,
-        "region": ZONE_META[zone_id]["shortName"],
+        "region": state_name,
         "bulletinSummary": (
             result["human_readable_reasons"][0] if result["human_readable_reasons"]
-            else f"Model evidence and {len(analog_result.analogs)} historical analog(s) retrieved for {ZONE_META[zone_id]['shortName']} at Day {lead_day}."
+            else f"{len(factors)} reasons found for {state_name} at {lead_day} days ahead."
         ),
         "factors": factors,
     }
@@ -539,15 +486,13 @@ def historical_performance(
     if lead_day is not None:
         df = df[df.lead_day == lead_day]
     if region_id is not None:
-        df = df[df.zone == _resolve_zone_id(region_id)]
+        state_name = _state_meta()[_resolve_state_id(region_id)]["name"]
+        df = df[df.region_v2 == state_name]
 
-    group_cols = ["zone", "lead_day"]
     out = []
-    for (zid, ld), g in df.groupby(group_cols, observed=True):
-        if zid not in ZONE_META:
-            continue
+    for (state_name, ld), g in df.groupby(["region_v2", "lead_day"], observed=True):
         record = {
-            "region": ZONE_META[zid]["shortName"],
+            "region": state_name,
             "season": season,
             "leadDay": int(ld),
             "bustRate": round(float(g.bust_precip_categorical.mean()) * 100, 1),
@@ -559,9 +504,7 @@ def historical_performance(
             "missedHeavyRainEvents": int(g.missed_heavy_rain_event.sum()),
             "falseAlarmHeavyRain": int(g.false_alarm_heavy_rain.sum()),
         }
-        if variable == "all" or variable == "precipitation":
-            out.append(record)
-        elif variable == "temperature":
+        if variable in ("all", "precipitation", "temperature"):
             out.append(record)
     return out
 
@@ -632,9 +575,8 @@ def replay_event(
     anchor = events.loc[event_id]
 
     # Real forecast-evolution-across-lead-days for this one physical event:
-    # the same (init_time is NOT fixed here - valid_time is; different
-    # lead_days for the same valid_time come from different init_times) -
-    # so we instead show the real trajectory across lead_day using the
+    # valid_time is fixed, different lead_days come from different real
+    # init_times - so we show the real trajectory across lead_day using the
     # reference table filtered to this exact grid point + valid_time.
     df = _reference()
     same_point = df[

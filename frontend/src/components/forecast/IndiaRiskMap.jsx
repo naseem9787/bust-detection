@@ -1,29 +1,28 @@
 /**
  * IndiaRiskMap Component
- * High-fidelity, recognizable geographic visualization of the Indian subcontinent.
- * Visualizes 8 meteorological subdivisions with calibrated risk color semantics:
- * - Low risk -> cool/neutral (teal/green)
- * - Moderate risk -> warning range (amber/orange)
- * - High risk -> danger range (red/crimson)
+ * Real map of India's 29 production states/UTs, colored by how likely
+ * this forecast is to be substantially wrong in each one:
+ * - Low risk -> green
+ * - Moderate/Elevated risk -> yellow/orange
+ * - High risk -> red
  */
 
 import React, { useState, useMemo } from 'react';
-import {
-  INDIA_GEO_REGIONS,
-  OCEANIC_LANDMARKS,
-  ISLAND_GROUPS,
-} from '../../data/indiaGeoData.js';
+import { INDIA_STATE_REGIONS } from '../../data/indiaStatesGeo.js';
+import { OCEANIC_LANDMARKS, ISLAND_GROUPS } from '../../data/indiaGeoData.js';
 import { MapLegend } from '../ui/MapLegend.jsx';
 import { SegmentedControl } from '../ui/SegmentedControl.jsx';
 import { MapPinIcon } from '../icons/Icons.jsx';
 import { getBustRiskLevel, getConfidenceTier } from '../../utils/weatherRules.js';
 import { TOKENS } from '../../design-system/tokens.js';
 
+const INDIA_GEO_REGIONS = INDIA_STATE_REGIONS;
+
 // Static Layer Switcher Options (hoisted to prevent re-instantiation)
 const MAP_LAYER_OPTIONS = [
-  { id: 'risk', label: 'Bust Probability' },
-  { id: 'confidence', label: 'Confidence' },
-  { id: 'precip', label: 'Precip Error' },
+  { id: 'risk', label: 'Chance of Error' },
+  { id: 'confidence', label: 'Reliability' },
+  { id: 'precip', label: 'Rain Forecast Error' },
 ];
 
 // Atmospheric Graticule Lines (10° to 35°N, 70° to 95°E)
@@ -141,14 +140,22 @@ function IndiaRiskMapComponent({
     const map = new Map();
     INDIA_GEO_REGIONS.forEach((region) => {
       const metrics = regionalMetrics[region.id] || regionalMetrics[region.shortName] || {};
-      const bustProb = metrics.bustProbability ?? 0.35;
-      const confidence = metrics.confidence ?? 0.60;
-      const precipError = metrics.precipError ?? 5.0;
+      // Defaults only apply if a state is somehow missing from a live
+      // response - real calibrated bust probability is almost always well
+      // under 1%, so a near-zero default (not the old mock-era 35%) avoids
+      // misleadingly painting an undata'd state red.
+      const bustProb = metrics.bustProbability ?? 0.01;
+      const confidence = metrics.confidence ?? 0.99;
+      const precipError = metrics.precipError ?? 3.0;
 
+      // The map's fill color and the legend below it (MapLegend.jsx) both
+      // come from this SAME function (getBustRiskLevel) and the SAME real
+      // percentage cutoffs - a state's color on the map always matches
+      // exactly one legend band, never an independent color choice.
       let fillColor = '#10B981';
       if (mapLayer === 'confidence') {
         const tier = getConfidenceTier(confidence);
-        fillColor = TOKENS.colors.confidence[tier]?.color || '#F59E0B';
+        fillColor = TOKENS.colors.confidence[tier]?.color || '#EAB308';
       } else if (mapLayer === 'precip') {
         if (precipError > 12) fillColor = '#0284C7';
         else if (precipError > 6) fillColor = '#0EA5E9';
@@ -157,26 +164,26 @@ function IndiaRiskMapComponent({
         const riskLevel = getBustRiskLevel(bustProb);
         switch (riskLevel) {
           case 'low':
-            fillColor = '#10B981'; // Cool / Neutral
+            fillColor = '#10B981'; // green - matches legend "Low <1%"
             break;
           case 'moderate':
-            fillColor = '#F59E0B'; // Warning amber
+            fillColor = '#EAB308'; // yellow - matches legend "Moderate 1-3%"
             break;
           case 'elevated':
-            fillColor = '#F97316'; // Warning orange
+            fillColor = '#F97316'; // orange - matches legend "Elevated 3-6%"
             break;
           case 'high':
-            fillColor = '#EF4444'; // Danger red
-            break;
-          case 'extreme':
           default:
-            fillColor = '#991B1B'; // Deep severe maroon
+            fillColor = '#EF4444'; // red - matches legend "High >6%"
             break;
         }
       }
 
-      const bustPercent = Math.round(bustProb * 100);
-      const isSevere = bustProb >= 0.45;
+      // Shown with one decimal place below 1% (e.g. "0.3%") since almost
+      // every real value falls under 1% - rounding to whole percent would
+      // display "0%" for nearly the entire map and hide real differences.
+      const bustPercent = bustProb < 0.01 ? Math.round(bustProb * 1000) / 10 : Math.round(bustProb * 100);
+      const isSevere = bustProb >= 0.06; // matches legend "High >6%" band
       const displayValue =
         mapLayer === 'confidence'
           ? `${Math.round(confidence * 100)}%`
@@ -208,10 +215,10 @@ function IndiaRiskMapComponent({
           <MapPinIcon size={16} style={{ color: '#38BDF8' }} />
           <div>
             <div style={{ fontSize: '13px', fontWeight: 600, color: 'var(--text-primary)' }}>
-              Geographic Verification Map &bull; Indian Subcontinent
+              Map of India &bull; Forecast Risk by State
             </div>
             <div style={{ fontSize: '11px', color: 'var(--text-muted)' }}>
-              1.5° WeatherBench2 Grid &bull; Target: Day {leadDay} (+{leadDay * 24}h)
+              {leadDay} day{leadDay === 1 ? '' : 's'} ahead
             </div>
           </div>
         </div>
@@ -260,9 +267,7 @@ function IndiaRiskMapComponent({
       <div className="map-interactive-viewport">
         {/* Subtle Coordinates Bar */}
         <div className="map-coordinates-bar">
-          <span>DOMAIN: 6.0°N &ndash; 37.5°N &bull; 67.0°E &ndash; 98.0°E</span>
-          <span>&bull;</span>
-          <span>GRID: 1.5° (~160km)</span>
+          <span>Click any state to see its full forecast</span>
         </div>
 
         {/* Scalable Transform Wrapper */}
@@ -283,15 +288,15 @@ function IndiaRiskMapComponent({
             {/* Memoized Static Backdrop */}
             <StaticMapBackdrop />
 
-            {/* Indian Meteorological Subdivision Polygons */}
+            {/* India's 29 real states/UTs - colored by chance of a major forecast error */}
             {INDIA_GEO_REGIONS.map((region) => {
               const isSelected = region.shortName === selectedRegionId || region.id === selectedRegionId;
               const isHovered = region.shortName === hoveredRegion?.shortName || region.id === hoveredRegion?.id;
               const visual = regionVisuals.get(region.shortName) || {
                 fillColor: '#10B981',
-                bustPercent: 35,
+                bustPercent: 1,
                 isSevere: false,
-                displayValue: '35%',
+                displayValue: '1%',
               };
 
               return (
@@ -304,7 +309,7 @@ function IndiaRiskMapComponent({
                   style={{ cursor: 'pointer' }}
                   role="button"
                   tabIndex={0}
-                  aria-label={`${region.name}: ${visual.bustPercent}% bust probability`}
+                  aria-label={`${region.name}: ${visual.bustPercent}% chance of a major forecast error`}
                   onKeyDown={(e) => {
                     if (e.key === 'Enter' || e.key === ' ') {
                       e.preventDefault();
@@ -333,11 +338,11 @@ function IndiaRiskMapComponent({
                     />
                   )}
 
-                  {/* Selected Region Marker & Coordinate Centroid */}
+                  {/* Selected State Marker */}
                   {isSelected && (
                     <circle
                       cx={region.labelPoint.x}
-                      cy={region.labelPoint.y - 10}
+                      cy={region.labelPoint.y - 14}
                       r="5"
                       fill="#38BDF8"
                       stroke="#FFFFFF"
@@ -345,32 +350,19 @@ function IndiaRiskMapComponent({
                     />
                   )}
 
-                  {/* Region Name Label (High Contrast with Text Shadow) */}
+                  {/* With 29 states on screen, showing every full name/value
+                      permanently would be unreadable clutter - only a short
+                      2-letter code is always shown. The full name and value
+                      appear on hover (tooltip below) and for the selected
+                      state (sidebar panel), per the product's own "readable
+                      map, details on demand" guidance. */}
                   <text
                     x={region.labelPoint.x}
-                    y={region.labelPoint.y + 4}
+                    y={region.labelPoint.y + 3}
                     textAnchor="middle"
-                    fill={isSelected ? '#38BDF8' : '#F8FAFC'}
-                    fontSize={isSelected ? '11' : '10'}
+                    fill={isSelected || isHovered ? '#F8FAFC' : 'rgba(248, 250, 252, 0.55)'}
+                    fontSize={isSelected ? '10.5' : '8.5'}
                     fontWeight={isSelected ? '700' : '600'}
-                    fontFamily="var(--font-sans)"
-                    style={{
-                      pointerEvents: 'none',
-                      userSelect: 'none',
-                      textShadow: '0 1px 3px rgba(0, 0, 0, 0.9)',
-                    }}
-                  >
-                    {region.shortName}
-                  </text>
-
-                  {/* Numeric Value Label for Accessibility (Avoids relying only on color) */}
-                  <text
-                    x={region.labelPoint.x}
-                    y={region.labelPoint.y + 16}
-                    textAnchor="middle"
-                    fill={isSelected ? '#FFFFFF' : '#CBD5E1'}
-                    fontSize="9.5"
-                    fontWeight="600"
                     fontFamily="var(--font-mono)"
                     style={{
                       pointerEvents: 'none',
@@ -378,8 +370,27 @@ function IndiaRiskMapComponent({
                       textShadow: '0 1px 3px rgba(0, 0, 0, 0.9)',
                     }}
                   >
-                    {visual.displayValue}
+                    {region.shortCode}
                   </text>
+
+                  {isSelected && (
+                    <text
+                      x={region.labelPoint.x}
+                      y={region.labelPoint.y + 16}
+                      textAnchor="middle"
+                      fill="#38BDF8"
+                      fontSize="9.5"
+                      fontWeight="700"
+                      fontFamily="var(--font-mono)"
+                      style={{
+                        pointerEvents: 'none',
+                        userSelect: 'none',
+                        textShadow: '0 1px 3px rgba(0, 0, 0, 0.9)',
+                      }}
+                    >
+                      {visual.displayValue}
+                    </text>
+                  )}
                 </g>
               );
             })}
@@ -394,27 +405,23 @@ function IndiaRiskMapComponent({
                 {hoveredRegion.shortName}
               </span>
               <span className="badge badge-neutral" style={{ fontSize: '9px', padding: '1px 5px' }}>
-                Day {leadDay} (+{leadDay * 24}h)
+                {leadDay} day{leadDay === 1 ? '' : 's'} ahead
               </span>
             </div>
 
             <div style={{ display: 'flex', alignItems: 'baseline', gap: '8px', marginTop: '2px' }}>
               <div>
-                <span style={{ fontSize: '10px', color: 'var(--text-muted)' }}>Bust Probability: </span>
+                <span style={{ fontSize: '10px', color: 'var(--text-muted)' }}>Chance of major error: </span>
                 <strong style={{ color: '#F87171', fontSize: '12px', fontFamily: 'var(--font-mono)' }}>
                   {hoveredVisual.bustPercent}%
                 </strong>
               </div>
               <div>
-                <span style={{ fontSize: '10px', color: 'var(--text-muted)' }}>Confidence: </span>
+                <span style={{ fontSize: '10px', color: 'var(--text-muted)' }}>Reliability: </span>
                 <strong style={{ color: '#34D399', fontSize: '12px', fontFamily: 'var(--font-mono)' }}>
                   {hoveredVisual.confidencePercent}%
                 </strong>
               </div>
-            </div>
-
-            <div style={{ fontSize: '9.5px', color: 'var(--text-muted)', marginTop: '2px', borderTop: '1px solid var(--border-subtle)', paddingTop: '3px' }}>
-              Subdivisions: {hoveredRegion.subdivisions?.slice(0, 3).join(', ')}
             </div>
           </div>
         )}

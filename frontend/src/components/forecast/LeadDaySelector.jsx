@@ -51,22 +51,22 @@ export function LeadDaySelector({
           <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
             <ClockIcon size={14} style={{ color: '#38BDF8' }} />
             <span style={{ fontSize: '11px', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.04em', color: 'var(--text-secondary)' }}>
-              Forecast Lead Time
+              How Far Ahead
             </span>
           </div>
 
           <div
             className="badge badge-neutral tabular-nums"
             style={{ borderColor: '#38BDF8', color: '#38BDF8', fontWeight: 600 }}
-            title={`Initialized: ${cycleTimestamp}`}
+            title={`Forecast run: ${cycleTimestamp}`}
           >
-            Day {leadDay} (+{currentLeadHours}h)
+            {leadDay} day{leadDay === 1 ? '' : 's'} ahead
           </div>
 
           {isMediumRangeRisk && (
             <span className="badge badge-risk-elevated">
               <span className="badge-dot" />
-              Elevated Medium-Range Error Regime (Days 5–10)
+              Forecasts get less reliable this far ahead
             </span>
           )}
         </div>

@@ -67,27 +67,29 @@ export const TOKENS = {
         text: '#FCA5A5',
       },
     },
-    // Calibrated Forecast Confidence Tiers
+    // Forecast Reliability Tiers (reliability = 100% - chance of a major
+    // forecast error). Cutoffs match weatherRules.js getConfidenceTier,
+    // based on the real distribution of model output, not assumed values.
     confidence: {
       high: {
-        label: 'High Confidence',
-        range: '≥ 80%',
+        label: 'High',
+        range: '≥ 97%',
         color: '#10B981',
         bg: 'rgba(16, 185, 129, 0.12)',
         border: 'rgba(16, 185, 129, 0.35)',
         text: '#34D399',
       },
       moderate: {
-        label: 'Moderate Confidence',
-        range: '50% – 79%',
+        label: 'Moderate',
+        range: '94% – 97%',
         color: '#F59E0B',
         bg: 'rgba(245, 158, 11, 0.12)',
         border: 'rgba(245, 158, 11, 0.35)',
         text: '#FBBF24',
       },
       low: {
-        label: 'Low / Uncertain',
-        range: '< 50%',
+        label: 'Low',
+        range: '< 94%',
         color: '#F43F5E',
         bg: 'rgba(244, 63, 94, 0.12)',
         border: 'rgba(244, 63, 94, 0.35)',

@@ -1,7 +1,8 @@
 /**
  * RegionalSummary Component
- * Detailed intelligence analysis panel for the selected region.
- * Displays: Region, Bust Probability, Confidence, Expected Error, Historical Bust Rate, Primary Explanation.
+ * Detailed panel for the selected state: chance of a major forecast
+ * error, forecast reliability, expected forecast error, and why the
+ * model is flagging it (model evidence + historical context).
  */
 
 import React from 'react';
@@ -20,14 +21,14 @@ function RegionalSummaryComponent({
   if (!region || !forecastData) {
     return (
       <div className={`regional-summary-panel empty-state ${className}`}>
-        <span style={{ color: 'var(--text-muted)' }}>Select a region on the map to inspect verification details.</span>
+        <span style={{ color: 'var(--text-muted)' }}>Select a state on the map to see its forecast.</span>
       </div>
     );
   }
 
   const { verification, variables, meta } = forecastData;
-  const bustProbability = verification?.bustProbability ?? 0.35;
-  const confidence = verification?.confidence ?? 0.60;
+  const bustProbability = verification?.bustProbability ?? 0.01;
+  const confidence = verification?.confidence ?? 0.99;
   const riskLevel = verification?.riskLevel || getBustRiskLevel(bustProbability);
 
   const precip = variables?.precipitation || {};
@@ -48,65 +49,65 @@ function RegionalSummaryComponent({
             </h2>
           </div>
           <div style={{ fontSize: '11px', color: 'var(--text-muted)', marginTop: '2px' }}>
-            {region.bbox ? `${region.bbox.latMin}°–${region.bbox.latMax}°N &bull; ${region.bbox.lonMin}°–${region.bbox.lonMax}°E` : region.name}
+            {meta?.leadDay ? `Forecast for ${meta.leadDay} day${meta.leadDay === 1 ? '' : 's'} ahead` : region.name}
           </div>
         </div>
 
         <RiskBadge level={riskLevel} />
       </div>
 
-      {/* 2. Core Metrics: Visual Emphasis on Bust Probability & Confidence */}
+      {/* 2. Core Metrics: Chance of Error & Reliability */}
       <div className="regional-metrics-hero">
-        {/* Bust Probability Hero Block */}
+        {/* Chance of Major Forecast Error Hero Block */}
         <div className="bust-prob-hero-card">
-          <div className="stat-label">Bust Probability</div>
+          <div className="stat-label">Chance of Major Forecast Error</div>
           <div className="bust-prob-value tabular-nums">
             {formatPercent(bustProbability * 100)}
           </div>
           <div style={{ fontSize: '10px', color: 'var(--text-muted)' }}>
-            Exceeds 90th percentile threshold for Day {meta?.leadDay ?? 5}
+            Estimated chance this forecast turns out substantially wrong here
           </div>
         </div>
 
-        {/* Confidence Indicator Meter */}
+        {/* Reliability Indicator Meter */}
         <div className="confidence-hero-card">
           <ConfidenceIndicator confidence={confidence} />
         </div>
       </div>
 
-      {/* 3. Expected Forecast Errors Breakdown */}
+      {/* 3. Expected Forecast Error Breakdown */}
       <div className="expected-errors-section">
         <div style={{ fontSize: '11px', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.04em', color: 'var(--text-muted)', marginBottom: '6px' }}>
-          Expected Pointwise Errors (ECMWF vs ERA5)
+          Expected Forecast Error
         </div>
 
         <div className="errors-grid">
-          {/* Precipitation Error */}
+          {/* Rainfall Error */}
           <div className="error-item-box">
-            <span className="error-item-label">Precipitation |Error|</span>
+            <span className="error-item-label">Rainfall Error</span>
             <div style={{ display: 'flex', alignItems: 'baseline', gap: '4px' }}>
               <span className="error-item-value tabular-nums">
                 {formatPrecip(precip.absError)}
               </span>
               <span style={{ fontSize: '10px', color: 'var(--text-muted)' }}>
-                (Fcst: {formatPrecip(precip.forecastValue)} / Obs: {formatPrecip(precip.observedValue)})
+                (Forecast: {formatPrecip(precip.forecastValue)} / Observed: {formatPrecip(precip.observedValue)})
               </span>
             </div>
             {precip.categoryShift >= 2 && (
               <div style={{ fontSize: '10px', color: '#F97316', marginTop: '2px', fontWeight: 500 }}>
-                &bull; IMD Shift: {precip.categoryShift} categories apart
+                &bull; Rainfall may be significantly different from what was forecast
               </div>
             )}
             {precip.missedHeavyRain && (
               <div style={{ fontSize: '10px', color: '#EF4444', fontWeight: 600 }}>
-                &bull; Missed Heavy Rain Event (&ge;64.5mm)
+                &bull; A heavy rain event may have been missed
               </div>
             )}
           </div>
 
           {/* Temperature Error */}
           <div className="error-item-box">
-            <span className="error-item-label">2m Air Temp |Error|</span>
+            <span className="error-item-label">Temperature Error</span>
             <div style={{ display: 'flex', alignItems: 'baseline', gap: '4px' }}>
               <span className="error-item-value tabular-nums">
                 {formatTemp(temp.absError)}
@@ -116,7 +117,7 @@ function RegionalSummaryComponent({
               </span>
             </div>
             <div style={{ fontSize: '10px', color: temp.heatwaveMissFlag ? '#EF4444' : 'var(--text-muted)', marginTop: '2px' }}>
-              {temp.heatwaveMissFlag ? '&bull; Heatwave miss: >3.0°C threshold exceeded' : '&bull; Within normal thermal range'}
+              {temp.heatwaveMissFlag ? '&bull; Possible heatwave miss: temperature error over 3°C' : '&bull; Within normal range'}
             </div>
           </div>
 
@@ -124,14 +125,14 @@ function RegionalSummaryComponent({
           <div className="error-item-box" style={{ gridColumn: 'span 2' }}>
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
               <div>
-                <span className="error-item-label">Historical Baseline Bust Rate</span>
+                <span className="error-item-label">How Often This Has Happened Before</span>
                 <div style={{ fontSize: '12px', fontWeight: 600, color: 'var(--text-primary)' }}>
-                  {region.baselineRisk ? `${(region.baselineRisk * 100).toFixed(1)}%` : '42.9%'} (2018–2021 JJAS aggregate)
+                  {region.baselineRisk != null ? `${(region.baselineRisk * 100).toFixed(1)}%` : '—'} of forecasts here (2018–2021)
                 </div>
               </div>
 
               <div style={{ textAlign: 'right' }}>
-                <span className="error-item-label">MSLP Bias</span>
+                <span className="error-item-label">Air Pressure Difference</span>
                 <div className="tabular-nums" style={{ fontSize: '12px', color: 'var(--text-secondary)' }}>
                   {formatPressure(mslp.absError)}
                 </div>
@@ -141,12 +142,12 @@ function RegionalSummaryComponent({
         </div>
       </div>
 
-      {/* 4. Primary Explanation & Why Confidence is Low */}
+      {/* 4. Why Might This Forecast Be Wrong? (model evidence + historical context) */}
       <div className="explainability-container">
         <div style={{ display: 'flex', alignItems: 'center', gap: '6px', marginBottom: '4px' }}>
           <AlertTriangleIcon size={14} style={{ color: '#F59E0B' }} />
           <span style={{ fontSize: '12px', fontWeight: 700, color: '#FBBF24', letterSpacing: '0.02em' }}>
-            Primary Explanation &bull; Why is Confidence Low?
+            Why Might This Forecast Be Wrong?
           </span>
         </div>
 
@@ -155,26 +156,40 @@ function RegionalSummaryComponent({
           {bulletinSummary}
         </div>
 
-        {/* Feature Attribution Factors */}
+        {/* Model evidence + historical context - each factor tagged by source */}
         <div className="attribution-factors-list">
           {factors.map((factor) => {
-            const contributionPercent = Math.round(factor.contribution * 100);
+            const hasContribution = typeof factor.contribution === 'number';
+            const contributionPercent = hasContribution ? Math.round(factor.contribution * 100) : null;
+            const isHistorical = factor.source === 'historical_context';
             return (
               <div key={factor.factorId} className="attribution-factor-row">
                 <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline', marginBottom: '2px' }}>
                   <span style={{ fontWeight: 600, color: 'var(--text-primary)', fontSize: '11px' }}>
                     {factor.name}
                   </span>
-                  <span className="tabular-nums" style={{ fontSize: '10.5px', fontWeight: 600, color: '#F97316' }}>
-                    +{contributionPercent}% Risk
-                  </span>
+                  {hasContribution ? (
+                    <span
+                      className="tabular-nums"
+                      style={{ fontSize: '10.5px', fontWeight: 600, color: contributionPercent >= 0 ? '#F97316' : '#34D399' }}
+                    >
+                      {contributionPercent >= 0 ? '+' : ''}{contributionPercent}% Risk
+                    </span>
+                  ) : (
+                    <span
+                      className="badge badge-neutral"
+                      style={{ fontSize: '9px', padding: '1px 5px' }}
+                    >
+                      Similar past case
+                    </span>
+                  )}
                 </div>
                 <div style={{ fontSize: '10px', color: 'var(--text-secondary)', lineHeight: 1.35 }}>
-                  {factor.description}
+                  {isHistorical ? factor.plainReason : factor.description}
                 </div>
                 {factor.evidenceValue && (
                   <div style={{ fontSize: '9.5px', color: 'var(--text-muted)', marginTop: '1px', fontFamily: 'var(--font-mono)' }}>
-                    Evidence: {factor.evidenceValue}
+                    {factor.evidenceValue}
                   </div>
                 )}
               </div>

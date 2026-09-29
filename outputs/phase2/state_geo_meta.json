@@ -1,0 +1,408 @@
+[
+  {
+    "id": "rajasthan",
+    "name": "Rajasthan",
+    "bbox": [
+      69.48,
+      23.06,
+      78.26,
+      30.2
+    ],
+    "centroid": [
+      73.82,
+      26.63
+    ]
+  },
+  {
+    "id": "maharashtra",
+    "name": "Maharashtra",
+    "bbox": [
+      72.65,
+      15.6,
+      80.89,
+      22.03
+    ],
+    "centroid": [
+      75.43,
+      18.82
+    ]
+  },
+  {
+    "id": "andhra-pradesh",
+    "name": "Andhra Pradesh",
+    "bbox": [
+      76.76,
+      12.61,
+      84.76,
+      19.92
+    ],
+    "centroid": [
+      79.39,
+      16.26
+    ]
+  },
+  {
+    "id": "madhya-pradesh",
+    "name": "Madhya Pradesh",
+    "bbox": [
+      74.03,
+      21.08,
+      82.81,
+      26.87
+    ],
+    "centroid": [
+      79.39,
+      23.98
+    ]
+  },
+  {
+    "id": "uttar-pradesh",
+    "name": "Uttar Pradesh",
+    "bbox": [
+      77.08,
+      23.87,
+      84.63,
+      30.41
+    ],
+    "centroid": [
+      80.77,
+      27.14
+    ]
+  },
+  {
+    "id": "gujarat",
+    "name": "Gujarat",
+    "bbox": [
+      68.19,
+      20.12,
+      74.48,
+      24.71
+    ],
+    "centroid": [
+      72.04,
+      22.41
+    ]
+  },
+  {
+    "id": "arunachal-pradesh",
+    "name": "Arunachal Pradesh",
+    "bbox": [
+      91.54,
+      26.66,
+      97.42,
+      29.46
+    ],
+    "centroid": [
+      95.02,
+      28.06
+    ]
+  },
+  {
+    "id": "jammu-and-kashmir",
+    "name": "Jammu and Kashmir",
+    "bbox": [
+      73.76,
+      32.28,
+      79.56,
+      35.5
+    ],
+    "centroid": [
+      76.48,
+      33.88
+    ]
+  },
+  {
+    "id": "andaman-and-nicobar",
+    "name": "Andaman and Nicobar",
+    "bbox": [
+      92.21,
+      6.75,
+      94.28,
+      14.94
+    ],
+    "centroid": [
+      92.83,
+      12.61
+    ]
+  },
+  {
+    "id": "karnataka",
+    "name": "Karnataka",
+    "bbox": [
+      74.05,
+      11.57,
+      78.58,
+      18.46
+    ],
+    "centroid": [
+      75.53,
+      15.01
+    ]
+  },
+  {
+    "id": "tamil-nadu",
+    "name": "Tamil Nadu",
+    "bbox": [
+      76.23,
+      8.08,
+      80.35,
+      13.54
+    ],
+    "centroid": [
+      78.35,
+      10.8
+    ]
+  },
+  {
+    "id": "odisha",
+    "name": "Odisha",
+    "bbox": [
+      81.38,
+      17.8,
+      87.48,
+      22.56
+    ],
+    "centroid": [
+      84.45,
+      20.18
+    ]
+  },
+  {
+    "id": "bihar",
+    "name": "Bihar",
+    "bbox": [
+      83.32,
+      24.29,
+      88.29,
+      27.85
+    ],
+    "centroid": [
+      86.12,
+      25.9
+    ]
+  },
+  {
+    "id": "west-bengal",
+    "name": "West Bengal",
+    "bbox": [
+      85.83,
+      21.54,
+      89.88,
+      27.22
+    ],
+    "centroid": [
+      88.05,
+      24.42
+    ]
+  },
+  {
+    "id": "chhattisgarh",
+    "name": "Chhattisgarh",
+    "bbox": [
+      80.24,
+      17.78,
+      84.39,
+      24.11
+    ],
+    "centroid": [
+      81.5,
+      20.94
+    ]
+  },
+  {
+    "id": "uttarakhand",
+    "name": "Uttarakhand",
+    "bbox": [
+      77.56,
+      28.72,
+      81.02,
+      31.47
+    ],
+    "centroid": [
+      79.32,
+      30.09
+    ]
+  },
+  {
+    "id": "jharkhand",
+    "name": "Jharkhand",
+    "bbox": [
+      83.32,
+      21.97,
+      87.97,
+      25.35
+    ],
+    "centroid": [
+      85.16,
+      23.66
+    ]
+  },
+  {
+    "id": "assam",
+    "name": "Assam",
+    "bbox": [
+      89.69,
+      24.13,
+      96.02,
+      27.98
+    ],
+    "centroid": [
+      90.77,
+      26.06
+    ]
+  },
+  {
+    "id": "lakshadweep",
+    "name": "Lakshadweep",
+    "bbox": [
+      72.1,
+      8.27,
+      73.7,
+      11.71
+    ],
+    "centroid": [
+      73.68,
+      10.81
+    ]
+  },
+  {
+    "id": "himachal-pradesh",
+    "name": "Himachal Pradesh",
+    "bbox": [
+      75.58,
+      30.38,
+      79.0,
+      33.26
+    ],
+    "centroid": [
+      77.33,
+      31.82
+    ]
+  },
+  {
+    "id": "kerala",
+    "name": "Kerala",
+    "bbox": [
+      74.87,
+      8.3,
+      77.4,
+      12.79
+    ],
+    "centroid": [
+      76.45,
+      10.54
+    ]
+  },
+  {
+    "id": "mizoram",
+    "name": "Mizoram",
+    "bbox": [
+      92.26,
+      21.95,
+      93.44,
+      24.52
+    ],
+    "centroid": [
+      92.88,
+      23.23
+    ]
+  },
+  {
+    "id": "haryana",
+    "name": "Haryana",
+    "bbox": [
+      74.47,
+      27.66,
+      77.59,
+      30.93
+    ],
+    "centroid": [
+      76.23,
+      29.29
+    ]
+  },
+  {
+    "id": "manipur",
+    "name": "Manipur",
+    "bbox": [
+      92.97,
+      23.84,
+      94.75,
+      25.7
+    ],
+    "centroid": [
+      93.87,
+      24.77
+    ]
+  },
+  {
+    "id": "meghalaya",
+    "name": "Meghalaya",
+    "bbox": [
+      89.82,
+      25.03,
+      92.8,
+      26.12
+    ],
+    "centroid": [
+      91.27,
+      25.58
+    ]
+  },
+  {
+    "id": "tripura",
+    "name": "Tripura",
+    "bbox": [
+      91.15,
+      22.94,
+      92.34,
+      24.53
+    ],
+    "centroid": [
+      91.66,
+      23.74
+    ]
+  },
+  {
+    "id": "punjab",
+    "name": "Punjab",
+    "bbox": [
+      73.87,
+      29.55,
+      76.93,
+      32.58
+    ],
+    "centroid": [
+      75.64,
+      31.06
+    ]
+  },
+  {
+    "id": "goa",
+    "name": "Goa",
+    "bbox": [
+      73.68,
+      14.9,
+      74.34,
+      15.8
+    ],
+    "centroid": [
+      74.11,
+      15.35
+    ]
+  },
+  {
+    "id": "sikkim",
+    "name": "Sikkim",
+    "bbox": [
+      88.02,
+      27.08,
+      88.92,
+      28.13
+    ],
+    "centroid": [
+      88.46,
+      27.61
+    ]
+  }
+]
