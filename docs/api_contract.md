@@ -352,3 +352,92 @@ variable crossed its bust threshold.
 8. **If an endpoint 404s with a structured `error` field**, that means data
    genuinely doesn't exist yet (e.g. no batch run) — show that state
    honestly, don't retry-loop expecting it to appear.
+
+---
+
+## Phase 6: `/api/v1` frontend adapter
+
+The endpoints above (root-mounted, no prefix) are the actual production
+API and are unchanged by this section - `/predict`, `/explain`, `/analogs`,
+etc. keep their exact original schemas. A separate, thin reshaping layer
+was added in `src/production/frontend_adapter.py`, mounted under
+`/api/v1`, to match the schema the React frontend (`frontend/`,
+`FRONTEND_API_CONTRACT.md`) expects. It calls the same
+`ProductionInferenceEngine`, the same analog index, and the same event
+index as the routes above - it does not reimplement, retrain, or
+recalibrate anything.
+
+### Why `/api/v1` exists
+
+The frontend's `api.js` is hardcoded to call `/api/v1/{forecast,regions,
+regions/{id},explanations,historical-performance,cycles,replay/events,
+replay/event}` with camelCase JSON and an 8-zone region model. Rather than
+changing the validated root API to match, a separate router keeps the two
+fully independent: the root API stays exactly as Phase 4/5 left it, and
+`/api/v1` is free to reshape data however the frontend needs without ever
+touching model artifacts, calibration, or the analog/event machinery.
+
+### 8-zone presentation geography vs. 29-state production geography
+
+`rain_v1`/`temperature_v1` predict using the 29-state `region_v2`
+geography (`src/phase2/geography.py`) - this is what `/predict`,
+`/explain`, `/analogs`, and the root `/regions` all use, and it is
+unchanged. The frontend's India choropleth instead expects exactly 8
+presentation zones (`western-himalaya`, `northwest-india`,
+`indo-gangetic-plain`, `northeast-india`, `central-india`, `west-coast`,
+`east-coast`, `south-peninsula`).
+
+`/api/v1/regions` etc. map the 29 real states into these 8 zones via a
+direct `STATE_TO_ZONE` table in `frontend_adapter.py`, not by re-deriving
+zones from lat/lon boxes. Inspecting the dormant `src/regions.py` 8-zone
+module (bounding boxes matching the frontend's own numbers) during this
+integration surfaced a real, pre-existing bug: its South Peninsula box is
+fully nested inside its West Coast box, so naive first-match bounding-box
+classification always resolves South Peninsula points to West Coast -
+South Peninsula would never receive data. That module is left untouched
+(nothing else depends on it); the adapter avoids it entirely.
+
+Most states map unambiguously (the frontend's own zone names name them
+explicitly, e.g. "West Coast (Konkan/Goa/Kerala)" -> Kerala). A handful
+don't appear in any zone description, or are split across two zone
+descriptions (Maharashtra's Konkan-coast-vs-Vidarbha-interior, Tamil
+Nadu's coast-vs-interior) - `region_v2` is state-level only, so a
+sub-state split isn't possible from existing data. Those get a disclosed,
+documented judgment call in `STATE_TO_ZONE`'s comments, the same honesty
+convention as the existing Telangana/Ladakh `known_limitation` note in
+the model registry.
+
+### Endpoint mapping
+
+| `/api/v1` route | Backed by (root API / real artifacts) |
+|---|---|
+| `GET /forecast` | `ProductionInferenceEngine.predict()` called on every real domain grid point at the most recent real verified archive `init_time` for the requested `lead_day`; aggregated into the 8 zones. **`cycle` is accepted but not honored as a live NWP date** - this system does not ingest live operational forecasts; the response's `meta.timestamp`/`disclaimer` say which real archive date was actually used. |
+| `GET /regions`, `GET /regions/{id}` | Real 2018-2020 train-split aggregates from `models/phase5/reference.parquet`, grouped by zone |
+| `GET /explanations` | `explain.explain()` (real SHAP) + `AnalogIndex.query()` (real analogs), flattened into one `factors[]` array tagged `source: "model_output"` / `"historical_context"` - the root `/explain` endpoint's `model_evidence`/`historical_analogs` separation is preserved internally, only reshaped at this boundary |
+| `GET /historical-performance` | Real aggregates from `reference.parquet`. JJAS is the only season with real data (Phase 2-5 scope) - other seasons return `[]`, never a fabricated record |
+| `GET /cycles` | The most recent real `init_time`s actually present in the archive, not fictional future dates |
+| `GET /replay/events`, `GET /replay/event` | One real, ERA5-verified showcase case (Jharkhand, valid 2018-07-24, real categorical rain bust) with its real Day 1-10 forecast trajectory from `reference.parquet`. *Correction: an earlier Phase 5 report cited a different "92.8mm forecast vs 3.4mm actual" Jharkhand figure as a real case - that number pair was actually a synthetic `/explain` test-query parameter, not a verified outcome, and doesn't appear in the real event index. This showcase case replaces it with a genuinely verified record.* |
+
+### Known contract-doc-vs-actual-code discrepancy (resolved in favor of code)
+
+`FRONTEND_API_CONTRACT.md` documents `regions[].bbox` as an array
+`[lonMin, latMin, lonMax, latMax]`, but the actual
+`RegionalSummary.jsx` reads `region.bbox.{latMin,latMax,lonMin,lonMax}`
+as an object. `/api/v1/regions` returns the object shape the real
+component needs; the frontend's separate static `indiaGeoData.js` (used
+for the SVG map itself) keeps its own independent array-shaped `bbox`
+and is untouched.
+
+### A startup-timing change, not a behavior change
+
+The analog index's `warm_cache()` costs a one-time ~103s (see
+`docs/historical_analogs.md` Performance) and was originally deferred to
+the first `/explain` call to keep server startup fast. Once the frontend
+fires `/api/v1/forecast`, `/api/v1/explanations`, and
+`/api/v1/historical-performance` concurrently on page load, that 103s CPU
+spike on first use starves the other requests past the frontend's 8s
+timeout and silently triggers its mock-data fallback - the live backend
+looks broken even though every endpoint is correct. `src/production/
+api.py`'s `lifespan` now warms the analog index at startup instead - a
+one-time ~100s+ cost paid once when the backend process starts, not
+per-request. No endpoint's request/response schema changed.

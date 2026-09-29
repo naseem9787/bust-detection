@@ -15,6 +15,7 @@ from datetime import datetime, timezone
 
 import pandas as pd
 from fastapi import FastAPI, HTTPException, Query
+from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import JSONResponse
 
 from . import registry
@@ -73,6 +74,19 @@ async def lifespan(app: FastAPI):
     # docs/production_inference.md Performance section)
     _state["engine"] = ProductionInferenceEngine()
     _state["started_at"] = datetime.now(timezone.utc)
+    # Phase 6 frontend integration: the analog index's warm_cache() costs a
+    # one-time ~103s (see docs/historical_analogs.md Performance) and was
+    # originally deferred to the first /explain call to keep server startup
+    # fast. Once the frontend calls /api/v1/forecast, /api/v1/explanations,
+    # and /api/v1/historical-performance concurrently, that 103s CPU spike
+    # on first use starves the other requests past the frontend's 8s
+    # timeout and triggers its mock fallback. Warming it here instead - a
+    # one-time startup cost, paid once when the backend process starts, not
+    # per-request - fixes that without changing any endpoint's behavior.
+    try:
+        _analog_index()
+    except Exception:
+        pass  # analog artifacts not built yet - /explain etc. still 503 gracefully
     yield
     _state.clear()
 
@@ -88,6 +102,21 @@ app = FastAPI(
         "guarantee of accuracy."
     ),
 )
+
+# CORS for the React/Vite frontend (Phase 6 integration - see
+# FRONTEND_API_CONTRACT.md and src/production/frontend_adapter.py). Only
+# the frontend's known dev-server origin is allowed; this does not affect
+# any existing root endpoint's behavior.
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["http://localhost:3000"],
+    allow_methods=["GET", "POST"],
+    allow_headers=["*"],
+)
+
+from .frontend_adapter import router as _frontend_adapter_router  # noqa: E402
+
+app.include_router(_frontend_adapter_router)
 
 
 def _engine() -> ProductionInferenceEngine:
