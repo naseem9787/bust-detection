@@ -7,6 +7,7 @@ import React from 'react';
 import { RadarIcon, MenuIcon } from '../icons/Icons.jsx';
 import { DesktopNav } from './DesktopNav.jsx';
 import { FORECAST_CYCLES } from './forecastCycles.js';
+import { IS_SNAPSHOT } from '../../services/api.js';
 
 function AppHeaderComponent({
   currentRoute = 'forecast',
@@ -71,9 +72,9 @@ function AppHeaderComponent({
           </div>
 
           {/* Operational Status Dot */}
-          <div className="header-status-pill" style={{ color: '#F59E0B' }} title="Serving archived 2018–2021 forecasts; no live NWP feed">
+          <div className="header-status-pill" style={{ color: '#F59E0B' }} title={IS_SNAPSHOT ? 'Offline demo: saved real API responses for the archived 2021-09-30 12Z run; no live feed' : 'Serving archived 2018–2021 forecasts; no live NWP feed'}>
             <span className="badge-dot" style={{ backgroundColor: '#F59E0B' }} />
-            <span className="desktop-only">ARCHIVE DATA</span>
+            <span className="desktop-only">{IS_SNAPSHOT ? 'OFFLINE DEMO · ARCHIVE DATA' : 'ARCHIVE DATA'}</span>
           </div>
         </div>
       </div>
