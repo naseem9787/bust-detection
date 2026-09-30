@@ -5,6 +5,7 @@
 #   bash scripts/deploy_demo.sh            # reuse data/demo_snapshot if present
 #   REBUILD_SNAPSHOT=1 bash scripts/deploy_demo.sh
 set -euo pipefail
+export MSYS_NO_PATHCONV=1   # Git Bash would otherwise rewrite /bust-detection/ into a Windows path
 cd "$(dirname "$0")/.."
 ROOT="$PWD"
 SNAP="$ROOT/data/demo_snapshot"
