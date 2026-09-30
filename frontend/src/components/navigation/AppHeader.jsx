@@ -11,7 +11,7 @@ import { FORECAST_CYCLES } from './forecastCycles.js';
 function AppHeaderComponent({
   currentRoute = 'forecast',
   onNavigate,
-  selectedCycle = '2026-09-29 00Z',
+  selectedCycle = '2021-09-30 12Z',
   onCycleChange,
   onOpenMobileNav,
 }) {
@@ -29,14 +29,14 @@ function AppHeaderComponent({
             <MenuIcon size={18} />
           </button>
 
-          {/* NCMRWF MoES Brand Badge */}
+          {/* Team brand badge */}
           <div
             style={{ display: 'flex', alignItems: 'center', gap: '8px', cursor: 'pointer' }}
             onClick={() => onNavigate('forecast')}
             title="Go to Forecast"
           >
             <RadarIcon size={18} style={{ color: '#38BDF8' }} />
-            <span className="brand-badge">NCMRWF</span>
+            <span className="brand-badge">TWP</span>
           </div>
 
           <div className="header-title-box">
@@ -44,7 +44,7 @@ function AppHeaderComponent({
               Forecast Bust Detection &amp; Verification
             </div>
             <div className="header-sub-title">
-              SIH 26079 &bull; Ministry of Earth Sciences &bull; Medium-Range NWP
+              SIH 2026 &bull; PS 26079 &bull; Research prototype on archived ECMWF HRES / ERA5 data
             </div>
           </div>
         </div>
@@ -71,9 +71,9 @@ function AppHeaderComponent({
           </div>
 
           {/* Operational Status Dot */}
-          <div className="header-status-pill" style={{ color: '#10B981' }} title="Phase 0/1 Model Feed Online">
-            <span className="badge-dot" style={{ backgroundColor: '#10B981' }} />
-            <span className="desktop-only">ONLINE</span>
+          <div className="header-status-pill" style={{ color: '#F59E0B' }} title="Serving archived 2018–2021 forecasts; no live NWP feed">
+            <span className="badge-dot" style={{ backgroundColor: '#F59E0B' }} />
+            <span className="desktop-only">ARCHIVE DATA</span>
           </div>
         </div>
       </div>

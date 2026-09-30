@@ -14,19 +14,19 @@ export function AboutPage() {
       <div className="analysis-header-panel">
         <div className="analysis-header-eyebrow">
           <HelpCircleIcon size={14} style={{ color: '#38BDF8' }} />
-          <span>MoES &bull; NCMRWF Operational Architecture &bull; SIH Problem Statement 26079</span>
+          <span>Research prototype &bull; SIH 2026 Problem Statement 26079</span>
         </div>
 
         <div className="analysis-header-top">
           <div className="analysis-title-group">
             <h1>About the Meteorological Bust Detection Platform</h1>
             <div style={{ fontSize: '12.5px', color: 'var(--text-secondary)', marginTop: '6px', maxWidth: '920px', lineHeight: 1.55 }}>
-              This platform operationalizes an AI-driven medium-range Numerical Weather Prediction (NWP) forecast bust detection system for the <strong>Ministry of Earth Sciences (MoES)</strong> and <strong>NCMRWF</strong>. It tracks, flags, and explains forecast breakdown across <strong>Day 1 through Day 10</strong> lead times using verified ground truth from ERA5 reanalysis and IMD station networks.
+              This research prototype, built by team TWP for SIH 2026 problem statement 26079 (<strong>Ministry of Earth Sciences</strong>), estimates where a medium-range NWP forecast is likely to bust, and explains why, across <strong>Day 1 through Day 10</strong> lead times. It is validated on archived ECMWF HRES forecasts with ERA5 reanalysis as verified truth; it does not ingest live forecasts.
             </div>
           </div>
 
           <div style={{ display: 'flex', alignItems: 'center', gap: '8px', flexShrink: 0 }}>
-            <span className="badge badge-neutral" style={{ fontFamily: 'var(--font-mono)' }}>MoES / NCMRWF</span>
+            <span className="badge badge-neutral" style={{ fontFamily: 'var(--font-mono)' }}>Team TWP</span>
             <span className="badge badge-subtle">SIH 26079</span>
           </div>
         </div>
@@ -37,16 +37,16 @@ export function AboutPage() {
         <Card title="Institutional Stakeholders" icon={RadarIcon}>
           <div style={{ display: 'flex', flexDirection: 'column', gap: '8px', fontSize: '12px', color: 'var(--text-secondary)' }}>
             <div>
-              <strong style={{ color: 'var(--text-primary)' }}>Nodal Ministry:</strong>
+              <strong style={{ color: 'var(--text-primary)' }}>Problem Statement From:</strong>
               <div>Ministry of Earth Sciences (MoES), Government of India</div>
             </div>
             <div>
-              <strong style={{ color: 'var(--text-primary)' }}>Operational Agency:</strong>
-              <div>National Centre for Medium Range Weather Forecasting (NCMRWF)</div>
+              <strong style={{ color: 'var(--text-primary)' }}>Intended Users:</strong>
+              <div>NWP forecasters &amp; verification teams (not yet deployed with any agency)</div>
             </div>
             <div>
-              <strong style={{ color: 'var(--text-primary)' }}>Verification Standards:</strong>
-              <div>India Meteorological Department (IMD) Rainfall Classification</div>
+              <strong style={{ color: 'var(--text-primary)' }}>Rain-Bust Rule Uses:</strong>
+              <div>India Meteorological Department (IMD) rainfall intensity categories</div>
             </div>
           </div>
         </Card>
@@ -62,8 +62,8 @@ export function AboutPage() {
               <div>ERA5 Reanalysis (1959–2023) at matching 1.5° grid</div>
             </div>
             <div>
-              <strong style={{ color: 'var(--text-primary)' }}>Operational Swap:</strong>
-              <div>Seamless swap ready for NCMRWF NCUM/NEPS &amp; IMD 0.25° grid</div>
+              <strong style={{ color: 'var(--text-primary)' }}>Future Inputs:</strong>
+              <div>Designed to accept other NWP sources (e.g. NCUM/NEPS) and IMD 0.25° rainfall; not yet tested</div>
             </div>
           </div>
         </Card>

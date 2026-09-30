@@ -16,7 +16,7 @@ export const MOCK_CYCLES = [
   {
     id: '2026-09-29T00:00:00Z',
     code: '2026-09-29 00Z',
-    label: '2026-09-29 00Z (Latest Operational)',
+    label: '2026-09-29 00Z (synthetic demo cycle)',
     model: 'ECMWF HRES Deterministic',
     truthBaseline: 'ERA5 Reanalysis',
     gridResolution: '1.5° equiangular (240x121)',

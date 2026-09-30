@@ -29,7 +29,7 @@ function ExplanationPanelComponent({
   factors = [],
   regionName = 'West Coast',
   leadDay = 5,
-  cycle = '2026-09-29 00Z',
+  cycle = '2021-09-30 12Z',
   bulletinSummary = null,
   className = '',
 }) {

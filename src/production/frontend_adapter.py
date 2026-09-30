@@ -433,17 +433,19 @@ def explanations(
     factors = []
     for f in result["top_features"]:
         plain_name = PLAIN_FEATURE_NAMES.get(f["feature"], f["feature"].replace("_", " ").title())
+        # raw floats (e.g. 95.84207916259766) read as noise in the UI - show 2 decimals
+        value = f"{f['value']:.2f}" if isinstance(f["value"], float) else f["value"]
         factors.append({
             "factorId": f"model-{f['feature']}",
             "name": plain_name,
             "plainReason": plain_name,
-            "description": f"Model input: {plain_name.lower()} (value={f['value']}).",
+            "description": f"Model input: {plain_name.lower()} (value={value}).",
             "source": "model_output",
             "contribution": round(float(f["contribution"]), 4),
             "shapValue": round(float(f["contribution"]), 4),
             "direction": "positive_risk" if f["direction"] == "increases_bust_probability" else "negative_risk",
             "severity": "high" if abs(f["contribution"]) > 0.2 else ("elevated" if abs(f["contribution"]) > 0.1 else "low"),
-            "evidenceValue": f"value={f['value']}",
+            "evidenceValue": f"value={value}",
             "tooltip": "From the model's own real calculation for this forecast (SHAP feature contribution).",
         })
     for a in analog_result.analogs:

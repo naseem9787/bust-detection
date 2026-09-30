@@ -1,11 +1,73 @@
 # AI-Based Forecast Bust Detection for Medium-Range Weather Forecasts
 
-SIH Problem Statement **26079** (Ministry of Earth Sciences / NCMRWF).
+**Smart India Hackathon 2026 · Problem Statement 26079 · Team TWP**
 
-Goal: flag regions and lead times (Day 1-10) where a medium-range NWP forecast
-is likely to have a large error ("bust"), using historical forecast-vs-observed
-error behaviour - with a confidence map, bust probability, error-prone-area
-detection, and an explainable reason for low confidence.
+> Don't just ask what the weather forecast says. Ask where the forecast should be trusted.
+
+We are **not** building another weather model. This is a **forecast reliability layer** that sits on
+top of an existing NWP forecast and estimates, for each Indian state/UT and each lead day (Day 1-10):
+
+- the **chance of a major forecast error** ("bust"), from LightGBM models for rain and temperature,
+- **why** the forecast is flagged (SHAP feature contributions turned into plain-English reasons),
+- **similar past forecasts** and what actually happened then (analog search over 1.79 M past cases),
+- the historical error context for that state and lead day.
+
+![Dashboard: state map of chance of major rainfall-forecast error, Day 3, real archived 2021 run](docs/images/dashboard_bihar_day3.png)
+
+*Real screenshot of the prototype running on archived ECMWF HRES data from the 2021 hold-out year.
+Bihar, forecast issued 30 Sep 2021 12Z, Day 3: the forecast said 95.8 mm, ERA5 recorded 16.4 mm (a
+heavy-rain false alarm). The model rated it 37.6 %, the highest in India for that run.*
+
+### Results (held-out historical evaluation)
+
+Trained on monsoon (JJAS) 2018-2020, tested on the **unseen 2021** season (446,520 forecast cases).
+
+| Target | ROC-AUC | Brier Skill Score | PR-AUC (base rate) |
+|---|---|---|---|
+| Rain bust (≥ 2 IMD rainfall categories off, or heavy rain missed / falsely forecast) | **0.913** | 0.31 | 0.46 (0.023) |
+| Temperature bust (2 m error > 3 °C) | **0.825** | 0.10 | 0.25 (0.072) |
+
+- Rain ROC-AUC falls from 0.97 at Day 1 to 0.87 at Day 10, and is ≥ 0.80 in 28 of 29 states.
+- Stable across different train/test years (rain ROC-AUC 0.908 / 0.907 / 0.913).
+- The forecast's own values carry most of the signal (ablation: 0.69 → 0.92 when they are added).
+- Leakage control: future observations are never model inputs; thresholds and historical statistics
+  are fit on training years only.
+
+Full numbers: `models/registry/*.json`, `outputs/phase3/`. API contract: `docs/api_contract.md`.
+
+### Honest status
+
+This is a research prototype validated on **historical** ECMWF HRES forecasts (via WeatherBench2)
+with ERA5 reanalysis as truth. It does **not** ingest live forecasts; operational use needs an
+authorized live NWP feed. It is not affiliated with or deployed by any agency.
+
+### Run the prototype
+
+```bash
+# backend (FastAPI, port 8000) - the first start warms the analog index (~2 min)
+.venv\Scripts\python -m uvicorn src.production.api:app --port 8000
+# frontend (React + Vite, port 3000, proxies /api to the backend)
+npm --prefix frontend install
+npm --prefix frontend run dev
+```
+
+The trained models (`models/artifacts/`, `models/registry/`) are committed. The 298 MB analog
+reference set (`models/phase5/reference.parquet`) is gitignored: rebuild it with the Phase 0-3
+pipeline below, then `python -m src.phase5.build_analog_index`.
+
+### Build history
+
+| Phase | What it added |
+|---|---|
+| 0 | Data pipeline: ECMWF HRES + ERA5 from WeatherBench2, 2018-2021 error database (20.5 M rows) |
+| 1 | Forecast error atlas, baselines, chronological evaluation |
+| 2 | First LightGBM bust model, bust-definition audit, 29-state geography, leakage audit |
+| 3 | Ablation, robustness (year / lead day / state), calibration, ensemble pilot |
+| 4 | Production inference engine + FastAPI service |
+| 5 | Historical analog search ("similar past forecasts") |
+| 6 | React dashboard + `/api/v1` frontend adapter |
+
+The sections below are the original phase-by-phase notes.
 
 ## A note on the Kaggle dataset
 
@@ -136,19 +198,17 @@ minority of overall bust occurrences (see
 this stage - Phase 1's job is to establish that honestly, not to be
 predictive yet.
 
-## Roadmap (Phase 2+)
+## Next steps
 
-1. **Baselines + LightGBM**: predict bust probability from spread, run-to-run
-   jumpiness, model disagreement, regime indices (MJO/ENSO), lead day, region.
-2. **Past-analog search**: FAISS over a compressed representation of each
-   forecast map, to answer "which past forecasts looked like this one, and
-   how did they fail?" - directly matches the problem statement's ask.
-3. **Explainability**: SHAP -> forecaster-style bulletin text.
-4. **Calibration**: isotonic regression / conformal prediction so
-   "confidence" numbers are honestly calibrated, not just a raw model score.
-5. **Dashboard/API**: FastAPI + a map UI, Day 1-10 slider, region click-through
-   for reasons, replay mode for known bust events (Biparjoy 2023, Wayanad 2024).
+The original roadmap (LightGBM, analog search, SHAP explanations, calibration,
+API + dashboard) is implemented - see the build history at the top. Still open:
 
-See the full roadmap discussion in the project chat history for team roles,
-tech stack, and pitfalls to avoid (data leakage, testing on random days
-instead of held-out later years, etc.).
+1. **Live input**: connect an authorized live NWP feed (e.g. NCMRWF NCUM/NEPS)
+   and retrain on that model's own error history.
+2. **Better truth and resolution**: IMD 0.25° gridded rainfall as truth, 0.25°
+   forecast fields, and current state boundaries (the boundary file predates
+   the Telangana and Ladakh splits).
+3. **Ensemble spread**: promote the ensemble features from the Phase 3 pilot
+   once they can be computed at full scale.
+4. **Case replays**: recent high-impact events (e.g. Biparjoy 2023, Wayanad
+   2024) need forecast data beyond the 2016-2022 WeatherBench2 HRES archive.
