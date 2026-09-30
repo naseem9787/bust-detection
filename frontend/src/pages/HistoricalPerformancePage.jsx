@@ -51,8 +51,8 @@ const SUBDIVISIONS = [
 
 const VARIABLES = [
   { id: 'all', label: 'All Variables (Bust Index)', icon: GaugeIcon, unit: '% Bust Rate', scaleMax: 60 },
-  { id: 'precip', label: 'Precipitation (tp)', icon: CloudRainIcon, unit: 'mm &bull; % Shift', scaleMax: 14 },
-  { id: 'temp', label: '2m Temperature (t2m)', icon: ThermometerIcon, unit: '°C &bull; >3°C Err', scaleMax: 3.2 },
+  { id: 'precip', label: 'Precipitation (tp)', icon: CloudRainIcon, unit: 'mm • % Shift', scaleMax: 14 },
+  { id: 'temp', label: '2m Temperature (t2m)', icon: ThermometerIcon, unit: '°C • >3°C Err', scaleMax: 3.2 },
   { id: 'wind', label: '10m Wind Speed (ws10)', icon: WindIcon, unit: 'm/s MAE', scaleMax: 3.6 },
   { id: 'mslp', label: 'MSLP (Pressure)', icon: LayersIcon, unit: 'hPa MAE', scaleMax: 2.8 },
 ];

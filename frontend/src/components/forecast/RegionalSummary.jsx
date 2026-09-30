@@ -78,7 +78,7 @@ function RegionalSummaryComponent({
       {/* 3. Expected Forecast Error Breakdown */}
       <div className="expected-errors-section">
         <div style={{ fontSize: '11px', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.04em', color: 'var(--text-muted)', marginBottom: '6px' }}>
-          Expected Forecast Error
+          Verified Forecast Error (archived case vs ERA5)
         </div>
 
         <div className="errors-grid">
@@ -117,7 +117,7 @@ function RegionalSummaryComponent({
               </span>
             </div>
             <div style={{ fontSize: '10px', color: temp.heatwaveMissFlag ? '#EF4444' : 'var(--text-muted)', marginTop: '2px' }}>
-              {temp.heatwaveMissFlag ? '&bull; Possible heatwave miss: temperature error over 3°C' : '&bull; Within normal range'}
+              {temp.heatwaveMissFlag ? '• Possible heatwave miss: temperature error over 3°C' : '• Within normal range'}
             </div>
           </div>
 

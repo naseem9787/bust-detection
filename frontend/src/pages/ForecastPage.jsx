@@ -36,7 +36,7 @@ import { EmptyState } from '../components/feedback/EmptyState.jsx';
 
 const EMPTY_REGIONAL_METRICS = {};
 
-export function ForecastPage({ selectedCycle = '2026-09-29 00Z' }) {
+export function ForecastPage({ selectedCycle = '2021-09-30 12Z' }) {
   // Page State
   const [leadDay, setLeadDay] = useState(5);
   const [selectedRegionShortName, setSelectedRegionShortName] = useState('Maharashtra');

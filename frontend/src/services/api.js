@@ -330,14 +330,14 @@ export function normalizeForecastPayload(payload, leadDay = 5) {
  * for a specific forecast initialization cycle, lead day (1-10), and region.
  *
  * @param {Object} params
- * @param {string} [params.cycle='2026-09-29 00Z'] - Forecast initialization cycle
+ * @param {string} [params.cycle='2021-09-30 12Z'] - Forecast initialization cycle
  * @param {number} [params.leadDay=5] - Forecast lead time day (1 to 10)
  * @param {string} [params.regionId='west-coast'] - Region identifier
  * @param {boolean} [params.forceReload=false] - Bypass cache
  * @returns {Promise<Object>} Formatted forecast verification payload
  */
 export async function getForecast({
-  cycle = '2026-09-29 00Z',
+  cycle = '2021-09-30 12Z',
   leadDay = 5,
   regionId = 'west-coast',
   forceReload = false,
@@ -415,14 +415,14 @@ export async function getRegions({ forceReload = false } = {}) {
  * @param {string} params.regionId - Region identifier
  * @param {string} [params.season='monsoon_JJAS'] - Meteorological season
  * @param {number} [params.leadDay=5] - Forecast lead day
- * @param {string} [params.cycle='2026-09-29 00Z'] - Forecast cycle
+ * @param {string} [params.cycle='2021-09-30 12Z'] - Forecast cycle
  * @returns {Promise<Object>} Regional analysis payload
  */
 export async function getRegionAnalysis({
   regionId = 'west-coast',
   season = 'monsoon_JJAS',
   leadDay = 5,
-  cycle = '2026-09-29 00Z',
+  cycle = '2021-09-30 12Z',
   forceReload = false,
 } = {}) {
   const cacheKey = `region_analysis_${regionId}_${season}_${leadDay}_${cycle}`;
@@ -602,7 +602,7 @@ function filterMockHistorical({ leadDay, regionId, season }) {
  * @returns {Promise<Object>} Explanation factors and narrative
  */
 export async function getExplanation({
-  cycle = '2026-09-29 00Z',
+  cycle = '2021-09-30 12Z',
   leadDay = 5,
   regionId = 'west-coast',
   forceReload = false,

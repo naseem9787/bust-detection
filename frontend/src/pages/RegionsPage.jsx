@@ -31,10 +31,7 @@ const SEASON_OPTIONS = SEASONS.map((s) => ({
 }));
 
 const DEFAULT_CYCLES = [
-  { code: '2026-09-29 00Z', label: '2026-09-29 00Z (Latest Operational)' },
-  { code: '2026-09-28 12Z', label: '2026-09-28 12Z (-12h Run)' },
-  { code: '2026-09-28 00Z', label: '2026-09-28 00Z (-24h Run)' },
-  { code: '2018-08-14 00Z', label: '2018-08-14 00Z (Kerala Case Study)' },
+  { code: '2021-09-30 12Z', label: '2021-09-30 12Z (archived)' },
 ];
 import { Select } from '../components/ui/Select.jsx';
 import { RiskBadge } from '../components/ui/RiskBadge.jsx';
@@ -134,7 +131,7 @@ export function RegionsPage() {
   const [selectedRegionId, setSelectedRegionId] = useState('West Coast');
   const [selectedLeadDay, setSelectedLeadDay] = useState(5);
   const [selectedSeason, setSelectedSeason] = useState('monsoon_JJAS');
-  const [selectedCycle, setSelectedCycle] = useState('2026-09-29 00Z');
+  const [selectedCycle, setSelectedCycle] = useState('2021-09-30 12Z');
 
   const [availableRegions, setAvailableRegions] = useState(REGIONS);
   const [availableCycles, setAvailableCycles] = useState([]);
@@ -515,7 +512,7 @@ export function RegionsPage() {
             {/* PRIMARY ANALYSIS CHART: Historical Bust Rate by Day 1–10 */}
             <ChartContainer
               title="Primary Verification: Historical Bust Rate by Day 1–10"
-              subtitle={`Frequency of model forecast busts exceeding the 90th percentile error threshold &bull; ${activeRegionObj.shortName}`}
+              subtitle={`Frequency of model forecast busts exceeding the 90th percentile error threshold • ${activeRegionObj.shortName}`}
               unit="%"
               height={190}
               legend={[

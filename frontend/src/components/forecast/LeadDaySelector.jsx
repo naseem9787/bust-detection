@@ -11,7 +11,7 @@ import { PlayIcon, PauseIcon, StepBackIcon, StepForwardIcon, ClockIcon } from '.
 export function LeadDaySelector({
   leadDay = 5,
   onChange,
-  cycleTimestamp = '2026-09-29 00Z',
+  cycleTimestamp = '2021-09-30 12Z',
   className = '',
 }) {
   const [isPlaying, setIsPlaying] = useState(false);

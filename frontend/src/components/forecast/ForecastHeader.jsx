@@ -9,7 +9,7 @@ import { AlertTriangleIcon, InfoIcon, ShieldCheckIcon } from '../icons/Icons.jsx
 import { RiskBadge } from '../ui/RiskBadge.jsx';
 
 export function ForecastHeader({
-  cycle = '2026-09-29 00Z',
+  cycle = '2021-09-30 12Z',
   leadDay = 5,
   topRiskRegion = 'West Coast',
   topRiskProbability = 0.01,
@@ -31,7 +31,7 @@ export function ForecastHeader({
           </span>
           <span style={{ color: 'var(--text-muted)' }}>&bull;</span>
           <span style={{ fontSize: '12px', color: 'var(--text-secondary)' }}>
-            ECMWF HRES (0.25°/1.5° WeatherBench2)
+            ECMWF HRES (1.5°, WeatherBench2)
           </span>
           <span style={{ color: 'var(--text-muted)' }}>&bull;</span>
           <span style={{ fontSize: '12px', color: '#38BDF8', fontWeight: 500 }}>

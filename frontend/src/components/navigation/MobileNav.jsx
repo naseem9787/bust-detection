@@ -50,7 +50,7 @@ function MobileNavComponent({ isOpen, onClose, currentRoute, onNavigate }) {
           <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
             <RadarIcon size={18} style={{ color: '#38BDF8' }} />
             <span style={{ fontSize: '12px', fontWeight: 700, color: 'var(--text-primary)' }}>
-              NCMRWF SIH 26079
+              TWP &bull; SIH 26079
             </span>
           </div>
           <button

@@ -43,7 +43,7 @@ export default function App() {
 
   // Application Shell State
   const [isMobileNavOpen, setIsMobileNavOpen] = useState(false);
-  const [selectedCycle, setSelectedCycle] = useState('2026-09-29 00Z');
+  const [selectedCycle, setSelectedCycle] = useState('2021-09-30 12Z');
   const [isLoading, setIsLoading] = useState(false);
   const [globalError, setGlobalError] = useState(null);
 
