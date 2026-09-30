@@ -22,10 +22,17 @@ heavy-rain false alarm). The model rated it 37.6 %, the highest in India for tha
 
 Trained on monsoon (JJAS) 2018-2020, tested on the **unseen 2021** season (446,520 forecast cases).
 
-| Target | ROC-AUC | Brier Skill Score | PR-AUC (base rate) |
+| Target | ROC-AUC [95% CI] | Brier Skill Score [95% CI] | PR-AUC (base rate) |
 |---|---|---|---|
-| Rain bust (≥ 2 IMD rainfall categories off, or heavy rain missed / falsely forecast) | **0.913** | 0.31 | 0.46 (0.023) |
-| Temperature bust (2 m error > 3 °C) | **0.825** | 0.10 | 0.25 (0.072) |
+| Rain bust (≥ 2 IMD rainfall categories off, or heavy rain missed / falsely forecast) | **0.913** [0.909, 0.917] | 0.31 [0.295, 0.322] | 0.46 (0.023) |
+| Temperature bust (2 m error > 3 °C) | **0.825** [0.818, 0.831] | 0.10 [0.099, 0.115] | 0.25 (0.072) |
+
+Intervals: block bootstrap over the 244 forecast issuances (`src/verification/bootstrap_ci.py`).
+
+**Against the standard baseline.** On the identical 446,520 rows, raw 50-member IFS ensemble rain
+spread scores ROC-AUC 0.847; the model is **+0.065 higher [0.059, 0.072]**, and the gap grows with
+lead time (+0.006 at Day 1, +0.113 at Day 10). Combining the two adds nothing measurable (+0.001,
+interval includes 0). Tested on 2021 only (`src/verification/ensemble_vs_model.py`).
 
 - Rain ROC-AUC falls from 0.97 at Day 1 to 0.87 at Day 10, and is ≥ 0.80 in 28 of 29 states.
 - Stable across different train/test years (rain ROC-AUC 0.908 / 0.907 / 0.913).
