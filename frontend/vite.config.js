@@ -3,6 +3,8 @@ import { defineConfig } from 'vite';
 
 // https://vite.dev/config/
 export default defineConfig({
+  // GitHub Pages serves the static demo under /<repo>/ (set VITE_BASE=/bust-detection/)
+  base: process.env.VITE_BASE || '/',
   plugins: [react()],
   server: {
     port: 3000,

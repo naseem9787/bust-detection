@@ -98,9 +98,49 @@ function simulateLatency(ms = 60) {
 }
 
 /**
+ * Static-snapshot mode (VITE_SNAPSHOT=true): the backend-free demo build reads
+ * saved REAL API responses from public/snapshot/ instead of calling FastAPI.
+ * Key rules must match snapshot_key() in src/production/build_demo_snapshot.py.
+ */
+export const IS_SNAPSHOT =
+  typeof import.meta !== 'undefined' && import.meta.env?.VITE_SNAPSHOT === 'true';
+
+const slugify = (v) => String(v).toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '');
+let regionAliasesPromise = null;
+
+async function snapshotRequest(endpoint) {
+  const snapshotBase = `${import.meta.env.BASE_URL}snapshot/`;
+  if (!regionAliasesPromise) {
+    regionAliasesPromise = fetch(`${snapshotBase}region_aliases.json`).then((r) => (r.ok ? r.json() : {}));
+  }
+  const aliases = await regionAliasesPromise;
+  const toRegionId = (v) => aliases[slugify(v)] || slugify(v);
+
+  const [rawPath, rawQuery = ''] = endpoint.replace(/^\/+/, '').split('?');
+  let segments = rawPath.split('/').map(decodeURIComponent);
+  if (segments[0] === 'regions' && segments[1]) segments = ['regions', toRegionId(segments[1])];
+  const path = segments.join('/');
+
+  const dropped = new Set(['cycle', ...(path === 'replay/event' ? ['region_id'] : [])]);
+  const params = [...new URLSearchParams(rawQuery).entries()]
+    .filter(([k, v]) => !dropped.has(k) && v !== '' && v !== 'null')
+    .map(([k, v]) => [k, k === 'region_id' ? toRegionId(v) : v])
+    .sort(([a], [b]) => (a < b ? -1 : a > b ? 1 : 0));
+  const key = segments.map(slugify).join('_') +
+    (params.length ? '__' + params.map(([k, v]) => `${k}-${slugify(v)}`).join('__') : '');
+
+  const response = await fetch(`${snapshotBase}${key}.json`);
+  if (!response.ok) {
+    throw new ApiError('This view is not included in the offline demo snapshot.', { status: 404, endpoint });
+  }
+  return response.json();
+}
+
+/**
  * Centralized HTTP request engine with timeout, headers, and retry with exponential backoff
  */
 async function apiRequest(endpoint, { method = 'GET', body = null, headers = {} } = {}) {
+  if (IS_SNAPSHOT) return snapshotRequest(endpoint);
   // Normalize endpoint URL (ensures no double slashes)
   const base = API_CONFIG.baseUrl.replace(/\/+$/, '');
   const path = endpoint.startsWith('/') ? endpoint : `/${endpoint}`;

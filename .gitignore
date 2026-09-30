@@ -50,3 +50,11 @@ _test_*.py
 
 # full-season ensemble spread cache (regenerate: python -m src.verification.ensemble_spread_2021)
 data/raw/ens2021/
+
+# static demo snapshot (regenerate: python -m src.production.build_demo_snapshot)
+data/demo_snapshot/
+data/demo_dist/
+data/gh-pages-worktree/
+outputs/verification/*.npy
+ens2021_fetch.log
+bootstrap_ci.log
