@@ -58,3 +58,4 @@ data/gh-pages-worktree/
 outputs/verification/*.npy
 ens2021_fetch.log
 bootstrap_ci.log
+snapshot_build.log

@@ -1,0 +1,95 @@
+{
+  "n_rows": 446520,
+  "n_issuances": 244,
+  "bust_rate": 0.022608169846815372,
+  "method": "paired block bootstrap over issuances, 1000 resamples",
+  "point": {
+    "our_model": {
+      "roc_auc": 0.9126688226753898,
+      "pr_auc": 0.4564869453993343
+    },
+    "ensemble_spread": {
+      "roc_auc": 0.8472519863496475,
+      "pr_auc": 0.17340491955603993
+    },
+    "rank_average_exploratory": {
+      "roc_auc": 0.9138304108335764,
+      "pr_auc": 0.3737162185936782
+    }
+  },
+  "delta_roc_auc": {
+    "our_model_minus_spread": {
+      "mean": 0.06549774491075352,
+      "ci95": [
+        0.059284725244774274,
+        0.07197216473183538
+      ]
+    },
+    "rank_average_minus_spread": {
+      "mean": 0.06662393985016987,
+      "ci95": [
+        0.06310305318831817,
+        0.07023827607434964
+      ]
+    },
+    "rank_average_minus_our_model": {
+      "mean": 0.0011261949394163438,
+      "ci95": [
+        -0.0018982256260195256,
+        0.004114116072845415
+      ]
+    }
+  },
+  "roc_auc_by_lead_day": {
+    "1": {
+      "our_model": 0.9740706721470731,
+      "ensemble_spread": 0.9676604094529846,
+      "rank_average_exploratory": 0.979515059592972
+    },
+    "2": {
+      "our_model": 0.9410221204021231,
+      "ensemble_spread": 0.9104083083048016,
+      "rank_average_exploratory": 0.9459251080204665
+    },
+    "3": {
+      "our_model": 0.9227344068229493,
+      "ensemble_spread": 0.8890773155398916,
+      "rank_average_exploratory": 0.9323283112748675
+    },
+    "4": {
+      "our_model": 0.9189523135756505,
+      "ensemble_spread": 0.8653259519193698,
+      "rank_average_exploratory": 0.9218735578395761
+    },
+    "5": {
+      "our_model": 0.9106417857942982,
+      "ensemble_spread": 0.8615051156143574,
+      "rank_average_exploratory": 0.9179183501104898
+    },
+    "6": {
+      "our_model": 0.8965196426369757,
+      "ensemble_spread": 0.8448335921927763,
+      "rank_average_exploratory": 0.9070468596953278
+    },
+    "7": {
+      "our_model": 0.8959583721575083,
+      "ensemble_spread": 0.818811051795821,
+      "rank_average_exploratory": 0.8964193956464928
+    },
+    "8": {
+      "our_model": 0.8882582033775128,
+      "ensemble_spread": 0.7994221808116289,
+      "rank_average_exploratory": 0.8858733550043787
+    },
+    "9": {
+      "our_model": 0.8800286933400052,
+      "ensemble_spread": 0.7750678239667577,
+      "rank_average_exploratory": 0.8723300752073352
+    },
+    "10": {
+      "our_model": 0.8693534886648033,
+      "ensemble_spread": 0.7566897765420683,
+      "rank_average_exploratory": 0.8625628527543738
+    }
+  }
+}
