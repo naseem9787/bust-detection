@@ -4,6 +4,8 @@
 
 > Don't just ask what the weather forecast says. Ask where the forecast should be trusted.
 
+**[Live demo](https://naseem9787.github.io/bust-detection/)** - the real dashboard running on saved responses from the archived 2021 run (no live feed, no backend).
+
 We are **not** building another weather model. This is a **forecast reliability layer** that sits on
 top of an existing NWP forecast and estimates, for each Indian state/UT and each lead day (Day 1-10):
 
