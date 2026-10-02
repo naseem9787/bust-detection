@@ -49,7 +49,7 @@ const DEFAULT_CYCLES = [
 ];
 
 export function ModelInsightsPage() {
-  const [selectedRegionId, setSelectedRegionId] = useState('west-coast');
+  const [selectedRegionId, setSelectedRegionId] = useState('bihar');
   const [selectedLeadDay, setSelectedLeadDay] = useState(5);
   const [selectedCycle, setSelectedCycle] = useState('2021-09-30 12Z');
 

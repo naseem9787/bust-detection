@@ -8,18 +8,14 @@ import { useState, useEffect, useCallback } from 'react';
 
 export const ROUTES = {
   FORECAST: 'forecast',
-  HISTORICAL: 'historical',
   REPLAY: 'replay',
-  REGIONS: 'regions',
   INSIGHTS: 'insights',
   ABOUT: 'about',
 };
 
 export const NAV_ITEMS = [
   { id: ROUTES.FORECAST, label: 'Forecast', icon: 'RadarIcon' },
-  { id: ROUTES.HISTORICAL, label: 'Historical Performance', icon: 'TrendingUpIcon' },
   { id: ROUTES.REPLAY, label: 'Historical Replay', icon: 'ClockIcon' },
-  { id: ROUTES.REGIONS, label: 'Regions', icon: 'MapPinIcon' },
   { id: ROUTES.INSIGHTS, label: 'Model Insights', icon: 'DatabaseIcon' },
   { id: ROUTES.ABOUT, label: 'About', icon: 'HelpCircleIcon' },
 ];

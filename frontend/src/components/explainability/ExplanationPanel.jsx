@@ -158,7 +158,7 @@ function ExplanationPanelComponent({
       >
         <ReasonList
           factors={factors}
-          title="Why is confidence low for this forecast?"
+          title="What is driving this forecast's risk?"
           subtitle="Key empirical and dynamical conditions contributing to elevated forecast uncertainty for this regional window:"
         />
       </div>
