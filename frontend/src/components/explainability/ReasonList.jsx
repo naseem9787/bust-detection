@@ -17,7 +17,7 @@ import { AlertTriangleIcon, InfoIcon, DatabaseIcon, LayersIcon } from '../icons/
 
 function ReasonListComponent({
   factors = [],
-  title = "Why is confidence low?",
+  title = "What is driving the risk?",
   subtitle = "Primary factors statistically associated with elevated forecast uncertainty for this initialization:",
   className = '',
 }) {

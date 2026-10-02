@@ -22,14 +22,8 @@ import { ErrorState } from './components/feedback/ErrorState.jsx';
 const ForecastPage = lazy(() =>
   import('./pages/ForecastPage.jsx').then((m) => ({ default: m.ForecastPage }))
 );
-const HistoricalPerformancePage = lazy(() =>
-  import('./pages/HistoricalPerformancePage.jsx').then((m) => ({ default: m.HistoricalPerformancePage }))
-);
 const HistoricalReplayPage = lazy(() =>
   import('./pages/HistoricalReplayPage.jsx').then((m) => ({ default: m.HistoricalReplayPage }))
-);
-const RegionsPage = lazy(() =>
-  import('./pages/RegionsPage.jsx').then((m) => ({ default: m.RegionsPage }))
 );
 const ModelInsightsPage = lazy(() =>
   import('./pages/ModelInsightsPage.jsx').then((m) => ({ default: m.ModelInsightsPage }))
@@ -91,9 +85,7 @@ export default function App() {
 
     return (
       <Suspense fallback={<LoadingState message="Loading operational view..." />}>
-        {currentRoute === ROUTES.HISTORICAL && <HistoricalPerformancePage />}
         {currentRoute === ROUTES.REPLAY && <HistoricalReplayPage />}
-        {currentRoute === ROUTES.REGIONS && <RegionsPage />}
         {currentRoute === ROUTES.INSIGHTS && <ModelInsightsPage />}
         {currentRoute === ROUTES.ABOUT && <AboutPage />}
         {currentRoute === ROUTES.FORECAST && <ForecastPage selectedCycle={selectedCycle} />}
