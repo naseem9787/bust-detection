@@ -159,8 +159,9 @@ function RegionalSummaryComponent({
         {/* Model evidence + historical context - each factor tagged by source */}
         <div className="attribution-factors-list">
           {factors.map((factor) => {
+            // contribution is a SHAP value in log-odds - show direction + raw value, never as a "% risk"
             const hasContribution = typeof factor.contribution === 'number';
-            const contributionPercent = hasContribution ? Math.round(factor.contribution * 100) : null;
+            const raisesRisk = hasContribution && factor.contribution >= 0;
             const isHistorical = factor.source === 'historical_context';
             return (
               <div key={factor.factorId} className="attribution-factor-row">
@@ -171,9 +172,10 @@ function RegionalSummaryComponent({
                   {hasContribution ? (
                     <span
                       className="tabular-nums"
-                      style={{ fontSize: '10.5px', fontWeight: 600, color: contributionPercent >= 0 ? '#F97316' : '#34D399' }}
+                      style={{ fontSize: '10.5px', fontWeight: 600, color: raisesRisk ? '#F97316' : '#34D399' }}
+                      title="SHAP contribution (log-odds) to this forecast's bust probability"
                     >
-                      {contributionPercent >= 0 ? '+' : ''}{contributionPercent}% Risk
+                      {raisesRisk ? '▲ raises risk' : '▼ lowers risk'} · SHAP {raisesRisk ? '+' : '−'}{Math.abs(factor.contribution).toFixed(2)}
                     </span>
                   ) : (
                     <span

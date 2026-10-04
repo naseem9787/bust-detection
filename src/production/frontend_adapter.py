@@ -420,8 +420,9 @@ def explanations(
         "fcst_precip_mm": "How much rain is forecast",
         "fcst_temp_c": "Forecast temperature",
         "fcst_mslp_hpa": "Forecast air pressure pattern",
-        "fcst_precip_anomaly_vs_domain_mean": "Rain forecast is unusually high/low for this time of year",
-        "fcst_temp_anomaly_vs_domain_mean": "Temperature forecast is unusually high/low for this time of year",
+        # the feature is forecast minus the India-wide (domain) mean, not a seasonal anomaly
+        "fcst_precip_anomaly_vs_domain_mean": "Rain forecast compared with the India-wide average",
+        "fcst_temp_anomaly_vs_domain_mean": "Temperature forecast compared with the India-wide average",
         "precip_forecast_jump": "Rain forecast changed a lot from the previous model run",
         "temp_forecast_jump": "Temperature forecast changed a lot from the previous model run",
         "wind_speed_10m": "Forecast wind speed",
