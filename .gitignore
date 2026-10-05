@@ -45,9 +45,6 @@ data/processed/bust_labels.parquet
 *.log
 _test_*.py
 
-# Claude Code local tool state
-.claude/
-
 # full-season ensemble spread cache (regenerate: python -m src.verification.ensemble_spread_2021)
 data/raw/ens2021/
 
